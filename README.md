@@ -1,9 +1,8 @@
-# Your Project's Title...
-Your project's description...
+# SPIN DX
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.hlx.page/
-- Live: https://main--{repo}--{owner}.hlx.live/
+- Preview: https://main--spin-landingpage--spin-dx-lab.hlx.page/
+- Live: https://main--spin-landingpage--spin-dx-lab.hlx.live/
 
 ## Installation
 
@@ -14,7 +13,7 @@ npm i
 ## Tests
 
 ```sh
-npm tst
+npm test
 ```
 
 ## Cloud development
