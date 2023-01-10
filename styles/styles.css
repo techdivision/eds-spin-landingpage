@@ -10,7 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
+/* fallback font for Mulish (normal - 400) */
+@font-face {
+  font-family: "mulish-normal-400-fallback";
+  size-adjust: 103.181%;
+  src: local("Helvetica");
+}
+
+:root {
   /* colors */
   --link-color: #035fe6;
   --link-hover-color: #136ff6;
@@ -20,7 +27,7 @@
   --text-color: #000;
 
   /* fonts */
-  --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
+  --body-font-family: Mulish, mulish-normal-400-fallback, Helvetica, sans-serif;
   --heading-font-family: var(--body-font-family);
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
@@ -212,7 +219,7 @@ main img {
 
 @media (min-width: 900px) {
   :root {
-    --heading-font-size-xxl: 60px;
+    --heading-font-size-xxl: 55px;
     --heading-font-size-xl: 48px;
     --heading-font-size-l: 36px;
     --heading-font-size-m: 30px;
