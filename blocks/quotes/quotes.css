@@ -1,0 +1,79 @@
+/* style the quotes to be in 4 columns */
+.quotes {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-flow: row;
+    grid-gap: 20px;
+}
+
+/* hacky workaround to style the quotes into a square */
+.quotes > div {
+    position: relative;
+}
+
+.quotes > div::before {
+    content: ' ';
+    display: block;
+    width: 100%;
+    padding-top: 100%;
+}
+
+.quotes > div > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    /* actual styling of the quotes bubble */
+    border-radius: 50%;
+    background: green;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 50px 30px 30px;
+    color: white;
+}
+
+.quotes > div > div::before {
+    content: "\201C";
+    position: absolute;
+    top: 5%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: var(--heading-font-size-xxl);
+}
+
+/* every 1/4 quote */
+.quotes > div:nth-child(4n+1) > div {
+    background: linear-gradient(217.15deg, #CE2726 13.22%, #FF8C05 102.78%);
+}
+
+/* every 2/4 quote */
+.quotes > div:nth-child(4n+2) > div {
+    background: linear-gradient(149.57deg, #626FF0 2.45%, #CE2726 93.81%);
+}
+
+/* every 3/4 quote */
+.quotes > div:nth-child(4n+3) > div {
+    background: linear-gradient(184.5deg, #626FF0 -4.17%, rgb(206 39 38) 46.64%, #FF8C05 112.29%);
+}
+
+/* every 4/4 quote */
+.quotes > div:nth-child(4n) > div {
+    background: linear-gradient(329.8deg, #1C0A4D 3.3%, #CE2726 49.29%, #FF8C05 101.42%);
+}
+
+
+@media (min-width: 500px) {
+    .quotes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+@media (min-width: 900px) {
+    .quotes {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
