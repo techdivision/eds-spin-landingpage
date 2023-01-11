@@ -5,7 +5,6 @@ main .form {
 
 main .form h2 {
   padding: var(--spacing-m) 0;
-  font-size: var(--type-heading-l-lh);
   font-weight: normal;
 }
 
@@ -120,4 +119,8 @@ main .form .form-submit-wrapper {
 .content-right .form {
   padding-left: 40%;
   padding-right: 10%;
+}
+
+main .form .form-small-font {
+  font-size: var(--body-font-size-xs);
 }
