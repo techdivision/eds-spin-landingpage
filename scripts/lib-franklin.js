@@ -239,6 +239,10 @@ export function readBlockConfig(block) {
   return config;
 }
 
+export function toSlug(text) {
+  return text.toLowerCase().replace(' ', '-').replace(/[^a-zA-Z0-9-]/g, '');
+}
+
 /**
  * Decorates all sections in a container element.
  * @param {Element} $main The container element
@@ -268,6 +272,9 @@ export function decorateSections(main) {
         if (key === 'style') {
           const styles = meta.style.split(',').map((style) => toClassName(style.trim()));
           styles.forEach((style) => section.classList.add(style));
+        } else if (key === 'anchor') {
+          section.id = toSlug(meta[key]);
+          section.dataset[toCamelCase(key)] = meta[key]; // also keep the original data attribute
         } else {
           section.dataset[toCamelCase(key)] = meta[key];
         }
@@ -395,7 +402,10 @@ export async function loadBlocks(main) {
  * @param {boolean} eager load image eager
  * @param {Array} breakpoints breakpoints and corresponding params (eg. width)
  */
-export function createOptimizedPicture(src, alt = '', eager = false, breakpoints = [{ media: '(min-width: 400px)', width: '2000' }, { width: '750' }]) {
+export function createOptimizedPicture(src, alt = '', eager = false, breakpoints = [{
+  media: '(min-width: 400px)',
+  width: '2000',
+}, { width: '750' }]) {
   const url = new URL(src, window.location.href);
   const picture = document.createElement('picture');
   const { pathname } = url;

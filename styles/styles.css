@@ -34,8 +34,8 @@
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 18px;
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
   --body-font-size-xs: 12px;
 
   /* heading sizes */
@@ -47,8 +47,7 @@
   --heading-font-size-xs: 18px;
 
   /* nav height */
-  --nav-height: 64px;
-
+  --nav-height: 146px;
 }
 
 body {
@@ -71,6 +70,7 @@ body.appear {
 
 header {
   height: var(--nav-height);
+  background-color: var(--background-color-reverse);
 }
 
 h1, h2, h3,
