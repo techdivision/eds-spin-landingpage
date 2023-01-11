@@ -27,6 +27,8 @@
   --text-color: #000;
   --background-color-reverse: #1C0A4D;
   --text-color-reverse: #fff;
+  --input-background-color: #D1CCDD;
+  --button-color: #626FF0;
 
   /* fonts */
   --body-font-family: mulish, mulish-normal-400-fallback, helvetica, sans-serif;
@@ -120,7 +122,7 @@ pre {
 
 /* buttons */
 
-a.button:any-link, button {
+a.button:any-link, button, main .form .button {
   font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
@@ -132,12 +134,11 @@ a.button:any-link, button {
   font-weight: 600;
   cursor: pointer;
   color: var(--background-color);
-  background-color: var(--link-color);
+  background-color: var(--button-color);
   margin: 16px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  border-radius: 30px;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
