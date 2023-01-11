@@ -1,7 +1,8 @@
 footer {
   padding: 2rem;
-  background-color: var(--overlay-background-color);
-  font-size: var(--body-font-size-s);
+  background-color: var(--background-color-reverse);
+  color: #fff;
+  font-size: var(--body-font-size-xs);
 }
 
 footer .footer {
@@ -9,6 +10,34 @@ footer .footer {
   margin: auto;
 }
 
+footer .footer > div {
+  display: flex;
+}
+
+footer .footer > div > div {
+  width: 50%;
+}
+
+footer .footer a {
+  color: currentColor;
+}
+
 footer .footer p {
-  margin: 0;
+  margin: 10px 0;
+}
+
+footer .footer > div > div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+footer .footer > div > div:nth-child(2) > p:nth-child(1) {
+  padding-right: 20px;
+}
+
+footer .footer > div > div:nth-child(2) .icon svg {
+  height: 20px;
+  fill: currentColor;
 }
