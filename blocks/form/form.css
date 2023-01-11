@@ -25,6 +25,7 @@ main .form select {
   max-width: 50rem;
   box-sizing: border-box;
   margin-top: 4px;
+  background: var(--input-background-color);
 }
 
 main .form textarea {
@@ -35,17 +36,6 @@ main .form input:hover,
 main .form select:hover {
   border-color: rgb(90 92 96);
 }
-
-/* main .form label {
-  width: 100%;
-  display: block;
-  font-size: var(--type-body-s-size);
-  line-height: var(--type-body-s-lh);
-  padding-bottom: var(--spacing-xs);
-  text-transform: uppercase;
-  box-sizing: border-box;
-  font-weight: 800;
-} */
 
 main .form label {
   width: 100%;
@@ -101,9 +91,8 @@ main .form .form-checkbox-wrapper label {
 
 main .form .button {
   cursor: pointer;
-  background: rgb(20 115 230);
+  background: var(--button-color);
   color: white;
-  border-radius: 16px;
   font-size: var(--type-body-s-size);
   font-weight: 300;
   padding: 6px 16px;
