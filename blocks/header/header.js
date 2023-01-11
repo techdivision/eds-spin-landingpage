@@ -78,6 +78,7 @@ function buildNavigationWithNavigationItems() {
     aNode.href = `#${toSlug(item)}`;
     aNode.textContent = item;
     liNode.appendChild(aNode);
+    aNode.addEventListener('click', () => (!MQ.matches ? toggleMenu(navNode, false) : null));
     ulNode.appendChild(liNode);
     navNode.appendChild(ulNode);
   });
