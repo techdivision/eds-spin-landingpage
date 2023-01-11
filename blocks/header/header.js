@@ -23,9 +23,9 @@ function closeOnEscape(event) {
  */
 function toggleMenu(nav, newOpenStateOverride = null) {
   const ariaExpandedAttribute = nav.getAttribute('aria-expanded');
-  const isMenuCurrentlyOpen = ariaExpandedAttribute === 'false';
+  const isMenuCurrentlyClosed = ariaExpandedAttribute === 'false';
   // eslint-disable-next-line max-len
-  const menuShouldOpen = newOpenStateOverride !== null ? newOpenStateOverride : !isMenuCurrentlyOpen;
+  const menuShouldOpen = newOpenStateOverride !== null ? newOpenStateOverride : !isMenuCurrentlyClosed;
   const button = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = (!menuShouldOpen || MQ.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', menuShouldOpen ? 'true' : 'false');
