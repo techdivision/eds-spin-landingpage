@@ -26,6 +26,7 @@
   --highlight-background-color: #ccc;
   --text-color: #000;
   --background-color-reverse: #1C0A4D;
+  --text-color-reverse: #fff;
 
   /* fonts */
   --body-font-family: mulish, mulish-normal-400-fallback, helvetica, sans-serif;
@@ -58,6 +59,10 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+}
+
+body .reverse {
+  color: var(--text-color-reverse);
 }
 
 body.appear {
