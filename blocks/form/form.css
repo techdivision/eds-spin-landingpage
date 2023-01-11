@@ -93,7 +93,6 @@ main .form .button {
   cursor: pointer;
   background: rgb(20 115 230);
   color: white;
-  border-radius: 16px;
   font-size: var(--type-body-s-size);
   font-weight: 300;
   padding: 6px 16px;
