@@ -19,13 +19,15 @@
 
 :root {
   /* colors */
+  --color-purple: #1C0A4D;
+  --color-light-purple: #626FF0;
   --link-color: #035fe6;
   --link-hover-color: #136ff6;
   --background-color: #fff;
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
   --text-color: #000;
-  --background-color-reverse: #1C0A4D;
+  --background-color-reverse: var(--color-purple);
   --text-color-reverse: #fff;
   --input-background-color: #D1CCDD;
   --button-color: #626FF0;
