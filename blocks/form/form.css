@@ -91,7 +91,7 @@ main .form .form-checkbox-wrapper label {
 
 main .form .button {
   cursor: pointer;
-  background: rgb(20 115 230);
+  background: var(--button-color);
   color: white;
   font-size: var(--type-body-s-size);
   font-weight: 300;
