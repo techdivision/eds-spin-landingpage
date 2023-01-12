@@ -321,9 +321,11 @@ main .section.planet-bottom-right {
   }
 }
 
-main .section.hero .icon-logo-adobe-techdivision {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-  z-index: 3;
+@media only screen and (min-width: 1250px) {
+  main .section.hero .icon-logo-adobe-techdivision {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    z-index: 3;
+  }
 }
