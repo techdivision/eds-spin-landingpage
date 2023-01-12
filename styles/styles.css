@@ -143,13 +143,13 @@ pre {
 
 /* buttons */
 
-a.button:any-link, button, main .form .button {
+a.button:any-link, button, main .form .button, header nav li:nth-last-child(2) a {
   font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
   text-decoration: none;
   border: 2px solid transparent;
-  padding: 5px 30px;
+  padding: 10px 25px;
   text-align: center;
   font-style: normal; 
   font-weight: 600;
