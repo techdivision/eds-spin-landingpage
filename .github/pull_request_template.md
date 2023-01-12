@@ -3,5 +3,6 @@ Please always provide the [GitHub issue(s)](../issues) your PR is for, as well a
 Fix #<gh-issue-id>
 
 Test URLs:
-- Before: https://main--<repo>--<owner>.hlx.page/
-- After: https://<branch>--<repo>--<owner>.hlx.page/
+
+- before: https://main--spin-landingpage--spin-dx-lab.hlx.page/
+- after: https://<branch>--spin-landingpage--spin-dx-lab.hlx.page/

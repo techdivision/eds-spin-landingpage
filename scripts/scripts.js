@@ -1,7 +1,7 @@
 import {
   sampleRUM,
   buildBlock,
-  // loadHeader,
+  loadHeader,
   loadFooter,
   decorateButtons,
   decorateIcons,
@@ -27,6 +27,10 @@ function buildHeroBlock(main) {
   }
 }
 
+export function toSlug(text) {
+  return text.toLowerCase().replace(' ', '-').replace(/[^a-zA-Z0-9-]/g, '');
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -38,6 +42,13 @@ function buildAutoBlocks(main) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
+}
+function decorateSectionsWithIds(main) {
+  main.querySelectorAll('.section').forEach((section) => {
+    if (section.dataset.anchor) {
+      section.id = toSlug(section.dataset.anchor);
+    }
+  });
 }
 
 /**
@@ -51,6 +62,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionsWithIds(main);
   decorateBlocks(main);
 }
 
@@ -95,7 +107,7 @@ async function loadLazy(doc) {
   const element = hash ? main.querySelector(hash) : false;
   if (hash && element) element.scrollIntoView();
 
-  // loadHeader(doc.querySelector('header'));
+  loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
