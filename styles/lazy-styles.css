@@ -4,3 +4,7 @@
   src: url("/styles/fonts/Mulish-VariableFont_wght.ttf");
   font-weight: 100 900;
 }
+
+html{
+  scroll-behavior: smooth;
+}
