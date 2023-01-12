@@ -20,7 +20,7 @@
 :root {
   /* colors */
   --color-purple: #1C0A4D;
-  --color-light-purple: #626FF0;
+  --color-light-purple: #5764EF;
   --link-color: #035fe6;
   --link-hover-color: #136ff6;
   --background-color: #fff;
@@ -30,7 +30,7 @@
   --background-color-reverse: var(--color-purple);
   --text-color-reverse: #fff;
   --input-background-color: #D1CCDD;
-  --button-color: #626FF0;
+  --button-color: var(--color-light-purple);
 
   /* fonts */
   --body-font-family: mulish, mulish-normal-400-fallback, helvetica, sans-serif;
@@ -44,11 +44,11 @@
 
   /* heading sizes */
   --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 22px;
-  --heading-font-size-l: 32px;
-  --heading-font-size-m: 16px;
-  --heading-font-size-s: 20px;
-  --heading-font-size-xs: 18px;
+  --heading-font-size-xl: 32px;
+  --heading-font-size-l: 22px;
+  --heading-font-size-m: 18px;
+  --heading-font-size-s: 16px;
+  --heading-font-size-xs: 12px;
 
   /* nav height */
   --nav-height: 146px;
@@ -57,11 +57,11 @@
 @media (min-width: 900px) {
   :root {
     --heading-font-size-xxl: 55px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 32px;
-    --heading-font-size-m: 16px;
-    --heading-font-size-s: 24px;
-    --heading-font-size-xs: 22px;  
+    --heading-font-size-xl: 32px;
+    --heading-font-size-l: 22px;
+    --heading-font-size-m: 18px;
+    --heading-font-size-s: 16px;
+    --heading-font-size-xs: 12px;
   }
 }
 

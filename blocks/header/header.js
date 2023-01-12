@@ -65,6 +65,7 @@ function buildHamburgerNode() {
 function buildLogoNode() {
   const logoNode = document.createElement('a');
   logoNode.href = getCurrentLanguage() === 'en' ? '/en/' : '/';
+  logoNode.setAttribute('aria-label', 'SPIN Digital Experience Lab Landingpage');
   const logoNodeIcon = document.createElement('span');
   logoNodeIcon.classList.add('icon', 'icon-logo-white');
   logoNode.appendChild(logoNodeIcon);
@@ -96,6 +97,7 @@ function buildNavigationWithNavigationItems() {
     navNode.appendChild(ulNode);
   });
   navNode.setAttribute('aria-expanded', 'false');
+  navNode.id = 'nav';
   ulNode.appendChild(buildLanguageNavigationItem());
   return navNode;
 }

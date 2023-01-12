@@ -54,6 +54,7 @@ export default function decorate(block) {
 
     /* buttons */
     const button = document.createElement('button');
+    button.setAttribute('aria-label', `Carousel image ${i + 1}`);
     if (!i) button.classList.add('selected');
     button.addEventListener('click', () => {
       window.clearInterval(carouselInterval);
