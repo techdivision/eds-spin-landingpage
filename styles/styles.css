@@ -43,10 +43,10 @@
   --body-font-size-xs: 12px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 48px;
-  --heading-font-size-xl: 40px;
+  --heading-font-size-xxl: 55px;
+  --heading-font-size-xl: 22px;
   --heading-font-size-l: 32px;
-  --heading-font-size-m: 24px;
+  --heading-font-size-m: 16px;
   --heading-font-size-s: 20px;
   --heading-font-size-xs: 18px;
 
@@ -54,11 +54,22 @@
   --nav-height: 146px;
 }
 
+@media (min-width: 900px) {
+  :root {
+    --heading-font-size-xxl: 55px;
+    --heading-font-size-xl: 36px;
+    --heading-font-size-l: 32px;
+    --heading-font-size-m: 16px;
+    --heading-font-size-s: 24px;
+    --heading-font-size-xs: 22px;  
+  }
+}
+
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
   font-family: var(--body-font-family);
-  line-height: 1.6;
+  line-height: 22px;
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
@@ -82,13 +93,21 @@ h4, h5, h6 {
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
-  margin-top: 1em;
+  margin-top: 0;
   margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { font-size: var(--heading-font-size-xxl) }
-h2 { font-size: var(--heading-font-size-xl) }
+h1 { 
+  font-size: var(--heading-font-size-xxl);
+  line-height: 60px;
+}
+
+h2 { 
+  font-size: var(--heading-font-size-xl);
+  line-height: 40px;
+}
+
 h3 { font-size: var(--heading-font-size-l) }
 h4 { font-size: var(--heading-font-size-m) }
 h5 { font-size: var(--heading-font-size-s) }
@@ -182,6 +201,14 @@ main .section {
   padding: 64px 16px;
 }
 
+main .section.hero {
+  padding: 20px 35px;
+}
+
+main .section.hero p {
+  margin-bottom: 45px;
+}
+
 main pre {
   background-color: var(--overlay-background-color);
   padding: 1em;
@@ -223,22 +250,25 @@ main img {
 @media (min-width: 600px) {
   main .section {
     padding: 64px 32px;
-  }  
+  }
+
+  main .section.hero {
+    padding: 40px;
+  }
 }
 
 @media (min-width: 900px) {
-  :root {
-    --heading-font-size-xxl: 55px;
-    --heading-font-size-xl: 48px;
-    --heading-font-size-l: 36px;
-    --heading-font-size-m: 30px;
-    --heading-font-size-s: 24px;
-    --heading-font-size-xs: 22px;  
-  }
-  
   .section > div {
-    max-width: 1200px;
     margin: auto;
+  }
+
+  main .section {
+    padding: 66px 192px;
+  }
+
+  main .section.hero {
+    padding: 80px calc(40% - 100px) 80px 192px;
+    margin-bottom: 66px;
   }
 }
 
