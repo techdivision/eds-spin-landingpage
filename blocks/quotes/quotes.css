@@ -15,8 +15,11 @@
     display: flex;
     align-items: center;
     text-align: center;
-    padding: 30px;
+    padding: 1.5vw;
     color: white;
+    font-size: 30px;
+    line-height: 1.25;
+    overflow: hidden;
 }
 
 .quotes > div > div::before {
@@ -26,7 +29,7 @@
     left: 0;
     right: 0;
     text-align: center;
-    font-size: var(--heading-font-size-xxl);
+    font-size: 100px;
 }
 
 /* every 1/4 quote */
@@ -49,14 +52,23 @@
     background: linear-gradient(329.8deg, #1C0A4D 3.3%, #CE2726 49.29%, #FF8C05 101.42%);
 }
 
+@media (min-width: 600px) {
+    .quotes > div > div {
+        font-size: 3vw;
+        padding:2.5vw;
+    }
 
-@media (min-width: 500px) {
     .quotes {
         grid-template-columns: repeat(2, 1fr);
     }
-
 }
-@media (min-width: 900px) {
+
+@media (min-width: 1400px) {
+    .quotes > div > div {
+        font-size: 1.75vw;
+        padding: 1.5vw;
+    }
+
     .quotes {
         grid-template-columns: repeat(4, 1fr);
     }
