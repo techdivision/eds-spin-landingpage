@@ -259,16 +259,19 @@ main .section.reverse {
 main .section.planet {
   position: relative;
 }
-main .section.planet::after {
-  content: '';
-  overflow: hidden;
-  display: inline-block;
-  position: absolute;
-  width: 40%;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  background: linear-gradient(223.02deg, #FF8C05 5.54%, #CE2726 36.22%, #626FF0 80.09%);
-  transform: rotate(-173.84deg);
-  bottom: 20%;
-  left: -10%;
-} 
+
+@media only screen and (min-width: 600px) {
+  main .section.planet::after {
+    content: '';
+    overflow: hidden;
+    display: inline-block;
+    position: absolute;
+    width: 40%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background: linear-gradient(223.02deg, #FF8C05 5.54%, #CE2726 36.22%, #626FF0 80.09%);
+    transform: rotate(-173.84deg);
+    bottom: 20%;
+    left: -10%;
+  } 
+}
