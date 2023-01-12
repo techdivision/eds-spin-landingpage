@@ -1,5 +1,5 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
-import { toSlug } from '../../scripts/scripts.js';
+import { getCurrentLanguage, toSlug } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const MQ = window.matchMedia('(min-width: 900px)');
@@ -63,10 +63,22 @@ function buildHamburgerNode() {
 }
 
 function buildLogoNode() {
-  const logoNode = document.createElement('span');
-  logoNode.classList.add('icon', 'icon-logo-white');
-
+  const logoNode = document.createElement('a');
+  logoNode.href = getCurrentLanguage() === 'en' ? '/en/' : '/';
+  const logoNodeIcon = document.createElement('span');
+  logoNodeIcon.classList.add('icon', 'icon-logo-white');
+  logoNode.appendChild(logoNodeIcon);
   return logoNode;
+}
+
+function buildLanguageNavigationItem() {
+  const languageNavigation = document.createElement('li');
+  languageNavigation.classList.add('language-navigation-item');
+  languageNavigation.innerHTML = `
+    <a href="/" class="${getCurrentLanguage() === 'de' ? 'current-language' : ''}">DE</a> /
+    <a href="/en/" class="${getCurrentLanguage() === 'en' ? 'current-language' : ''}">EN</a>
+  `;
+  return languageNavigation;
 }
 
 function buildNavigationWithNavigationItems() {
@@ -84,7 +96,7 @@ function buildNavigationWithNavigationItems() {
     navNode.appendChild(ulNode);
   });
   navNode.setAttribute('aria-expanded', 'false');
-
+  ulNode.appendChild(buildLanguageNavigationItem());
   return navNode;
 }
 

@@ -16,6 +16,10 @@ header nav ul {
     display: flex;
 }
 
+header nav ul .language-navigation-item .current-language {
+    font-weight: bolder;
+}
+
 header nav li {
     margin: 32px;
     list-style: none;
@@ -25,10 +29,9 @@ header nav li {
 
 header nav li a:any-link {
     color: white;
-    text-underline: none;
 }
 
-header nav li:last-of-type a {
+header nav li:nth-last-child(2) a {
     padding: 14px 20px;
     background-color: #626FF0;
 }

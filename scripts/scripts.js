@@ -1,16 +1,16 @@
 import {
-  sampleRUM,
   buildBlock,
-  loadHeader,
-  loadFooter,
+  decorateBlocks,
   decorateButtons,
   decorateIcons,
   decorateSections,
-  decorateBlocks,
   decorateTemplateAndTheme,
-  waitForLCP,
   loadBlocks,
   loadCSS,
+  loadFooter,
+  loadHeader,
+  sampleRUM,
+  waitForLCP,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -43,6 +43,7 @@ function buildAutoBlocks(main) {
     console.error('Auto Blocking failed', error);
   }
 }
+
 function decorateSectionsWithIds(main) {
   main.querySelectorAll('.section').forEach((section) => {
     if (section.dataset.anchor) {
@@ -77,6 +78,16 @@ async function loadEager(doc) {
     decorateMain(main);
     await waitForLCP(LCP_BLOCKS);
   }
+}
+
+export function getCurrentLanguage() {
+  let currentLanguage = 'de';
+  const match = window.location.pathname.match(/^\/([a-z][a-z])\//);
+  if (match) {
+    // eslint-disable-next-line prefer-destructuring
+    currentLanguage = match[1];
+  }
+  return currentLanguage;
 }
 
 /**

@@ -1,4 +1,5 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
+import { getCurrentLanguage } from '../../scripts/scripts.js';
 
 /**
  * loads and decorates the footer
@@ -9,14 +10,7 @@ export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   block.textContent = '';
 
-  let prefix = '/de/';
-  const match = window.location.pathname.match(/^\/[a-z][a-z]\//);
-  if (match) {
-    // eslint-disable-next-line prefer-destructuring
-    prefix = match[0];
-  }
-
-  const footerPath = cfg.footer || `${prefix}footer`;
+  const footerPath = cfg.footer || `/${getCurrentLanguage()}/footer`;
   const resp = await fetch(`${footerPath}.plain.html`);
   const html = await resp.text();
   const footer = document.createElement('div');
