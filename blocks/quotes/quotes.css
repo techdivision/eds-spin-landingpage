@@ -6,32 +6,15 @@
     grid-gap: 20px;
 }
 
-/* hacky workaround to style the quotes into a square */
-.quotes > div {
-    position: relative;
-}
-
-.quotes > div::before {
-    content: ' ';
-    display: block;
-    width: 100%;
-    padding-top: 100%;
-}
-
 .quotes > div > div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-
-    /* actual styling of the quotes bubble */
+    position: relative;
+    aspect-ratio: 1/1;
     border-radius: 50%;
     background: green;
     display: flex;
     align-items: center;
     text-align: center;
-    padding: 50px 30px 30px;
+    padding: 30px;
     color: white;
 }
 
