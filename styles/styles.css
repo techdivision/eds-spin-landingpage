@@ -284,6 +284,7 @@ main .section.highlight {
 
 main .section.reverse {
   background-color: var(--background-color-reverse);
+  overflow: hidden;
 }
 
 main .section.planet {
@@ -292,34 +293,33 @@ main .section.planet {
 
 main .section.planet-bottom-right {
   position: relative;
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 600px) {
   main .section.planet::after {
     content: '';
-    overflow: hidden;
     display: inline-block;
     position: absolute;
-    width: 40%;
+    width: 33%;
     aspect-ratio: 1/1;
     border-radius: 50%;
     background: linear-gradient(223.02deg, #FF8C05 5.54%, #CE2726 36.22%, #626FF0 80.09%);
     transform: rotate(-173.84deg);
-    bottom: 20%;
+    bottom: 15%;
     left: -10%;
   }
   
   main .section.planet-bottom-right::after {
     content: '';
-    overflow: hidden;
     display: inline-block;
     position: absolute;
-    width: 25%;
+    width: 30%;
     aspect-ratio: 1/1;
     border-radius: 50%;
     background: linear-gradient(135.25deg, #FF8C05 11.53%, #CE2726 42.04%, #626FF0 75.11%);
     transform: rotate(-173.84deg);
     bottom: -20%;
-    right: -10%;
+    right: -5%;
   }
 }
