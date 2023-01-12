@@ -20,7 +20,7 @@
 :root {
   /* colors */
   --color-purple: #1C0A4D;
-  --color-light-purple: #626FF0;
+  --color-light-purple: #5764EF;
   --link-color: #035fe6;
   --link-hover-color: #136ff6;
   --background-color: #fff;
@@ -30,7 +30,7 @@
   --background-color-reverse: var(--color-purple);
   --text-color-reverse: #fff;
   --input-background-color: #D1CCDD;
-  --button-color: #626FF0;
+  --button-color: var(--color-light-purple);
 
   /* fonts */
   --body-font-family: mulish, mulish-normal-400-fallback, helvetica, sans-serif;
