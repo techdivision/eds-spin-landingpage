@@ -29,7 +29,6 @@ header nav li {
 
 header nav li a:any-link {
     color: white;
-    text-underline: none;
 }
 
 header nav li:nth-last-child(2) a {
