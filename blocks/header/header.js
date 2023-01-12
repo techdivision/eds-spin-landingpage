@@ -96,6 +96,7 @@ function buildNavigationWithNavigationItems() {
     navNode.appendChild(ulNode);
   });
   navNode.setAttribute('aria-expanded', 'false');
+  navNode.setAttribute('aria-labelledby', 'nav');
   ulNode.appendChild(buildLanguageNavigationItem());
   return navNode;
 }
