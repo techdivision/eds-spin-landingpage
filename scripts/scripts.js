@@ -10,7 +10,7 @@ import {
   decorateTemplateAndTheme,
   waitForLCP,
   loadBlocks,
-  loadCSS,
+  loadCSS, readBlockConfig, toClassName, toCamelCase,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -27,6 +27,10 @@ function buildHeroBlock(main) {
   }
 }
 
+export function toSlug(text) {
+  return text.toLowerCase().replace(' ', '-').replace(/[^a-zA-Z0-9-]/g, '');
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -38,6 +42,13 @@ function buildAutoBlocks(main) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
+}
+function decorateSectionsWithIds(main) {
+  main.querySelectorAll('.section').forEach((section) => {
+    if (section.dataset.anchor) {
+      section.id = toSlug(section.dataset.anchor);
+    }
+  });
 }
 
 /**
@@ -51,6 +62,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionsWithIds(main);
   decorateBlocks(main);
 }
 

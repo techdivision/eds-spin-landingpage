@@ -1,4 +1,5 @@
-import { decorateIcons, toSlug } from '../../scripts/lib-franklin.js';
+import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { toSlug } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const MQ = window.matchMedia('(min-width: 900px)');
