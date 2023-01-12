@@ -55,7 +55,7 @@
 @media (min-width: 600px) {
     .quotes > div > div {
         font-size: 3vw;
-        padding:2.5vw;
+        padding: 2.5vw;
     }
 
     .quotes {
@@ -65,7 +65,7 @@
 
 @media (min-width: 1400px) {
     .quotes > div > div {
-        font-size: 1.75vw;
+        font-size: 1.5vw;
         padding: 1.5vw;
     }
 
