@@ -93,7 +93,7 @@ h4, h5, h6 {
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
-  margin-top: 1em;
+  margin-top: 0;
   margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
@@ -259,12 +259,16 @@ main img {
 
 @media (min-width: 900px) {
   .section > div {
-    max-width: 1200px;
     margin: auto;
+  }
+
+  main .section {
+    padding: 66px 192px;
   }
 
   main .section.hero {
     padding: 80px calc(40% - 100px) 80px 192px;
+    margin-bottom: 66px;
   }
 }
 
