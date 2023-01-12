@@ -33,7 +33,7 @@ header nav li a:any-link {
 
 header nav li:nth-last-child(2) a {
     padding: 14px 20px;
-    background-color: #626FF0;
+    background-color: var(--button-color);
 }
 
 /* hamburger */
