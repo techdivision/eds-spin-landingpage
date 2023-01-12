@@ -297,28 +297,24 @@ main .section.planet-bottom-right {
 }
 
 @media only screen and (min-width: 600px) {
-  main .section.planet::after {
+  main .section.planet::after, main .section.planet-bottom-right::after {
     content: '';
     display: inline-block;
     position: absolute;
-    width: 33%;
     aspect-ratio: 1/1;
     border-radius: 50%;
-    background: linear-gradient(223.02deg, #FF8C05 5.54%, #CE2726 36.22%, #626FF0 80.09%);
     transform: rotate(-173.84deg);
+  }
+  main .section.planet::after {
+    width: 33%;
+    background: linear-gradient(223.02deg, #FF8C05 5.54%, #CE2726 36.22%, #626FF0 80.09%);
     bottom: 15%;
     left: -10%;
   }
   
   main .section.planet-bottom-right::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
     width: 30%;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
     background: linear-gradient(135.25deg, #FF8C05 11.53%, #CE2726 42.04%, #626FF0 75.11%);
-    transform: rotate(-173.84deg);
     bottom: -20%;
     right: -5%;
   }
