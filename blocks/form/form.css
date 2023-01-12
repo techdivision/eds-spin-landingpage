@@ -105,9 +105,11 @@ main .form .form-submit-wrapper {
   justify-content: flex-end;
 }
 
-.content-right .form {
-  padding-left: 40%;
-  padding-right: 10%;
+@media only screen and (min-width: 600px) {
+  .content-right .form {
+    padding-left: 40%;
+    padding-right: 10%;
+  }
 }
 
 main .form .form-small-font {
