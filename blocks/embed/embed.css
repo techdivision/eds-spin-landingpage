@@ -2,6 +2,7 @@ main .embed {
   width: unset;
   text-align: center;
   margin: 32px auto;
+  aspect-ratio: 16 / 9;
 }
 
 main .embed > div {
