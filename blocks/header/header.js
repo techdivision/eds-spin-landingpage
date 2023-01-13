@@ -119,9 +119,6 @@ export default async function decorate(block) {
   block.appendChild(navNode);
   navNode.prepend(hamburger);
 
-  // default should always be closed
-  toggleMenu(navNode, false);
-
   // event listeners
   hamburger.addEventListener('click', () => toggleMenu(navNode));
   MQ.addEventListener('change', () => toggleMenu(navNode, false));
