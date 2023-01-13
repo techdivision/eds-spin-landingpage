@@ -5,10 +5,6 @@ main .embed {
   aspect-ratio: 16 / 9;
 }
 
-main .embed.embed-is-loaded {
-  min-height: unset;
-}
-
 main .embed > div {
   display: flex;
   justify-content: center;
