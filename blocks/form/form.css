@@ -5,6 +5,8 @@ main .form {
 main .form input,
 main .form textarea,
 main .form select {
+  font-family: var(--body-font-family);
+  font-size: 1rem;
   border: 1px solid rgb(193 193 195);
   padding: 11px;
   border-radius: 0;

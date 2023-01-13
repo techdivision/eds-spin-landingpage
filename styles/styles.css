@@ -243,7 +243,7 @@ hr {
 
 main img {
   max-width: 100%;
-  width: auto;
+  width: 100%;
   height: auto;
 }
 
@@ -294,6 +294,10 @@ main .section.planet {
 main .section.planet-bottom-right {
   position: relative;
   overflow: hidden;
+}
+
+.hidden{
+  display: none;
 }
 
 @media only screen and (min-width: 600px) {
