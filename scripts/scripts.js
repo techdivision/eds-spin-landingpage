@@ -31,8 +31,10 @@ function buildHeroLogo() {
   const logoNodeIcon = document.createElement('span');
   logoNodeIcon.classList.add('icon', 'icon-logo-adobe-techdivision');
   const heroSection = document.querySelector('main .section.hero');
-  heroSection.appendChild(logoNodeIcon);
-  decorateIcons(heroSection);
+  if (heroSection) {
+    heroSection.appendChild(logoNodeIcon);
+    decorateIcons(heroSection);
+  }
 }
 
 export function toSlug(text) {
