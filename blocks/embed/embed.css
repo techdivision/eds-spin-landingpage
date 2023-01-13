@@ -2,7 +2,7 @@ main .embed {
   width: unset;
   text-align: center;
   margin: 32px auto;
-  min-height: 201px; /* required for anchor links which might be below */
+  aspect-ratio: 16 / 9;
 }
 
 main .embed.embed-is-loaded {
@@ -66,16 +66,4 @@ main .embed .embed-placeholder-play button::before {
   border-left: 6px solid;
   top: 4px;
   left: 7px;
-}
-
-@media (min-width: 600px) {
-  main .embed {
-    min-height: 340px; /* required for anchor links which might be below */
-  }
-}
-
-@media (min-width: 900px) {
-  main .embed {
-    min-height: 720px; /* required for anchor links which might be below */
-  }
 }
