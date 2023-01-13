@@ -13,7 +13,7 @@
 /* fallback font for Mulish (normal - 400) */
 @font-face {
   font-family: "mulish-normal-400-fallback";
-  size-adjust: 103.181%;
+  size-adjust: 103.181%; /* trick to keep the CLS at a minimum */
   src: local("Helvetica");
 }
 
@@ -52,6 +52,10 @@
 
   /* nav height */
   --nav-height: 146px;
+
+  /* content width */
+  --content-width: 1200px;
+  --section-padding: max(calc(50vw - (var(--content-width) / 2)), 32px);
 }
 
 @media (min-width: 900px) {
@@ -198,15 +202,20 @@ main input:hover {
 }
 
 main .section {
-  padding: 64px 16px;
+  padding: 64px var(--section-padding);
 }
 
 main .section.hero {
-  padding: 20px 35px;
+  padding: 20px var(--section-padding);
 }
 
 main .section.hero p {
   margin-bottom: 45px;
+}
+
+main .section.hero .default-content-wrapper{
+  max-width: 800px;
+  margin: 0;
 }
 
 main pre {
@@ -248,12 +257,9 @@ main img {
 }
 
 @media (min-width: 600px) {
-  main .section {
-    padding: 64px 32px;
-  }
-
   main .section.hero {
-    padding: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 }
 
@@ -262,12 +268,9 @@ main img {
     margin: auto;
   }
 
-  main .section {
-    padding: 66px 192px;
-  }
-
   main .section.hero {
-    padding: 80px calc(40% - 100px) 80px 192px;
+    padding-top: 80px;
+    padding-bottom: 80px;
     margin-bottom: 66px;
   }
 }
