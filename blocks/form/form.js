@@ -53,12 +53,18 @@ function createButton(fd) {
   if (fd.Type === 'submit') {
     button.addEventListener('click', async (event) => {
       const form = button.closest('form');
+      const formBlock = button.closest('.form.block');
       if (form.checkValidity()) {
         event.preventDefault();
         button.setAttribute('disabled', '');
         await submitForm(form);
-        const redirectTo = fd.Extra;
-        window.location.href = redirectTo;
+        const formThankYou = formBlock.querySelector('.form-thank-you');
+        if (formThankYou) {
+          formBlock.querySelector('.form-content').classList.add('hidden');
+          formThankYou.classList.remove('hidden');
+        }
+
+        window.location.hash = '#form';
       }
     });
   }
@@ -176,7 +182,11 @@ async function createForm(formURL) {
 
 export default async function decorate(block) {
   const form = block.querySelector('a[href$=".json"]');
+  block.id = 'form';
   if (form) {
     form.replaceWith(await createForm(form.href));
   }
+  const formRows = block.querySelectorAll('.form>div');
+  formRows[0].classList.add('form-content');
+  formRows[1].classList.add('form-thank-you', 'hidden');
 }
