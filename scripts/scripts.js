@@ -27,6 +27,14 @@ function buildHeroBlock(main) {
   }
 }
 
+function buildHeroLogo() {
+  const logoNodeIcon = document.createElement('span');
+  logoNodeIcon.classList.add('icon', 'icon-logo-adobe-techdivision');
+  const heroSection = document.querySelector('main .section.hero');
+  heroSection.appendChild(logoNodeIcon);
+  decorateIcons(heroSection);
+}
+
 export function toSlug(text) {
   return text.toLowerCase().replace(' ', '-').replace(/[^a-zA-Z0-9-]/g, '');
 }
@@ -65,6 +73,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateSectionsWithIds(main);
   decorateBlocks(main);
+  buildHeroLogo();
 }
 
 /**
