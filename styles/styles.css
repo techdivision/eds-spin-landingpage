@@ -43,7 +43,7 @@
   --body-font-size-xs: 12px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 55px;
+  --heading-font-size-xxl: 38px;
   --heading-font-size-xl: 32px;
   --heading-font-size-l: 22px;
   --heading-font-size-m: 18px;
@@ -143,13 +143,13 @@ pre {
 
 /* buttons */
 
-a.button:any-link, button, main .form .button {
+a.button:any-link, button, main .form .button, header nav li:nth-last-child(2) a {
   font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
   text-decoration: none;
   border: 2px solid transparent;
-  padding: 5px 30px;
+  padding: 10px 25px;
   text-align: center;
   font-style: normal; 
   font-weight: 600;
@@ -294,6 +294,10 @@ main .section.planet {
 main .section.planet-bottom-right {
   position: relative;
   overflow: hidden;
+}
+
+.hidden{
+  display: none;
 }
 
 @media only screen and (min-width: 600px) {
