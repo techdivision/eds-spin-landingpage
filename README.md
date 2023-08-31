@@ -1,8 +1,8 @@
 # SPIN DX
 
 ## Environments
-- Preview: https://main--spin-landingpage--spin-dx-lab.hlx.page/
-- Live: https://main--spin-landingpage--spin-dx-lab.hlx.live/
+- Preview: https://main--franklin-spin-landingpage--techdivision.hlx.page/
+- Live: https://main--franklin-spin-landingpage--techdivision.hlx.live/
 
 ## Installation
 
