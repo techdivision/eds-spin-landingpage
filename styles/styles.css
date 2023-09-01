@@ -15,6 +15,7 @@
     font-family: "mulish-normal-400-fallback";
     size-adjust: 103.181%; /* trick to keep the CLS at a minimum */
     src: local("Helvetica");
+    font-display: swap;
 }
 
 :root {
