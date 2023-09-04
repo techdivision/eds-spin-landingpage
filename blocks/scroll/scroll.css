@@ -35,6 +35,11 @@ body {
     animation-fill-mode: both;
 }
 
+.wrapper-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
 .word-cloud-wrapper {
     height: 200vh;
     position: relative;

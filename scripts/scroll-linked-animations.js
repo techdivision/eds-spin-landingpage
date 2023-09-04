@@ -1,43 +1,50 @@
 const scrollLinkedElements = [];
 
 function calculateScrollPositions() {
-  scrollLinkedElements.forEach((element) => {
-    const sectionRect = element.getBoundingClientRect();
-    const scrollPercentBottom = Math.min(
-      Math.max(
-        (sectionRect.height
-                - (sectionRect.height + sectionRect.top - window.innerHeight))
-            / sectionRect.height,
-        0,
-      ),
-      1,
-    );
-    const scrollPercentTop = Math.min(
-      Math.max(
-        (sectionRect.height - (sectionRect.height + sectionRect.top))
-            / sectionRect.height,
-        0,
-      ),
-      1,
-    );
+  scrollLinkedElements.forEach((elementData) => {
+    const elementRect = elementData.element.getBoundingClientRect();
+    let scrollStartOffset = 0;
+    let scrollEndOffset = 0;
+    if (elementData.scrollStartPosition === 'top' && elementData.scrollEndPosition === 'bottom') {
+      scrollEndOffset = -1 * window.innerHeight;
+    } else if (elementData.scrollStartPosition === 'bottom' && elementData.scrollEndPosition === 'bottom') {
+      scrollStartOffset = window.innerHeight;
+    } else if (elementData.scrollStartPosition === 'bottom' && elementData.scrollEndPosition === 'top') {
+      scrollStartOffset = window.innerHeight;
+      scrollEndOffset = window.innerHeight;
+    }
     const scrollPercent = Math.min(
       Math.max(
-        (sectionRect.height - (sectionRect.height + sectionRect.top))
-            / (sectionRect.height - window.innerHeight),
+        (elementRect.height - (elementRect.height + elementRect.top - scrollStartOffset))
+            / (elementRect.height + scrollEndOffset),
         0,
       ),
       1,
     );
-    element.style.setProperty('--scroll-top', scrollPercentTop);
-    element.style.setProperty('--scroll-bottom', scrollPercentBottom);
-    element.style.setProperty('--scroll', scrollPercent);
-    element.style.setProperty('--container-height', `${sectionRect.height}px`);
-    element.style.setProperty('--container-width', `${sectionRect.width}px`);
+    elementData.element.style.setProperty('--scroll', scrollPercent);
+    elementData.element.style.setProperty('--container-height', `${elementRect.height}px`);
+    elementData.element.style.setProperty('--container-width', `${elementRect.width}px`);
   });
 }
 
-export default function registerScrollLinkedAnimation(element) {
-  scrollLinkedElements.push(element);
+/**
+ *
+ * @param element
+ * @param scrollStartPosition can be either top or bottom, top is the default
+ * @param scrollEndPosition can be either top or bottom, bottom is the default
+ */
+export default function registerScrollLinkedAnimation(element, scrollStartPosition = 'top', scrollEndPosition = 'bottom') {
+  const scrollPositions = ['top', 'bottom'];
+  if (!scrollPositions.includes(scrollStartPosition)
+      || !scrollPositions.includes(scrollEndPosition)) {
+    return;
+  }
+  const elementData = {
+    element,
+    scrollStartPosition,
+    scrollEndPosition,
+  };
+  scrollLinkedElements.push(elementData);
   calculateScrollPositions();
 }
 
