@@ -52,7 +52,7 @@ body {
     animation-play-state: paused;
     animation-iteration-count: 1;
     animation-fill-mode: both;
-    font-size: 50px;
+    font-size: 20px;
 }
 
 .word:nth-child(1) {
