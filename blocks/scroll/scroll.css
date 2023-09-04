@@ -23,9 +23,9 @@ body {
     height: 120vw;
     background: linear-gradient(
             to top left,
-            #ff8c05 var(--color-one, 11.53%),
-            #ce2726 var(--color-two, 42.04%),
-            #1c0a4d var(--color-three, 75.11%)
+            #ff8c05 calc(6.14% + var(--scroll) * 5.39%),
+            #ce2726 calc(19.43% + var(--scroll) * 22.61%),
+            #1c0a4d calc(53.92% + var(--scroll) * 21.19%)
     );
     border-radius: 120vw;
     animation: planet 1s linear infinite;
