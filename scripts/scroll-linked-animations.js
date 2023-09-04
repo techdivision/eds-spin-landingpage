@@ -3,20 +3,10 @@ const scrollLinkedElements = [];
 function calculateScrollPositions() {
   scrollLinkedElements.forEach((elementData) => {
     const elementRect = elementData.element.getBoundingClientRect();
-    let scrollStartOffset = 0;
-    let scrollEndOffset = 0;
-    if (elementData.scrollStartPosition === 'top' && elementData.scrollEndPosition === 'bottom') {
-      scrollEndOffset = -1 * window.innerHeight;
-    } else if (elementData.scrollStartPosition === 'bottom' && elementData.scrollEndPosition === 'bottom') {
-      scrollStartOffset = window.innerHeight;
-    } else if (elementData.scrollStartPosition === 'bottom' && elementData.scrollEndPosition === 'top') {
-      scrollStartOffset = window.innerHeight;
-      scrollEndOffset = window.innerHeight;
-    }
     const scrollPercent = Math.min(
       Math.max(
-        (elementRect.height - (elementRect.height + elementRect.top - scrollStartOffset))
-            / (elementRect.height + scrollEndOffset),
+        (elementRect.height - (elementRect.height + elementRect.top - elementData.scrollStartOffset))
+            / (elementRect.height + elementData.scrollEndOffset),
         0,
       ),
       1,
@@ -39,10 +29,20 @@ export default function registerScrollLinkedAnimation(element, scrollStartPositi
       || !scrollPositions.includes(scrollEndPosition)) {
     return;
   }
+  let scrollStartOffset = 0;
+  let scrollEndOffset = 0;
+  if (scrollStartPosition === 'top' && scrollEndPosition === 'bottom') {
+    scrollEndOffset = -1 * window.innerHeight;
+  } else if (scrollStartPosition === 'bottom' && scrollEndPosition === 'bottom') {
+    scrollStartOffset = window.innerHeight;
+  } else if (scrollStartPosition === 'bottom' && scrollEndPosition === 'top') {
+    scrollStartOffset = window.innerHeight;
+    scrollEndOffset = window.innerHeight;
+  }
   const elementData = {
     element,
-    scrollStartPosition,
-    scrollEndPosition,
+    scrollStartOffset,
+    scrollEndOffset,
   };
   scrollLinkedElements.push(elementData);
   calculateScrollPositions();
