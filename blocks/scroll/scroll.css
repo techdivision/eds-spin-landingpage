@@ -37,7 +37,7 @@ body {
 
 .wrapper-wrapper {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(40, 1fr);
 }
 
 .word-cloud-wrapper {
