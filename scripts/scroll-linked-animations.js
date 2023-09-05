@@ -1,33 +1,52 @@
+/**
+ * List of all elements that are tracked for the scroll distance
+ * @type {*[]}
+ */
 const scrollLinkedElements = [];
 
-function calculateScrollPositions() {
-  scrollLinkedElements.forEach((elementData) => {
-    const elementRect = elementData.element.getBoundingClientRect();
-    const scrollPercent = Math.min(
-      Math.max(
-        (elementRect.height - (elementRect.height + elementRect.top - elementData.scrollStartOffset))
-            / (elementRect.height + elementData.scrollEndOffset),
-        0,
-      ),
-      1,
-    );
-    elementData.element.style.setProperty('--scroll', scrollPercent);
-    elementData.element.style.setProperty('--container-height', `${elementRect.height}px`);
-    elementData.element.style.setProperty('--container-width', `${elementRect.width}px`);
+/**
+ * Clamp a number between a min and max value.
+ *
+ * @param {number} value
+ * @param {number} min
+ * @param {number} max
+ * @returns {number}
+ */
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function updateScrollVariable(scrollLinkedElement, windowScrollY) {
+  const scrolledDistanceInScrollingFrame = windowScrollY - scrollLinkedElement.scrollFrame.top;
+  const scrollPercent = clamp(
+    scrolledDistanceInScrollingFrame / scrollLinkedElement.scrollFrame.height,
+    0,
+    1,
+  );
+
+  // only update the variable if the value actually has changed,
+  // because this operation is "expensive"
+  if (scrollPercent !== scrollLinkedElement.previousScrollPercent) {
+    scrollLinkedElement.element.style.setProperty('--scroll', scrollPercent);
+  }
+  scrollLinkedElement.previousScrollPercent = scrollPercent;
+}
+
+function updateScrollVariables() {
+  const windowScrollY = window.scrollY;
+
+  scrollLinkedElements.forEach((scrollLinkedElement) => {
+    updateScrollVariable(scrollLinkedElement, windowScrollY);
   });
 }
 
-/**
- *
- * @param element
- * @param scrollStartPosition can be either top or bottom, top is the default
- * @param scrollEndPosition can be either top or bottom, bottom is the default
- */
-export default function registerScrollLinkedAnimation(element, scrollStartPosition = 'top', scrollEndPosition = 'bottom') {
-  const scrollPositions = ['top', 'bottom'];
-  if (!scrollPositions.includes(scrollStartPosition)
-      || !scrollPositions.includes(scrollEndPosition)) {
-    return;
+function getScrollOffset(scrollStartPosition, scrollEndPosition) {
+  // @TODO refactor this, it is unclear, what "top" or "bottom" actually mean
+  // Instead maybe use e.g. topOffset with values 100vh e.g.
+  const allowedScrollPositionKeywords = ['top', 'bottom'];
+  if (!allowedScrollPositionKeywords.includes(scrollStartPosition)
+    || !allowedScrollPositionKeywords.includes(scrollEndPosition)) {
+    throw new Error('Invalid keyword for registerScrollLinkedAnimation');
   }
   let scrollStartOffset = 0;
   let scrollEndOffset = 0;
@@ -39,13 +58,42 @@ export default function registerScrollLinkedAnimation(element, scrollStartPositi
     scrollStartOffset = window.innerHeight;
     scrollEndOffset = window.innerHeight;
   }
-  const elementData = {
-    element,
+
+  return { scrollStartOffset, scrollEndOffset };
+}
+
+/**
+ *
+ * @param element
+ * @param scrollStartPosition can be either top or bottom, top is the default
+ * @param scrollEndPosition can be either top or bottom, bottom is the default
+ */
+export default function registerScrollLinkedVariable(element, scrollStartPosition = 'top', scrollEndPosition = 'bottom') {
+  const {
     scrollStartOffset,
     scrollEndOffset,
-  };
-  scrollLinkedElements.push(elementData);
-  calculateScrollPositions();
+  } = getScrollOffset(scrollStartPosition, scrollEndPosition);
+
+  // wait for the element to be painted on the screen
+  window.requestAnimationFrame(() => {
+    const elementRect = element.getBoundingClientRect();
+    element.style.setProperty('--container-height', `${elementRect.height}px`);
+    element.style.setProperty('--container-width', `${elementRect.width}px`);
+
+    const scrollFrameTop = element.offsetTop - scrollStartOffset;
+    const scrollFrameBottom = element.offsetTop + elementRect.height + scrollEndOffset;
+    const scrollFrameHeight = scrollFrameBottom - scrollFrameTop;
+
+    const scrollLinkedElement = {
+      element,
+      scrollFrame: {
+        top: scrollFrameTop,
+        height: scrollFrameHeight,
+      },
+    };
+    scrollLinkedElements.push(scrollLinkedElement);
+    updateScrollVariable(scrollLinkedElement, window.scrollY);
+  });
 }
 
 // Test via a getter in the options object to see if the passive property is accessed
@@ -65,6 +113,6 @@ try {
 
 window.addEventListener(
   'scroll',
-  calculateScrollPositions,
+  updateScrollVariables,
   supportsPassive ? { passive: true } : false,
 );
