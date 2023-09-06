@@ -78,6 +78,7 @@ body {
     color: var(--text-color);
     background-color: var(--background-color);
     display: none;
+    scroll-behavior: smooth;
 }
 
 body .reverse {
