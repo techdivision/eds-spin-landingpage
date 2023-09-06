@@ -354,3 +354,58 @@ main .section.hero .icon-logo-adobe-techdivision {
         z-index: 3;
     }
 }
+
+.universe {
+    animation: star-animation linear infinite;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    background: transparent;
+    box-shadow: var(--star-box-shadow);
+    height: var(--star-size);
+    opacity: 0;
+    position: absolute;
+    width: var(--star-size);
+}
+
+.universe::after {
+    background: transparent;
+    box-shadow: var(--star-box-shadow);
+    content: " ";
+    height: var(--star-size);
+    top: calc(var(--container-height) / 2);
+    position: absolute;
+    width: var(--star-size);
+}
+
+.galaxy-1 {
+    --star-size: 1px;
+
+    animation-duration: 1s;
+    transition: opacity 3s ease-in;
+}
+
+.galaxy-2 {
+    --star-size: 2px;
+
+    animation-duration: 1.5s;
+    transition: opacity 1.5s ease-in;
+}
+
+.galaxy-3 {
+    --star-size: 3px;
+
+    animation-duration: 2s;
+    transition: opacity .5s ease-in;
+}
+
+@keyframes star-animation {
+    from {
+        transform: translateY(0)
+    }
+
+    to {
+        transform: translateY(calc(var(--container-height) / 2))
+    }
+}
