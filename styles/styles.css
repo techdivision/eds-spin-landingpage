@@ -378,6 +378,7 @@ main .section.hero .icon-logo-adobe-techdivision {
     top: calc(var(--container-height) / 2);
     position: absolute;
     width: var(--star-size);
+    z-index: -1;
 }
 
 .galaxy-1 {
@@ -391,6 +392,7 @@ main .section.hero .icon-logo-adobe-techdivision {
     --star-size: 2px;
 
     animation-duration: 1.5s;
+    filter: blur(.6px);
     transition: opacity 1.5s ease-in;
 }
 
@@ -398,6 +400,7 @@ main .section.hero .icon-logo-adobe-techdivision {
     --star-size: 3px;
 
     animation-duration: 2s;
+    filter: blur(.8px);
     transition: opacity .5s ease-in;
 }
 
