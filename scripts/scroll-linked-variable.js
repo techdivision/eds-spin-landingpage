@@ -1,3 +1,6 @@
+export const VIEWPORT_TOP = 'top';
+export const VIEWPORT_BOTTOM = 'bottom';
+
 /**
  * List of all elements that are tracked for the scroll distance
  * @type {*[]}
@@ -40,49 +43,78 @@ function updateScrollVariables() {
   });
 }
 
-function getScrollOffset(scrollStartPosition, scrollEndPosition) {
-  // @TODO refactor this, it is unclear, what "top" or "bottom" actually mean
-  // Instead maybe use e.g. topOffset with values 100vh e.g.
-  const allowedScrollPositionKeywords = ['top', 'bottom'];
-  if (!allowedScrollPositionKeywords.includes(scrollStartPosition)
-    || !allowedScrollPositionKeywords.includes(scrollEndPosition)) {
-    throw new Error('Invalid keyword for registerScrollLinkedAnimation');
+function getScrollFrameOffsets(viewportStartTrigger, viewportEndTrigger) {
+  const allowedViewportTriggerKeywords = [VIEWPORT_TOP, VIEWPORT_BOTTOM];
+  if (!allowedViewportTriggerKeywords.includes(viewportStartTrigger)
+    || !allowedViewportTriggerKeywords.includes(viewportEndTrigger)) {
+    throw new Error('Invalid keyword for allowedViewportTriggerKeywords');
   }
-  let scrollStartOffset = 0;
-  let scrollEndOffset = 0;
-  if (scrollStartPosition === 'top' && scrollEndPosition === 'bottom') {
-    scrollEndOffset = -1 * window.innerHeight;
-  } else if (scrollStartPosition === 'bottom' && scrollEndPosition === 'bottom') {
-    scrollStartOffset = window.innerHeight;
-  } else if (scrollStartPosition === 'bottom' && scrollEndPosition === 'top') {
-    scrollStartOffset = window.innerHeight;
-    scrollEndOffset = window.innerHeight;
+  let scrollFrameOffsetTop = 0;
+  let scrollFrameOffsetBottom = 0;
+  const windowHeight = window.innerHeight;
+
+  if (viewportStartTrigger === VIEWPORT_TOP && viewportEndTrigger === VIEWPORT_BOTTOM) {
+    scrollFrameOffsetBottom = -1 * windowHeight;
+  } else if (viewportStartTrigger === VIEWPORT_BOTTOM && viewportEndTrigger === VIEWPORT_BOTTOM) {
+    scrollFrameOffsetTop = windowHeight;
+  } else if (viewportStartTrigger === VIEWPORT_BOTTOM && viewportEndTrigger === VIEWPORT_TOP) {
+    scrollFrameOffsetTop = windowHeight;
+    scrollFrameOffsetBottom = windowHeight;
   }
 
-  return { scrollStartOffset, scrollEndOffset };
+  return { scrollFrameOffsetTop, scrollFrameOffsetBottom };
 }
 
 /**
  * Register a HTMLElement to get an inline css variable which contains the distance in percent on
  * how far the user scrolled in this element
  *
+ * You can customize the trigger, when the change should start and stop.
+ *
+ *
+ * @example
+ *
+ * // If you want the variable to change, as soon as the element is visible use viewportStartTrigger = 'bottom'
+ * registerScrollLinkedVariable(element, VIEWPORT_BOTTOM)
+ *
+ * // If you want the variable to change if the element is at the top of the viewport use viewportStartTrigger = 'top'
+ * registerScrollLinkedVariable(element, VIEWPORT_TOP) //this is the default behaviour
+ *
+ * // If you want the variable to change as long as the element is fully visible, use viewportEndTrigger = 'bottom'
+ * registerScrollLinkedVariable(element, VIEWPORT_TOP, VIEWPORT_BOTTOM) //this is the default behaviour
+ *
+ * // If you want the variable to change as long as the element is partially visible, use viewportEndTrigger = 'top'
+ * registerScrollLinkedVariable(element, VIEWPORT_TOP, VIEWPORT_TOP)
+ *
  * @param {HTMLElement} element
- * @param {string} scrollStartPosition can be either top or bottom, top is the default
- * @param {string} scrollEndPosition can be either top or bottom, bottom is the default
+ * @param {string=} viewportStartTrigger Define the trigger, if the variable changes starting from the top
+ * or the bottom of the viewport, VIEWPORT_TOP means the element needs to intersect with the top of the viewport,
+ * bottom means the element needs to intersect with the bottom of the viewport
+ * @param {string=} viewportEndTrigger Define the trigger, if the variable changes end with the top
+ * or the bottom of the viewport, VIEWPORT_TOP means the element needs to intersect with the top of the viewport,
+ * bottom means the element needs to intersect with the bottom of the viewport
  */
-export default function registerScrollLinkedVariable(element, scrollStartPosition = 'top', scrollEndPosition = 'bottom') {
+export default function registerScrollLinkedVariable(
+  element,
+  viewportStartTrigger = VIEWPORT_TOP,
+  viewportEndTrigger = VIEWPORT_BOTTOM,
+) {
   const {
-    scrollStartOffset,
-    scrollEndOffset,
-  } = getScrollOffset(scrollStartPosition, scrollEndPosition);
+    scrollFrameOffsetTop,
+    scrollFrameOffsetBottom,
+  } = getScrollFrameOffsets(viewportStartTrigger, viewportEndTrigger);
 
   // wait for the element to be painted on the screen
   window.requestAnimationFrame(() => {
     const elementRect = element.getBoundingClientRect();
     element.style.setProperty('--container-height', `${elementRect.height}px`);
     element.style.setProperty('--container-width', `${elementRect.width}px`);
-    const scrollFrameTop = element.offsetTop - scrollStartOffset;
-    const scrollFrameBottom = element.offsetTop + elementRect.height + scrollEndOffset;
+
+    // calculate the offset for the top of the element, relative to the window: how far "down" is the element.
+    const elementDistanceToWindowTop = elementRect.top + window.scrollY;
+    // scrollFrame is the virtual size of where the scrolling has effect on the variable
+    const scrollFrameTop = elementDistanceToWindowTop - scrollFrameOffsetTop;
+    const scrollFrameBottom = elementDistanceToWindowTop + elementRect.height + scrollFrameOffsetBottom;
     const scrollFrameHeight = scrollFrameBottom - scrollFrameTop;
 
     const scrollLinkedElement = {

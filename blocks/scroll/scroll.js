@@ -1,4 +1,4 @@
-import registerScrollLinkedVariable from '../../scripts/scroll-linked-variable.js';
+import registerScrollLinkedVariable, { VIEWPORT_TOP, VIEWPORT_BOTTOM } from '../../scripts/scroll-linked-variable.js';
 
 export default function decorate(block) {
   const string = '';
@@ -51,16 +51,17 @@ export default function decorate(block) {
 `;
 
   registerScrollLinkedVariable(block);
+
   block.querySelectorAll('.word-cloud-wrapper.top-top').forEach((wordCloud) => {
-    registerScrollLinkedVariable(wordCloud, 'top', 'top');
+    registerScrollLinkedVariable(wordCloud, VIEWPORT_TOP, VIEWPORT_TOP);
   });
   block.querySelectorAll('.word-cloud-wrapper.top-bottom').forEach((wordCloud) => {
-    registerScrollLinkedVariable(wordCloud, 'top', 'bottom');
+    registerScrollLinkedVariable(wordCloud, VIEWPORT_TOP, VIEWPORT_BOTTOM);
   });
   block.querySelectorAll('.word-cloud-wrapper.bottom-bottom').forEach((wordCloud) => {
-    registerScrollLinkedVariable(wordCloud, 'bottom', 'bottom');
+    registerScrollLinkedVariable(wordCloud, VIEWPORT_BOTTOM, VIEWPORT_BOTTOM);
   });
   block.querySelectorAll('.word-cloud-wrapper.bottom-top').forEach((wordCloud) => {
-    registerScrollLinkedVariable(wordCloud, 'bottom', 'top');
+    registerScrollLinkedVariable(wordCloud, VIEWPORT_BOTTOM, VIEWPORT_TOP);
   });
 }
