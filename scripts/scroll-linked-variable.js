@@ -63,10 +63,12 @@ function getScrollOffset(scrollStartPosition, scrollEndPosition) {
 }
 
 /**
+ * Register a HTMLElement to get an inline css variable which contains the distance in percent on
+ * how far the user scrolled in this element
  *
- * @param element
- * @param scrollStartPosition can be either top or bottom, top is the default
- * @param scrollEndPosition can be either top or bottom, bottom is the default
+ * @param {HTMLElement} element
+ * @param {string} scrollStartPosition can be either top or bottom, top is the default
+ * @param {string} scrollEndPosition can be either top or bottom, bottom is the default
  */
 export default function registerScrollLinkedVariable(element, scrollStartPosition = 'top', scrollEndPosition = 'bottom') {
   const {
@@ -79,7 +81,6 @@ export default function registerScrollLinkedVariable(element, scrollStartPositio
     const elementRect = element.getBoundingClientRect();
     element.style.setProperty('--container-height', `${elementRect.height}px`);
     element.style.setProperty('--container-width', `${elementRect.width}px`);
-
     const scrollFrameTop = element.offsetTop - scrollStartOffset;
     const scrollFrameBottom = element.offsetTop + elementRect.height + scrollEndOffset;
     const scrollFrameHeight = scrollFrameBottom - scrollFrameTop;
