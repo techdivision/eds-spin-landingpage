@@ -46,8 +46,8 @@ body {
 }
 
 .word-cloud {
-    position: sticky;
-    top: 0;
+    position: relative;
+    top: calc(var(--container-height) * var(--scroll));
     left: 0;
     height: 100vh;
 }
