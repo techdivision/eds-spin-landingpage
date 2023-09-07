@@ -45,16 +45,27 @@ export default function injectStarsLayers() {
       appearanceDelay: '1s',
     },
   ];
+  const { offsetHeight, offsetWidth } = document.body;
+
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('stars-wrapper');
+
   starsLayerConfigurations.forEach((starsLayerConfiguration) => {
     // calculate stars for each starsLayer based on content height
-    const starsInLayer = Math.floor(document.body.offsetHeight * starsLayerConfiguration.density);
+
+    const starsInLayer = Math.floor(offsetHeight * starsLayerConfiguration.density);
     let starsBoxShadow = '';
+
+    const { blur } = starsLayerConfiguration;
+
     for (let starCount = 0; starCount < starsInLayer; starCount += 1) {
-      const xPosition = Math.floor(Math.random() * document.body.offsetWidth);
-      const yPosition = Math.floor(Math.random() * document.body.offsetHeight);
+      const xPosition = Math.floor(Math.random() * offsetWidth);
+      const yPosition = Math.floor(Math.random() * offsetHeight);
+
       // random hex value between 8 and f
       const opacity = Math.floor(Math.random() * 8 + 8).toString(16);
-      starsBoxShadow += `${xPosition}px ${yPosition}px ${starsLayerConfiguration.blur} #fff${opacity},`;
+
+      starsBoxShadow += `${xPosition}px ${yPosition}px ${blur} #fff${opacity},`;
     }
 
     const starsLayer = document.createElement('div');
@@ -65,11 +76,13 @@ export default function injectStarsLayers() {
     starsLayer.style.setProperty('--stars-animation-duration', starsLayerConfiguration.animationDuration);
     starsLayer.style.setProperty('--stars-appearance-delay', starsLayerConfiguration.appearanceDelay);
 
-    document.body.insertBefore(starsLayer, document.body.firstChild);
-
     // wait for the stars to be painted before setting the opacity (and therefore starting the appearance transition)
     window.requestAnimationFrame(() => {
       starsLayer.style.setProperty('opacity', '1');
     });
+    wrapper.appendChild(starsLayer);
   });
+
+  // only run one insert due to performance reasons
+  document.body.insertBefore(wrapper, document.body.firstChild);
 }
