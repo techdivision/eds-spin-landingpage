@@ -5,7 +5,7 @@ export const VIEWPORT_BOTTOM = 'bottom';
  * List of all elements that are tracked for the scroll distance
  * @type {*[]}
  */
-const scrollLinkedElements = [];
+let scrollLinkedElements = [];
 
 /**
  * Clamp a number between a min and max value.
@@ -119,6 +119,8 @@ export default function registerScrollLinkedVariable(
 
     const scrollLinkedElement = {
       element,
+      viewportStartTrigger,
+      viewportEndTrigger,
       scrollFrame: {
         top: scrollFrameTop,
         height: scrollFrameHeight,
@@ -149,3 +151,17 @@ window.addEventListener(
   updateScrollVariables,
   supportsPassive ? { passive: true } : false,
 );
+
+const updateScrollElementsResizeObserver = new ResizeObserver(() => {
+  const scrollLinkedElementsCopy = scrollLinkedElements;
+  scrollLinkedElements = [];
+  scrollLinkedElementsCopy.forEach((scrollLinkedElement) => {
+    registerScrollLinkedVariable(
+      scrollLinkedElement.element,
+      scrollLinkedElement.viewportStartTrigger,
+      scrollLinkedElement.viewportEndTrigger,
+    );
+  });
+});
+
+updateScrollElementsResizeObserver.observe(document.documentElement);
