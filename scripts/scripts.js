@@ -13,7 +13,7 @@ import {
   loadCSS,
 } from './lib-franklin.js';
 
-const LCP_BLOCKS = ['header', 'columns']; // add your LCP blocks to the list
+const LCP_BLOCKS = []; // add your LCP blocks to the list
 
 // ############## CUSTOM IMPLEMENTATIONS ##############
 
@@ -156,8 +156,6 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
-  const { default: injectStarsLayers } = await import('./inject-stars-layers.js');
-  injectStarsLayers();
 }
 
 /**
@@ -166,7 +164,7 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  window.setTimeout(() => import('./delayed.js'), 0);
   // load anything that can be postponed to the latest here
 }
 
