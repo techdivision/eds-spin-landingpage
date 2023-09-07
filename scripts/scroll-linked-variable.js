@@ -1,3 +1,5 @@
+import { clamp, debounce } from './utilities.js';
+
 export const VIEWPORT_TOP = 'top';
 export const VIEWPORT_BOTTOM = 'bottom';
 
@@ -6,18 +8,6 @@ export const VIEWPORT_BOTTOM = 'bottom';
  * @type {*[]}
  */
 let scrollLinkedElements = [];
-
-/**
- * Clamp a number between a min and max value.
- *
- * @param {number} value
- * @param {number} min
- * @param {number} max
- * @returns {number}
- */
-function clamp(value, min, max) {
-  return Math.min(Math.max(value, min), max);
-}
 
 function updateScrollVariable(scrollLinkedElement, windowScrollY) {
   const scrolledDistanceInScrollingFrame = windowScrollY - scrollLinkedElement.scrollFrame.top;
@@ -152,16 +142,18 @@ window.addEventListener(
   supportsPassive ? { passive: true } : false,
 );
 
-const updateScrollElementsResizeObserver = new ResizeObserver(() => {
-  const scrollLinkedElementsCopy = scrollLinkedElements;
-  scrollLinkedElements = [];
-  scrollLinkedElementsCopy.forEach((scrollLinkedElement) => {
-    registerScrollLinkedVariable(
-      scrollLinkedElement.element,
-      scrollLinkedElement.viewportStartTrigger,
-      scrollLinkedElement.viewportEndTrigger,
-    );
-  });
-});
+const updateScrollElementsResizeObserver = new ResizeObserver(
+  debounce(() => {
+    const scrollLinkedElementsCopy = scrollLinkedElements;
+    scrollLinkedElements = [];
+    scrollLinkedElementsCopy.forEach((scrollLinkedElement) => {
+      registerScrollLinkedVariable(
+        scrollLinkedElement.element,
+        scrollLinkedElement.viewportStartTrigger,
+        scrollLinkedElement.viewportEndTrigger,
+      );
+    });
+  }, 100),
+);
 
 updateScrollElementsResizeObserver.observe(document.documentElement);
