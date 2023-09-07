@@ -24,12 +24,12 @@
     --color-light-purple: #5764EF;
     --link-color: #035fe6;
     --link-hover-color: #136ff6;
-    --background-color: #fff;
+    --background-color: var(--color-purple);
     --overlay-background-color: #eee;
     --highlight-background-color: #ccc;
-    --text-color: #000;
-    --background-color-reverse: var(--color-purple);
-    --text-color-reverse: #fff;
+    --text-color: #fff;
+    --background-color-reverse: #fff;
+    --text-color-reverse: var(--color-purple);
     --input-background-color: #D1CCDD;
     --button-color: var(--color-light-purple);
 
@@ -57,6 +57,9 @@
     /* content width */
     --content-width: 1200px;
     --section-padding: max(calc(50vw - (var(--content-width) / 2)), 32px);
+
+    /* @TODO implement this drop shadow for all text elements */
+    --text-drop-shadow: drop-shadow(0px 3px 10px var(--color-purple)) drop-shadow( 0px -3px 10px var(--color-purple)) drop-shadow( 3px 0px 10px var(--color-purple)) drop-shadow( -3px 0px 10px var(--color-purple));
 }
 
 @media (min-width: 900px) {
@@ -91,7 +94,7 @@ body.appear {
 
 header {
     height: var(--nav-height);
-    background-color: var(--background-color-reverse);
+    background-color: var(--background-color);
 }
 
 h1, h2, h3,
@@ -356,52 +359,34 @@ main .section.hero .icon-logo-adobe-techdivision {
     }
 }
 
-.universe {
+.stars {
     animation: star-animation linear infinite;
     animation-delay: calc(var(--scroll) * -1s);
     animation-fill-mode: both;
     animation-iteration-count: 1;
     animation-play-state: paused;
     background: transparent;
-    box-shadow: var(--star-box-shadow);
-    height: var(--star-size);
-    opacity: 0;
+    box-shadow: var(--stars-box-shadow);
+    height: var(--stars-star-size);
     position: absolute;
-    width: var(--star-size);
+    width: var(--stars-star-size);
+    animation-duration: var(--stars-animation-duration);
+    opacity: 0;
+    transition: opacity var(--stars-appearance-delay) ease-in-out;
+    z-index: -100;
+
 }
 
-.universe::after {
+/* double the stars count by using an after pseudo element */
+.stars::after {
     background: transparent;
-    box-shadow: var(--star-box-shadow);
+    box-shadow: var(--stars-box-shadow);
     content: " ";
-    height: var(--star-size);
+    height: var(--stars-star-size);
     top: calc(var(--container-height) / 2);
     position: absolute;
-    width: var(--star-size);
-    z-index: -1;
-}
-
-.galaxy-1 {
-    --star-size: 1px;
-
-    animation-duration: 1s;
-    transition: opacity 3s ease-in;
-}
-
-.galaxy-2 {
-    --star-size: 2px;
-
-    animation-duration: 1.5s;
-    filter: blur(.6px);
-    transition: opacity 1.5s ease-in;
-}
-
-.galaxy-3 {
-    --star-size: 3px;
-
-    animation-duration: 2s;
-    filter: blur(.8px);
-    transition: opacity .5s ease-in;
+    width: var(--stars-star-size);
+    z-index: -100;
 }
 
 @keyframes star-animation {

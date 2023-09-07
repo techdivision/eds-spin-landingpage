@@ -12,6 +12,7 @@ import {
   loadBlocks,
   loadCSS,
 } from './lib-franklin.js';
+import injectStarsLayers from './inject-stars-layers.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -156,6 +157,7 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+  injectStarsLayers();
 }
 
 /**
