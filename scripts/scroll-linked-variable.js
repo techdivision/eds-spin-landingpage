@@ -118,7 +118,6 @@ export default function registerScrollLinkedVariable(
     };
     scrollLinkedElements.push(scrollLinkedElement);
     updateScrollVariable(scrollLinkedElement, window.scrollY);
-    console.log('updated');
   });
 }
 
