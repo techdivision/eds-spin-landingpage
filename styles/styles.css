@@ -58,6 +58,9 @@
     --content-width: 1200px;
     --section-padding: max(calc(50vw - (var(--content-width) / 2)), 32px);
 
+    /* set initial properties for stars layers */
+    --stars-opacity: 0;
+
     /* @TODO implement this drop shadow for all text elements */
     --text-drop-shadow: drop-shadow(0px 3px 10px var(--color-purple)) drop-shadow( 0px -3px 10px var(--color-purple)) drop-shadow( 3px 0px 10px var(--color-purple)) drop-shadow( -3px 0px 10px var(--color-purple));
 }
@@ -359,12 +362,20 @@ main .section.hero .icon-logo-adobe-techdivision {
     }
 }
 
-:root{
-    --stars-box-shadow: '';
-    --stars-star-size: 1px;
-    --stars-animation-duration: 0;
-    --stars-appearance-delay: 1s;
-    --scroll: 0;
+html{
+    position: relative;
+}
+body{
+    height: 100%;
+}
+.stars-wrapper{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    overflow:hidden;
+    z-index:-1; /* Remove this line if it's not going to be a background! */
 }
 
 .stars {
@@ -373,28 +384,16 @@ main .section.hero .icon-logo-adobe-techdivision {
     animation-fill-mode: both;
     animation-iteration-count: 1;
     animation-play-state: paused;
-    background: transparent;
-    box-shadow: var(--stars-box-shadow);
-    height: var(--stars-star-size);
+    height: 100%;
     position: absolute;
-    width: var(--stars-star-size);
+    width: 100%;
     animation-duration: var(--stars-animation-duration);
-    opacity: 0;
+    z-index: -100;
     transition: opacity var(--stars-appearance-delay) ease-in-out;
-    z-index: -100;
-
-}
-
-/* double the stars count by using an after pseudo element */
-.stars::after {
-    background: transparent;
-    box-shadow: var(--stars-box-shadow);
-    content: " ";
-    height: var(--stars-star-size);
-    top: calc(var(--container-height) / 2);
-    position: absolute;
-    width: var(--stars-star-size);
-    z-index: -100;
+    opacity: 0;
+    background-image: var(--stars-background-url);
+    background-repeat: repeat;
+    background-size: 500px 500px; /* manually set the size of the svg */
 }
 
 @keyframes star-animation {
