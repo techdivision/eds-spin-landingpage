@@ -71,7 +71,6 @@ export default function injectStarsLayers() {
     const starsLayer = document.createElement('div');
     starsLayer.classList.add('stars');
     starsLayer.style.setProperty('--stars-box-shadow', starsBoxShadow.slice(0, -1));
-    starsLayer.style.setProperty('--stars-density', starsLayerConfiguration.density);
     starsLayer.style.setProperty('--stars-star-size', starsLayerConfiguration.starSize);
     starsLayer.style.setProperty('--stars-animation-duration', starsLayerConfiguration.animationDuration);
     starsLayer.style.setProperty('--stars-appearance-delay', starsLayerConfiguration.appearanceDelay);

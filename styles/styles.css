@@ -359,42 +359,50 @@ main .section.hero .icon-logo-adobe-techdivision {
     }
 }
 
-/*.stars {*/
-/*    animation: star-animation linear infinite;*/
-/*    animation-delay: calc(var(--scroll) * -1s);*/
-/*    animation-fill-mode: both;*/
-/*    animation-iteration-count: 1;*/
-/*    animation-play-state: paused;*/
-/*    background: transparent;*/
-/*    box-shadow: var(--stars-box-shadow);*/
-/*    height: var(--stars-star-size);*/
-/*    position: absolute;*/
-/*    width: var(--stars-star-size);*/
-/*    animation-duration: var(--stars-animation-duration);*/
-/*    opacity: 0;*/
-/*    transition: opacity var(--stars-appearance-delay) ease-in-out;*/
-/*    z-index: -100;*/
+:root{
+    --stars-box-shadow: '';
+    --stars-star-size: 1px;
+    --stars-animation-duration: 0;
+    --stars-appearance-delay: 1s;
+    --scroll: 0;
+}
 
-/*}*/
+.stars {
+    animation: star-animation linear infinite;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    background: transparent;
+    box-shadow: var(--stars-box-shadow);
+    height: var(--stars-star-size);
+    position: absolute;
+    width: var(--stars-star-size);
+    animation-duration: var(--stars-animation-duration);
+    opacity: 0;
+    transition: opacity var(--stars-appearance-delay) ease-in-out;
+    z-index: -100;
 
-/*!* double the stars count by using an after pseudo element *!*/
-/*.stars::after {*/
-/*    background: transparent;*/
-/*    box-shadow: var(--stars-box-shadow);*/
-/*    content: " ";*/
-/*    height: var(--stars-star-size);*/
-/*    top: calc(var(--container-height) / 2);*/
-/*    position: absolute;*/
-/*    width: var(--stars-star-size);*/
-/*    z-index: -100;*/
-/*}*/
+}
 
-/*@keyframes star-animation {*/
-/*    from {*/
-/*        transform: translateY(0)*/
-/*    }*/
+/* double the stars count by using an after pseudo element */
+.stars::after {
+    background: transparent;
+    box-shadow: var(--stars-box-shadow);
+    content: " ";
+    height: var(--stars-star-size);
+    top: calc(var(--container-height) / 2);
+    position: absolute;
+    width: var(--stars-star-size);
+    z-index: -100;
+}
 
-/*    to {*/
-/*        transform: translateY(calc(var(--container-height) / 2))*/
-/*    }*/
-/*}*/
+@keyframes star-animation {
+    from {
+        transform: translateY(0)
+    }
+
+    to {
+        transform: translateY(calc(var(--container-height) / 2))
+    }
+}
