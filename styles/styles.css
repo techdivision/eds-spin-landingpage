@@ -76,6 +76,10 @@
     }
 }
 
+html{
+    position: relative;
+}
+
 body {
     font-size: var(--body-font-size-m);
     margin: 0;
@@ -85,6 +89,7 @@ body {
     background-color: var(--background-color);
     display: none;
     scroll-behavior: smooth;
+    height: 100%;
 }
 
 body .reverse {
@@ -362,12 +367,6 @@ main .section.hero .icon-logo-adobe-techdivision {
     }
 }
 
-html{
-    position: relative;
-}
-body{
-    height: 100%;
-}
 .stars-wrapper{
     position:absolute;
     top:0;
