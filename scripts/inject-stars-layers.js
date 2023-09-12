@@ -1,4 +1,4 @@
-import registerScrollLinkedVariable, { VIEWPORT_BOTTOM, VIEWPORT_TOP } from './scroll-linked-variable.js';
+import { registerScrollLinkedVariable, VIEWPORT_BOTTOM, VIEWPORT_TOP } from './scroll-linked-variable.js';
 
 /**
  * Inject the star layer elements into the dom
