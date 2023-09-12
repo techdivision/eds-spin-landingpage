@@ -12,7 +12,7 @@ import {
   loadBlocks,
   loadCSS,
 } from './lib-franklin.js';
-import { registerScrollLinkedVariable, VIEWPORT_TOP } from './scroll-linked-variable.js';
+import { registerCustomScrollLinkedVariable } from './scroll-linked-variable.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -103,13 +103,13 @@ function decorateSectionsWithScrollListeners(main) {
       const previousSection = entry.target.previousElementSibling;
       if (entry.isIntersecting) {
         entry.target.classList.remove('background-hidden');
-        previousSection.querySelector('.section-planet').classList.add('hidden')
+        previousSection.querySelector('.section-planet').classList.add('hidden');
       } else if (entry.boundingClientRect.top > 0) {
         entry.target.classList.add('background-hidden');
-        previousSection.querySelector('.section-planet').classList.remove('hidden')
+        previousSection.querySelector('.section-planet').classList.remove('hidden');
       }
     });
-  }, { rootMargin: '0px 0px -300px 0px' });
+  }, { rootMargin: '0px 0px -200px 0px' });
 
   main.querySelectorAll('.planet-to-background').forEach((section) => {
     section.classList.add('background-hidden');
@@ -122,10 +122,17 @@ function decorateSectionsWithScrollListeners(main) {
     if (theme) {
       planet.classList.add(theme);
     } else {
-      planet.classList.add('theme-default')
+      planet.classList.add('theme-default');
     }
     previousSection.appendChild(planet);
-    registerScrollLinkedVariable(previousSection, VIEWPORT_TOP, VIEWPORT_TOP);
+    registerCustomScrollLinkedVariable(
+      previousSection,
+      // eslint-disable-next-line max-len
+      (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height / 2 - window.innerHeight / 2,
+      // eslint-disable-next-line max-len
+      (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height - window.innerHeight + 200,
+      '--scroll-planet',
+    );
 
     planetSectionIntersectionObserver.observe(section);
   });

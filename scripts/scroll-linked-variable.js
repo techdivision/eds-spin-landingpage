@@ -20,7 +20,7 @@ function updateScrollVariable(scrollLinkedElement, windowScrollY) {
   // only update the variable if the value actually has changed,
   // because this operation is "expensive"
   if (scrollPercent !== scrollLinkedElement.previousScrollPercent) {
-    scrollLinkedElement.element.style.setProperty('--scroll', scrollPercent);
+    scrollLinkedElement.element.style.setProperty(scrollLinkedElement.scrollVariableName, scrollPercent);
   }
   scrollLinkedElement.previousScrollPercent = scrollPercent;
 }
@@ -83,11 +83,13 @@ function getScrollFrameOffsets(viewportStartTrigger, viewportEndTrigger) {
  * @param {string=} viewportEndTrigger Define the trigger, if the variable changes end with the top
  * or the bottom of the viewport, VIEWPORT_TOP means the element needs to intersect with the top of the viewport,
  * bottom means the element needs to intersect with the bottom of the viewport
+ * @param scrollVariableName
  */
 export function registerScrollLinkedVariable(
   element,
   viewportStartTrigger = VIEWPORT_TOP,
   viewportEndTrigger = VIEWPORT_BOTTOM,
+  scrollVariableName = '--scroll',
 ) {
   const {
     scrollFrameOffsetTop,
@@ -111,6 +113,42 @@ export function registerScrollLinkedVariable(
       element,
       viewportStartTrigger,
       viewportEndTrigger,
+      scrollVariableName,
+      isCustom: false,
+      scrollFrame: {
+        top: scrollFrameTop,
+        height: scrollFrameHeight,
+      },
+    };
+    scrollLinkedElements.push(scrollLinkedElement);
+    updateScrollVariable(scrollLinkedElement, window.scrollY);
+  });
+}
+
+export function registerCustomScrollLinkedVariable(
+  element,
+  scrollFrameTopCallback,
+  scrollFrameBottomCallback,
+  scrollVariableName = '--scroll',
+) {
+  // wait for the element to be painted on the screen
+  window.requestAnimationFrame(() => {
+    const elementRect = element.getBoundingClientRect();
+    element.style.setProperty('--container-height', `${elementRect.height}px`);
+    element.style.setProperty('--container-width', `${elementRect.width}px`);
+
+    // calculate the offset for the top of the element, relative to the window: how far "down" is the element.
+    const elementDistanceToWindowTop = elementRect.top + window.scrollY;
+    // scrollFrame is the virtual size of where the scrolling has effect on the variable
+    const scrollFrameTop = scrollFrameTopCallback(elementDistanceToWindowTop, elementRect);
+    const scrollFrameBottom = scrollFrameBottomCallback(elementDistanceToWindowTop, elementRect);
+    const scrollFrameHeight = scrollFrameBottom - scrollFrameTop;
+    const scrollLinkedElement = {
+      element,
+      scrollFrameTopCallback,
+      scrollFrameBottomCallback,
+      scrollVariableName,
+      isCustom: true,
       scrollFrame: {
         top: scrollFrameTop,
         height: scrollFrameHeight,
@@ -147,11 +185,21 @@ const updateScrollElementsResizeObserver = new ResizeObserver(
     const scrollLinkedElementsCopy = scrollLinkedElements;
     scrollLinkedElements = [];
     scrollLinkedElementsCopy.forEach((scrollLinkedElement) => {
-      registerScrollLinkedVariable(
-        scrollLinkedElement.element,
-        scrollLinkedElement.viewportStartTrigger,
-        scrollLinkedElement.viewportEndTrigger,
-      );
+      if (scrollLinkedElement.isCustom) {
+        registerCustomScrollLinkedVariable(
+          scrollLinkedElement.element,
+          scrollLinkedElement.scrollFrameTopCallback,
+          scrollLinkedElement.scrollFrameBottomCallback,
+          scrollLinkedElement.scrollVariableName,
+        );
+      } else {
+        registerScrollLinkedVariable(
+          scrollLinkedElement.element,
+          scrollLinkedElement.viewportStartTrigger,
+          scrollLinkedElement.viewportEndTrigger,
+          scrollLinkedElement.scrollVariableName,
+        );
+      }
     });
   }, 100),
 );
