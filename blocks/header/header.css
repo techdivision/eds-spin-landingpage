@@ -25,11 +25,11 @@ header nav li {
     margin: 32px;
     list-style: none;
     padding: 0;
-    color: white;
+    color: var(--text-color);
 }
 
 header nav li a:any-link {
-    color: white;
+    color: var(--text-color);
 }
 
 header nav li:nth-last-child(2) a {

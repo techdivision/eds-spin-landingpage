@@ -10,7 +10,7 @@ main .carousel {
   scroll-behavior: smooth;
   box-shadow: var(--box-shadow-2);
   margin: 32px 0;
-  background-color: #fff;
+  background-color: var(--background-color-reverse);
 }
 
 main .carousel picture {
@@ -89,7 +89,7 @@ main .carousel-buttons button.selected {
 }
 
 main .reverse .carousel-buttons button.selected {
-  background-color: #fff;
+  background-color: var(--background-color-reverse);
 }
 
 main .carousel-wrapper .carousel-controls {
