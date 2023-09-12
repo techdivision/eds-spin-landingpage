@@ -101,19 +101,25 @@ function decorateSectionsWithScrollListeners(main) {
   const planetSectionIntersectionObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const previousSection = entry.target.previousElementSibling;
+      const nextSection = entry.target.nextElementSibling;
       if (entry.isIntersecting) {
         entry.target.classList.remove('background-hidden');
         previousSection.querySelector('.section-planet').classList.add('hidden');
+        nextSection.querySelector('.section-planet').classList.add('hidden');
       } else if (entry.boundingClientRect.top > 0) {
         entry.target.classList.add('background-hidden');
         previousSection.querySelector('.section-planet').classList.remove('hidden');
+      } else if (entry.boundingClientRect.top < 0) {
+        entry.target.classList.add('background-hidden');
+        nextSection.querySelector('.section-planet').classList.remove('hidden');
       }
     });
-  }, { rootMargin: '0px 0px -200px 0px' });
+  }, { rootMargin: '-200px 0px' });
 
   main.querySelectorAll('.planet-to-background').forEach((section) => {
     section.classList.add('background-hidden');
     const previousSection = section.previousElementSibling;
+    const nextSection = section.nextElementSibling;
     const classList = Array.from(section.classList);
     const theme = classList.find((currentClass) => currentClass.includes('theme-'));
 
@@ -124,7 +130,13 @@ function decorateSectionsWithScrollListeners(main) {
     } else {
       planet.classList.add('theme-default');
     }
-    previousSection.appendChild(planet);
+    const previousPlanet = planet.cloneNode();
+    previousPlanet.classList.add('section-planet-entering');
+    previousSection.appendChild(previousPlanet);
+    const nextPlanet = planet.cloneNode();
+    nextPlanet.classList.add('section-planet-leaving');
+    nextPlanet.classList.add('hidden');
+    nextSection.appendChild(nextPlanet);
     registerCustomScrollLinkedVariable(
       previousSection,
       // eslint-disable-next-line max-len
@@ -133,7 +145,14 @@ function decorateSectionsWithScrollListeners(main) {
       (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height - window.innerHeight + 200,
       '--scroll-planet',
     );
-
+    registerCustomScrollLinkedVariable(
+      nextSection,
+      // eslint-disable-next-line max-len
+      (elementDistanceToWindowTop) => elementDistanceToWindowTop - 200,
+      // eslint-disable-next-line max-len
+      (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height / 2 - window.innerHeight / 2,
+      '--scroll-planet',
+    );
     planetSectionIntersectionObserver.observe(section);
   });
 }

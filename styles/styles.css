@@ -434,16 +434,16 @@ main .section.hero .icon-logo-adobe-techdivision {
 .section-planet {
     background-color: var(--background-color);
     z-index: -1;
-
     width: 100px;
     height: 100px;
     border-radius: 100px;
-
     position: absolute;
-    bottom: -100px;
     left: 50%;
-    transform-origin: top center;
+}
 
+.section-planet-entering {
+    bottom: -100px;
+    transform-origin: top center;
     animation: planet-to-background 1s linear infinite;
     animation-play-state: paused;
     animation-delay: calc(var(--scroll-planet) * -1s);
@@ -451,7 +451,15 @@ main .section.hero .icon-logo-adobe-techdivision {
     animation-fill-mode: both;
 }
 
-
+.section-planet-leaving {
+    top: -100px;
+    transform-origin: bottom center;
+    animation: background-to-planet 1s linear infinite;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll-planet) * -1s);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
 
 @keyframes planet-to-background {
     0% {
@@ -459,7 +467,7 @@ main .section.hero .icon-logo-adobe-techdivision {
         border-radius: 100px;
     }
 
-    80% {
+    70% {
         transform: translate3d(0, 0, 0) scale(1);
         border-radius: 100px;
     }
@@ -468,7 +476,23 @@ main .section.hero .icon-logo-adobe-techdivision {
         transform: scale(50);
         border-radius: 10px;
     }
+}
 
+@keyframes background-to-planet {
+    0% {
+        transform: scale(50);
+        border-radius: 10px;
+    }
+
+    30% {
+        transform: translate3d(0, 0, 0) scale(1);
+        border-radius: 100px;
+    }
+
+    100% {
+        transform: translate3d(60vw, calc(var(--container-height) / 2), 0) scale(1);
+        border-radius: 100px;
+    }
 }
 
 
