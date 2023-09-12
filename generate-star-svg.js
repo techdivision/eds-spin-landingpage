@@ -5,7 +5,7 @@ const fs = require('fs');
  * execute this generator with
  * node generate-star-svg.js
  */
-function injectStarsLayers() {
+function generateStarSVGs() {
   const starsLayerConfigurations = [
     {
       density: 0.3, // how dense / how many stars there are in this layer
@@ -52,4 +52,4 @@ function injectStarsLayers() {
   });
 }
 
-injectStarsLayers();
+generateStarSVGs();
