@@ -1,4 +1,4 @@
-import registerScrollLinkedVariable, { VIEWPORT_TOP, VIEWPORT_BOTTOM } from '../../scripts/scroll-linked-variable.js';
+import { registerScrollLinkedVariable, VIEWPORT_TOP, VIEWPORT_BOTTOM } from '../../scripts/scroll-linked-variable.js';
 
 export default function decorate(block) {
   const string = '';

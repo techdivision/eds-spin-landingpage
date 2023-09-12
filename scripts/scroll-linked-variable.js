@@ -84,7 +84,7 @@ function getScrollFrameOffsets(viewportStartTrigger, viewportEndTrigger) {
  * or the bottom of the viewport, VIEWPORT_TOP means the element needs to intersect with the top of the viewport,
  * bottom means the element needs to intersect with the bottom of the viewport
  */
-export default function registerScrollLinkedVariable(
+export function registerScrollLinkedVariable(
   element,
   viewportStartTrigger = VIEWPORT_TOP,
   viewportEndTrigger = VIEWPORT_BOTTOM,

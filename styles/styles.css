@@ -18,7 +18,7 @@
     font-display: swap;
 }
 
-:root {
+:root, .theme-default {
     /* colors */
     --color-purple: #1C0A4D;
     --color-light-purple: #5764EF;
@@ -65,6 +65,28 @@
     --text-drop-shadow: drop-shadow(0px 3px 10px var(--color-purple)) drop-shadow( 0px -3px 10px var(--color-purple)) drop-shadow( 3px 0px 10px var(--color-purple)) drop-shadow( -3px 0px 10px var(--color-purple));
 }
 
+.theme-light-purple {
+    /* colors */
+    --background-color: var(--color-light-purple);
+
+}
+
+.section.theme-light-purple::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--background-color);
+}
+
+.background-hidden::before {
+    opacity: 0;
+}
+
+.hidden {
+    opacity: 0;
+}
+
 @media (min-width: 900px) {
     :root {
         --heading-font-size-xxl: 55px;
@@ -80,6 +102,7 @@ html{
     position: relative;
 }
 
+
 body {
     font-size: var(--body-font-size-m);
     margin: 0;
@@ -90,6 +113,7 @@ body {
     display: none;
     scroll-behavior: smooth;
     height: 100%;
+    overflow-x: hidden;
 }
 
 body .reverse {
@@ -226,7 +250,8 @@ main input:hover {
 }
 
 main .section {
-    padding: 64px var(--section-padding);
+    padding: 100px var(--section-padding);
+    position: relative;
 }
 
 main .section.hero {
@@ -295,7 +320,6 @@ main img {
     main .section.hero {
         padding-top: 80px;
         padding-bottom: 80px;
-        margin-bottom: 66px;
     }
 }
 
@@ -404,3 +428,47 @@ main .section.hero .icon-logo-adobe-techdivision {
         transform: translateY(calc(var(--container-height) / 2))
     }
 }
+
+
+/* planet to background */
+.section-planet {
+    background-color: var(--background-color);
+    z-index: -1;
+
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform-origin: top center;
+
+    animation: planet-to-background 1s linear infinite;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+
+
+@keyframes planet-to-background {
+    0% {
+        transform: translate3d(calc(var(--container-width) / -3), calc(var(--container-height) / -2), 0) scale(1);
+        border-radius: 100px;
+    }
+
+    30% {
+        transform: translate3d(0, 0, 0) scale(1);
+        border-radius: 100px;
+    }
+
+    40%,100% {
+        transform: scale(50);
+        border-radius: 10px;
+    }
+
+}
+
+

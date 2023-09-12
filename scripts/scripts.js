@@ -12,6 +12,7 @@ import {
   loadBlocks,
   loadCSS,
 } from './lib-franklin.js';
+import { registerScrollLinkedVariable, VIEWPORT_TOP } from './scroll-linked-variable.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -96,6 +97,40 @@ function decorateSectionsWithIds(main) {
   });
 }
 
+function decorateSectionsWithScrollListeners(main) {
+  const planetSectionIntersectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const previousSection = entry.target.previousElementSibling;
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('background-hidden');
+        previousSection.querySelector('.section-planet').classList.add('hidden')
+      } else if (entry.boundingClientRect.top > 0) {
+        entry.target.classList.add('background-hidden');
+        previousSection.querySelector('.section-planet').classList.remove('hidden')
+      }
+    });
+  }, { rootMargin: '0px 0px -300px 0px' });
+
+  main.querySelectorAll('.planet-to-background').forEach((section) => {
+    section.classList.add('background-hidden');
+    const previousSection = section.previousElementSibling;
+    const classList = Array.from(section.classList);
+    const theme = classList.find((currentClass) => currentClass.includes('theme-'));
+
+    const planet = document.createElement('div');
+    planet.classList.add('section-planet');
+    if (theme) {
+      planet.classList.add(theme);
+    } else {
+      planet.classList.add('theme-default')
+    }
+    previousSection.appendChild(planet);
+    registerScrollLinkedVariable(previousSection, VIEWPORT_TOP, VIEWPORT_TOP);
+
+    planetSectionIntersectionObserver.observe(section);
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -109,6 +144,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateSectionsWithIds(main);
   decorateBlocks(main);
+  decorateSectionsWithScrollListeners(main);
   buildHeroLogo();
 }
 
