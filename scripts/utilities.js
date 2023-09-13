@@ -11,7 +11,7 @@ export function clamp(value, min, max) {
 }
 
 /**
- * If a function is called multiple times within the given timeout only the last call will be executed
+ * If a function is called multiple times within the given timeout only the last call will be executed.
  *
  * @param func
  * @param timeout
