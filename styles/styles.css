@@ -31,6 +31,7 @@
     --background-color-reverse: #fff;
     --text-color-reverse: var(--color-purple);
     --input-background-color: #D1CCDD;
+    --button-text-color: var(--text-color);
     --button-color: var(--color-light-purple);
 
     /* fonts */
@@ -52,7 +53,8 @@
     --heading-font-size-xs: 12px;
 
     /* nav height */
-    --nav-height: 146px;
+    --nav-height: 95px;
+    --nav-list-margin: 22px;
 
     /* content width */
     --content-width: 1200px;
@@ -68,7 +70,7 @@
 .theme-light-purple {
     /* colors */
     --background-color: var(--color-light-purple);
-
+    --button-color: var(--color-purple);
 }
 
 .section.theme-light-purple::before {
@@ -117,11 +119,6 @@ body .reverse {
 
 body.appear {
     display: unset;
-}
-
-header {
-    height: var(--nav-height);
-    background-color: var(--background-color);
 }
 
 main {
@@ -200,12 +197,13 @@ a.button:any-link, button, main .form .button, header nav li:nth-last-child(2) a
     box-sizing: border-box;
     text-decoration: none;
     border: 2px solid transparent;
+    border-radius: 500px;
     padding: 10px 25px;
     text-align: center;
     font-style: normal;
     font-weight: 600;
     cursor: pointer;
-    color: var(--background-color);
+    color: var(--button-text-color);
     background-color: var(--button-color);
     margin: 16px 0;
     white-space: nowrap;

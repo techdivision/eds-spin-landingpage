@@ -1,3 +1,10 @@
+header {
+    height: var(--nav-height);
+    z-index: 500;
+    position: relative;
+    padding: 20px;
+}
+
 header .block {
     display: flex;
     justify-content: space-between;
@@ -6,7 +13,7 @@ header .block {
 }
 
 header .icon-logo-white svg {
-    height: 96px;
+    height: 85px;
     width: auto;
     margin-left: 35px;
 }
@@ -17,12 +24,85 @@ header nav ul {
     z-index: 1;
 }
 
-header nav ul .language-navigation-item .current-language {
-    font-weight: bolder;
+/* ================================================================================================================== */
+.language-navigation {
+    width: fit-content;
+    max-height: 10px;
 }
 
+.language-navigation-wrapper {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-15px);
+}
+
+.language-navigation-button,
+.language-navigation-symbol,
+.language-navigation-item {
+    filter: var(--text-drop-shadow);
+}
+
+.language-navigation-button,
+.language-navigation-item {
+    padding: 15px 25px;
+    min-width: 40px;
+}
+
+.language-navigation-button {
+    text-transform: uppercase;
+    display: flex;
+
+}
+
+.language-navigation-symbol {
+    position: relative;
+    top: 8px;
+    left: 10px;
+}
+
+.language-navigation-item {
+    display: none;
+}
+
+.language-navigation-wrapper:hover .language-navigation-item{
+    display: block;
+}
+
+.current-language {
+    font-weight: bolder;
+    pointer-events: none;
+}
+
+.current-language:before {
+    content: '> ';
+}
+
+@media (max-width: 899px) {
+    .language-navigation-button,
+    .language-navigation-symbol,
+    .language-navigation-item {
+        filter: none;
+    }
+
+    .language-navigation-wrapper {
+        display: flex;
+    }
+
+    .language-navigation-symbol,
+    .language-navigation-button {
+        display: none;
+    }
+
+    .language-navigation-item {
+        display: block;
+        padding-left: 0;
+    }
+}
+
+/* ================================================================================================================== */
+
 header nav li {
-    margin: 32px;
+    margin: var(--nav-list-margin);
     list-style: none;
     padding: 0;
     color: var(--text-color);
@@ -54,6 +134,7 @@ header nav .nav-hamburger button {
     overflow: initial;
     text-overflow: initial;
     white-space: initial;
+    background: none;
 }
 
 header nav .nav-hamburger-icon,
@@ -114,13 +195,25 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
         display: none;
         visibility: hidden;
     }
-
-    header .icon-logo-white svg {
-        margin-left: 62px;
-    }
 }
 
 @media (max-width: 899px){
+    header {
+        padding: 0px;
+    }
+
+    .logo {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    header .icon-logo-white svg {
+        height: 63px;
+        width: auto;
+        margin-left: 35px;
+    }
+
     header nav ul{
         transition: transform .3s ease-in-out;
         display: flex;
@@ -137,5 +230,9 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
 
     header nav[aria-expanded="true"] ul {
         transform: translateX(0);
+    }
+
+    header nav li a:any-link {
+        color: var(--color-purple);
     }
 }
