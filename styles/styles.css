@@ -99,7 +99,6 @@ html{
     position: relative;
 }
 
-
 body {
     font-size: var(--body-font-size-m);
     margin: 0;
@@ -119,6 +118,19 @@ body .reverse {
 
 body.appear {
     display: unset;
+}
+
+header {
+    height: var(--nav-height);
+    z-index: 500;
+    position: relative;
+    padding: 20px;
+}
+
+@media (max-width: 899px) {
+    header {
+        padding: 0;
+    }
 }
 
 main {

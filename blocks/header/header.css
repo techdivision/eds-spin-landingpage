@@ -1,10 +1,3 @@
-header {
-    height: var(--nav-height);
-    z-index: 500;
-    position: relative;
-    padding: 20px;
-}
-
 header .block {
     display: flex;
     justify-content: space-between;
@@ -195,10 +188,6 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
 }
 
 @media (max-width: 899px){
-    header {
-        padding: 0;
-    }
-
     .logo {
         position: relative;
         left: 50%;
@@ -207,8 +196,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
 
     header .icon-logo-white svg {
         height: 63px;
-        width: auto;
-        margin-left: 35px;
+        margin: 0;
     }
 
     header nav ul{
