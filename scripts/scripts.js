@@ -97,7 +97,13 @@ function decorateSectionsWithIds(main) {
   });
 }
 
-function decorateSectionsWithScrollListeners(main) {
+function decorateSectionsWithPlanetToBackgroundAnimation(main) {
+  if (!('IntersectionObserver' in window)
+      || !('IntersectionObserverEntry' in window)
+      || !('intersectionRatio' in window.IntersectionObserverEntry.prototype)) {
+    return;
+  }
+
   const planetAnimationRootMargin = 300;
 
   const planetSectionIntersectionObserver = new IntersectionObserver((entries) => {
@@ -172,7 +178,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateSectionsWithIds(main);
   decorateBlocks(main);
-  decorateSectionsWithScrollListeners(main);
+  decorateSectionsWithPlanetToBackgroundAnimation(main);
   buildHeroLogo();
 }
 
