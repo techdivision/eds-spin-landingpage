@@ -82,15 +82,6 @@
     background-color: var(--background-color);
 }
 
-.background-hidden::before {
-    opacity: 0;
-}
-
-.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
 @media (min-width: 900px) {
     :root {
         --heading-font-size-xxl: 55px;
@@ -499,4 +490,13 @@ main .section.hero .icon-logo-adobe-techdivision {
     }
 }
 
+/* Have to stay at the bottom for a higher specificity */
 
+.background-hidden::before {
+    opacity: 0;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
