@@ -98,6 +98,8 @@ function decorateSectionsWithIds(main) {
 }
 
 function decorateSectionsWithScrollListeners(main) {
+  const planetAnimationRootMargin = 300;
+
   const planetSectionIntersectionObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const previousSection = entry.target.previousElementSibling;
@@ -114,7 +116,7 @@ function decorateSectionsWithScrollListeners(main) {
         nextSection.querySelector('.section-planet').classList.remove('hidden');
       }
     });
-  }, { rootMargin: '-200px 0px' });
+  }, { rootMargin: `-${planetAnimationRootMargin}px 0px` });
 
   main.querySelectorAll('.planet-to-background').forEach((section) => {
     section.classList.add('background-hidden');
@@ -142,13 +144,13 @@ function decorateSectionsWithScrollListeners(main) {
       // eslint-disable-next-line max-len
       (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height / 2 - window.innerHeight / 2,
       // eslint-disable-next-line max-len
-      (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height - window.innerHeight + 200,
+      (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height - window.innerHeight + planetAnimationRootMargin,
       '--scroll-planet',
     );
     registerCustomScrollLinkedVariable(
       nextSection,
       // eslint-disable-next-line max-len
-      (elementDistanceToWindowTop) => elementDistanceToWindowTop - 200,
+      (elementDistanceToWindowTop) => elementDistanceToWindowTop - planetAnimationRootMargin,
       // eslint-disable-next-line max-len
       (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height / 2 - window.innerHeight / 2,
       '--scroll-planet',
