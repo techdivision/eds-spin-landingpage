@@ -98,71 +98,69 @@ function decorateSectionsWithIds(main) {
 }
 
 function decorateSectionsWithPlanetToBackgroundAnimation(main) {
-  if (!('IntersectionObserver' in window)
-      || !('IntersectionObserverEntry' in window)
-      || !('isIntersecting' in window.IntersectionObserverEntry.prototype)) {
-    return;
-  }
+  if ('IntersectionObserver' in window
+      && 'IntersectionObserverEntry' in window
+      && 'isIntersecting' in window.IntersectionObserverEntry.prototype) {
+    const planetAnimationRootMargin = 300;
 
-  const planetAnimationRootMargin = 300;
+    const planetSectionIntersectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const previousSection = entry.target.previousElementSibling;
+        const nextSection = entry.target.nextElementSibling;
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('background-hidden');
+          previousSection.querySelector('.section-planet').classList.add('hidden');
+          nextSection.querySelector('.section-planet').classList.add('hidden');
+        } else if (entry.boundingClientRect.top > 0) {
+          entry.target.classList.add('background-hidden');
+          previousSection.querySelector('.section-planet').classList.remove('hidden');
+        } else if (entry.boundingClientRect.top < 0) {
+          entry.target.classList.add('background-hidden');
+          nextSection.querySelector('.section-planet').classList.remove('hidden');
+        }
+      });
+    }, { rootMargin: `-${planetAnimationRootMargin}px 0px` });
 
-  const planetSectionIntersectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const previousSection = entry.target.previousElementSibling;
-      const nextSection = entry.target.nextElementSibling;
-      if (entry.isIntersecting) {
-        entry.target.classList.remove('background-hidden');
-        previousSection.querySelector('.section-planet').classList.add('hidden');
-        nextSection.querySelector('.section-planet').classList.add('hidden');
-      } else if (entry.boundingClientRect.top > 0) {
-        entry.target.classList.add('background-hidden');
-        previousSection.querySelector('.section-planet').classList.remove('hidden');
-      } else if (entry.boundingClientRect.top < 0) {
-        entry.target.classList.add('background-hidden');
-        nextSection.querySelector('.section-planet').classList.remove('hidden');
+    main.querySelectorAll('.planet-to-background').forEach((section) => {
+      section.classList.add('background-hidden');
+      const previousSection = section.previousElementSibling;
+      const nextSection = section.nextElementSibling;
+      const classList = Array.from(section.classList);
+      const theme = classList.find((currentClass) => currentClass.includes('theme-'));
+
+      const planet = document.createElement('div');
+      planet.classList.add('section-planet');
+      if (theme) {
+        planet.classList.add(theme);
+      } else {
+        planet.classList.add('theme-default');
       }
+      const previousPlanet = planet.cloneNode();
+      previousPlanet.classList.add('section-planet-entering');
+      previousSection.appendChild(previousPlanet);
+      const nextPlanet = planet.cloneNode();
+      nextPlanet.classList.add('section-planet-leaving');
+      nextPlanet.classList.add('hidden');
+      nextSection.appendChild(nextPlanet);
+      registerCustomScrollLinkedVariable(
+        previousSection,
+        // eslint-disable-next-line max-len
+        (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height / 2 - window.innerHeight / 2,
+        // eslint-disable-next-line max-len
+        (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height - window.innerHeight + planetAnimationRootMargin,
+        '--scroll-planet',
+      );
+      registerCustomScrollLinkedVariable(
+        nextSection,
+        // eslint-disable-next-line max-len
+        (elementDistanceToWindowTop) => elementDistanceToWindowTop - planetAnimationRootMargin,
+        // eslint-disable-next-line max-len
+        (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height / 2 - window.innerHeight / 2,
+        '--scroll-planet',
+      );
+      planetSectionIntersectionObserver.observe(section);
     });
-  }, { rootMargin: `-${planetAnimationRootMargin}px 0px` });
-
-  main.querySelectorAll('.planet-to-background').forEach((section) => {
-    section.classList.add('background-hidden');
-    const previousSection = section.previousElementSibling;
-    const nextSection = section.nextElementSibling;
-    const classList = Array.from(section.classList);
-    const theme = classList.find((currentClass) => currentClass.includes('theme-'));
-
-    const planet = document.createElement('div');
-    planet.classList.add('section-planet');
-    if (theme) {
-      planet.classList.add(theme);
-    } else {
-      planet.classList.add('theme-default');
-    }
-    const previousPlanet = planet.cloneNode();
-    previousPlanet.classList.add('section-planet-entering');
-    previousSection.appendChild(previousPlanet);
-    const nextPlanet = planet.cloneNode();
-    nextPlanet.classList.add('section-planet-leaving');
-    nextPlanet.classList.add('hidden');
-    nextSection.appendChild(nextPlanet);
-    registerCustomScrollLinkedVariable(
-      previousSection,
-      // eslint-disable-next-line max-len
-      (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height / 2 - window.innerHeight / 2,
-      // eslint-disable-next-line max-len
-      (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height - window.innerHeight + planetAnimationRootMargin,
-      '--scroll-planet',
-    );
-    registerCustomScrollLinkedVariable(
-      nextSection,
-      // eslint-disable-next-line max-len
-      (elementDistanceToWindowTop) => elementDistanceToWindowTop - planetAnimationRootMargin,
-      // eslint-disable-next-line max-len
-      (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height / 2 - window.innerHeight / 2,
-      '--scroll-planet',
-    );
-    planetSectionIntersectionObserver.observe(section);
-  });
+  }
 }
 
 /**
