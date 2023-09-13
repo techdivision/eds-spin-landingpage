@@ -98,6 +98,7 @@ function decorateSectionsWithIds(main) {
 }
 
 function decorateSectionsWithPlanetToBackgroundAnimation(main) {
+  // Fail early if IntersectionObserver is not supported. Backgrounds will be rendered without the planet animation then
   if (!('IntersectionObserver' in window)
       || !('IntersectionObserverEntry' in window)
       || !('isIntersecting' in window.IntersectionObserverEntry.prototype)) {
@@ -106,6 +107,7 @@ function decorateSectionsWithPlanetToBackgroundAnimation(main) {
 
   const planetAnimationRootMargin = 300;
 
+  // Hides and shows section backgrounds and planets depending on the scroll position
   const planetSectionIntersectionObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const previousSection = entry.target.previousElementSibling;
@@ -129,6 +131,7 @@ function decorateSectionsWithPlanetToBackgroundAnimation(main) {
     const previousSection = section.previousElementSibling;
     const nextSection = section.nextElementSibling;
     const classList = Array.from(section.classList);
+    // Get the theme-class of the planet-to-background section
     const theme = classList.find((currentClass) => currentClass.includes('theme-'));
 
     const planet = document.createElement('div');

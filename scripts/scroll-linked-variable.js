@@ -83,7 +83,7 @@ function getScrollFrameOffsets(viewportStartTrigger, viewportEndTrigger) {
  * @param {string=} viewportEndTrigger Define the trigger, if the variable changes end with the top
  * or the bottom of the viewport, VIEWPORT_TOP means the element needs to intersect with the top of the viewport,
  * bottom means the element needs to intersect with the bottom of the viewport
- * @param scrollVariableName
+ * @param scrollVariableName the name of the inline css variable. The default is '--scroll'
  */
 export function registerScrollLinkedVariable(
   element,
@@ -125,6 +125,45 @@ export function registerScrollLinkedVariable(
   });
 }
 
+/**
+ * Register a HTMLElement to get an inline css variable which contains the distance in percent on
+ * how far the user scrolled in this element
+ *
+ * You can customize the trigger, when the change should start and stop.
+ *
+ *
+ * @example
+ *
+ * // Change the scroll variable, as soon as the elements center reaches the viewports center
+ * registerCustomScrollLinkedVariable(
+ *   element,
+ *   (elementDistanceToWindowTop, elementRect) =>
+ *     elementDistanceToWindowTop + elementRect.height / 2 - window.innerHeight / 2,
+ * );
+ *
+ * // Change the scroll variable, until the elements bottom is 200px above the viewports bottom
+ * registerCustomScrollLinkedVariable(
+ *   element,
+ *   scrollFrameTopCallback,
+ *   (elementDistanceToWindowTop, elementRect) =>
+ *     elementDistanceToWindowTop + elementRect.height - window.innerHeight + 200,
+ * );
+ *
+ * // You can also change the name for the css scroll variable
+ * registerCustomScrollLinkedVariable(
+ *   element,
+ *   scrollFrameTopCallback,
+ *   scrollFrameBottomCallback,
+ *   '--custom-scroll-name'
+ * );
+ *
+ * @param {HTMLElement} element
+ * @param scrollFrameTopCallback a callback function that calculates the scroll frames top position.
+ * (elementDistanceToWindowTop, elementRect) will be injected into the function
+ * @param scrollFrameBottomCallback a callback function that calculates the scroll frames bottom position.
+ * (elementDistanceToWindowTop, elementRect) will be injected into the function
+ * @param scrollVariableName the name of the inline css variable. The default is '--scroll'
+ */
 export function registerCustomScrollLinkedVariable(
   element,
   scrollFrameTopCallback,
