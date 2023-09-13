@@ -24,7 +24,6 @@ header nav ul {
     z-index: 1;
 }
 
-/* ================================================================================================================== */
 .language-navigation {
     width: fit-content;
     max-height: 10px;
@@ -73,7 +72,7 @@ header nav ul {
     pointer-events: none;
 }
 
-.current-language:before {
+.current-language::before {
     content: '> ';
 }
 
@@ -98,8 +97,6 @@ header nav ul {
         padding-left: 0;
     }
 }
-
-/* ================================================================================================================== */
 
 header nav li {
     margin: var(--nav-list-margin);
@@ -199,7 +196,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
 
 @media (max-width: 899px){
     header {
-        padding: 0px;
+        padding: 0;
     }
 
     .logo {

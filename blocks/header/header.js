@@ -64,7 +64,7 @@ function buildHamburgerNode() {
 
 function buildLogoNode() {
   const logoNode = document.createElement('a');
-  logoNode.classList.add("logo");
+  logoNode.classList.add('logo');
   logoNode.href = getCurrentLanguage() === 'en' ? '/en/' : '/';
   logoNode.setAttribute('aria-label', 'SPIN Digital Experience Lab Landingpage');
   const logoNodeIcon = document.createElement('span');
@@ -73,7 +73,6 @@ function buildLogoNode() {
   return logoNode;
 }
 
-/* ============================================================================================================ */
 function buildLanguageNavigation() {
   const languageNavigation = document.createElement('li');
   const svgChevron = '<svg class="language-navigation-symbol" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none">\n'
@@ -86,17 +85,6 @@ function buildLanguageNavigation() {
       <a href="/" class="${getCurrentLanguage() === 'de' ? 'current-language' : ''} language-navigation-item">DE</a>
       <a href="/en/" class="${getCurrentLanguage() === 'en' ? 'current-language' : ''} language-navigation-item">EN</a>
     </div>
-  `;
-  return languageNavigation;
-}
-/* ============================================================================================================ */
-
-function buildLanguageNavigationItem() {
-  const languageNavigation = document.createElement('li');
-  languageNavigation.classList.add('language-navigation-item');
-  languageNavigation.innerHTML = `
-    <a href="/" class="${getCurrentLanguage() === 'de' ? 'current-language' : ''}">DE</a> /
-    <a href="/en/" class="${getCurrentLanguage() === 'en' ? 'current-language' : ''}">EN</a>
   `;
   return languageNavigation;
 }
