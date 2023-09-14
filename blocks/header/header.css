@@ -43,11 +43,9 @@ header nav ul li .language-navigation-button {
     display: flex;
     padding: 15px 25px;
     min-width: 40px;
-    filter: var(--text-drop-shadow);
 }
 
 header nav ul li .language-navigation-symbol {
-    filter: var(--text-drop-shadow);
     position: relative;
     top: 8px;
     left: 10px;
@@ -57,7 +55,6 @@ header nav ul .language-navigation-item {
     display: none;
     padding: 15px 25px;
     min-width: 40px;
-    filter: var(--text-drop-shadow);
 }
 
 header nav ul .language-navigation-wrapper:hover .language-navigation-item{

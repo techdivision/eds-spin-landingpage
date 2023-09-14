@@ -40,7 +40,7 @@
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
-  --body-font-size-m: 16px;
+  --body-font-size-m: 18px;
   --body-font-size-s: 14px;
   --body-font-size-xs: 12px;
 
@@ -48,9 +48,6 @@
   --heading-font-size-xxl: 38px;
   --heading-font-size-xl: 32px;
   --heading-font-size-l: 22px;
-  --heading-font-size-m: 18px;
-  --heading-font-size-s: 16px;
-  --heading-font-size-xs: 12px;
 
   /* nav height */
   --nav-height: 125px;
@@ -86,12 +83,9 @@
 
 @media (min-width: 900px) {
   :root {
-    --heading-font-size-xxl: 55px;
-    --heading-font-size-xl: 32px;
-    --heading-font-size-l: 22px;
-    --heading-font-size-m: 18px;
-    --heading-font-size-s: 16px;
-    --heading-font-size-xs: 12px;
+    --heading-font-size-xxl: 160px;
+    --heading-font-size-xl: 100px;
+    --heading-font-size-l: 35px;
   }
 }
 
@@ -101,15 +95,17 @@ html {
 
 body {
   font-size: var(--body-font-size-m);
-  margin: 0;
   font-family: var(--body-font-family);
+  font-weight: 300;
   line-height: 22px;
+  margin: 0;
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
   scroll-behavior: smooth;
   height: 100%;
   overflow-x: hidden;
+  letter-spacing: .3px;
 }
 
 body .reverse {
@@ -149,10 +145,16 @@ main {
   overflow-x: hidden;
 }
 
+@supports (overflow-x: clip) {
+  main {
+    overflow-x: clip;
+  }
+}
+
 h1, h2, h3,
 h4, h5, h6 {
   font-family: var(--heading-font-family);
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.25;
   margin-top: 0;
   margin-bottom: .5em;
@@ -161,33 +163,33 @@ h4, h5, h6 {
 
 h1 {
   font-size: var(--heading-font-size-xxl);
-  line-height: 60px;
+  line-height: 1em;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 h2 {
   font-size: var(--heading-font-size-xl);
-  line-height: 40px;
+  line-height: 1.1em;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: .2em;
 }
 
 h3 {
-  font-size: var(--heading-font-size-l)
-}
-
-h4 {
-  font-size: var(--heading-font-size-m)
-}
-
-h5 {
-  font-size: var(--heading-font-size-s)
-}
-
-h6 {
-  font-size: var(--heading-font-size-xs)
+  font-size: var(--heading-font-size-l);
+  line-height: 1.15em;
+  font-weight: 200;
+  margin-bottom: 1.8em;
 }
 
 p, dl, ol, ul, pre, blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+strong {
+  font-weight: 800;
 }
 
 a:any-link {
@@ -221,13 +223,12 @@ a.button:any-link, button, main .form .button, header nav li:nth-last-child(2) a
   box-sizing: border-box;
   text-decoration: none;
   border: 2px solid transparent;
-  border-radius: 500px;
   padding: 10px 25px;
   text-align: center;
   font-style: normal;
   font-weight: 600;
   cursor: pointer;
-  color: var(--button-text-color);
+  color: var(--background-color);
   background-color: var(--button-color);
   margin: 16px 0;
   white-space: nowrap;
@@ -276,16 +277,66 @@ main .section {
 }
 
 main .section.hero {
-  padding: 20px var(--section-padding);
+  padding-top: 0;
+  position: relative;
 }
 
-main .section.hero p {
-  margin-bottom: 45px;
+main .section.hero::before {
+  --planet-size: calc(80vh + 150vw); /* find a ratio between vh and vw that looks nice */
+
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: calc(-1 * (var(--planet-size) - 100vh + var(--nav-height) + 10vh)); /* align the planet to the bottom of the screen plus a offset */
+  left: 50%;
+  width: var(--planet-size);
+  height: var(--planet-size);
+  background: linear-gradient(
+          to top left,
+          #ff8c05 calc(6.14% + var(--scroll) * 5.39%),
+          #ce2726 calc(19.43% + var(--scroll) * 22.61%),
+          #1c0a4d calc(53.92% + var(--scroll) * 21.19%)
+  );
+  border-radius: 50%;
+  animation: hero-planet 1s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+
+  --endx: calc(var(--container-width) * 0.75 / 2 - 50%);
+  --endy: calc(var(--container-height) + 120vh);
 }
 
-main .section.hero .default-content-wrapper {
-  max-width: 800px;
-  margin: 0;
+@keyframes hero-planet {
+  0% {
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(var(--endx), var(--endy)) scale(.1);
+  }
+}
+
+main .section.hero .default-content-wrapper:first-of-type {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main .section.hero .default-content-wrapper:first-of-type h1 {
+  margin-bottom: 0;
+}
+
+/* appearance of h2 as h3, to keep hierarchy of h elements */
+main .section.hero .default-content-wrapper:first-of-type h2 {
+  font-size: var(--heading-font-size-l);
+  line-height: 1.15em;
+  font-weight: 200;
+  text-transform: initial;
+  margin-bottom: 1.8em;
+
 }
 
 main pre {
@@ -326,21 +377,10 @@ main img {
   height: auto;
 }
 
-@media (min-width: 600px) {
-  main .section.hero {
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-}
 
 @media (min-width: 900px) {
   .section > div {
     margin: auto;
-  }
-
-  main .section.hero {
-    padding-top: 80px;
-    padding-bottom: 80px;
   }
 }
 
