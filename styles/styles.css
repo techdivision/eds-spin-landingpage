@@ -130,11 +130,13 @@ header {
     align-items: center;
 }
 
-@media (max-width: 899px) {
-    header {
-        padding: 0;
-    }
+header nav ul {
+    padding-left: 0;
+    display: flex;
+    z-index: 1;
+}
 
+@media (max-width: 899px) {
     .logo {
         position: relative;
         left: 50%;

@@ -5,11 +5,6 @@ header .block {
     width: 100%;
 }
 
-header .icon-logo-white svg {
-    height: 70px;
-    width: auto;
-}
-
 header nav ul {
     padding-left: 0;
     display: flex;
