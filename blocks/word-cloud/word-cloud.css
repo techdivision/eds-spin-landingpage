@@ -21,7 +21,8 @@
     max-width: calc(100% - var(--section-padding) * 2);
     display: inline-block;
     pointer-events: auto;
-    font-size: var(--heading-font-size-xxl);
+    font-size: var(--heading-font-size-xl);
+    font-weight: 600;
     line-height: 1;
     animation: word var(--animation-duration) linear infinite;
     animation-play-state: paused;
