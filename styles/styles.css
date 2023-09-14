@@ -125,6 +125,12 @@ header {
     z-index: 100;
 }
 
+/* progressive section appearance */
+header .block[data-block-status='loading'],
+header .block[data-block-status='initialized'] {
+    display: none;
+}
+
 @media (max-width: 899px) {
     header .logo {
         position: relative;
