@@ -19,6 +19,7 @@
 }
 
 :root, .theme-default {
+
     /* colors */
     --color-purple: #1C0A4D;
     --color-light-purple: #5764EF;
@@ -33,8 +34,7 @@
     --input-background-color: #D1CCDD;
     --button-text-color: var(--text-color);
     --button-color: var(--color-light-purple);
-    --footer-color: var(--text-color);
-    --footer-background-color: #0E0525;
+    --text-hightlight: #FF8C04;
 
     /* fonts */
     --body-font-family: mulish, mulish-normal-400-fallback, helvetica, sans-serif;
@@ -64,17 +64,21 @@
     --content-width: 1200px;
     --section-padding: max(calc(50vw - (var(--content-width) / 2)), 32px);
 
-    /* set initial properties for stars layers */
-    --stars-opacity: 0;
-
-    /* @TODO implement this drop shadow for all text elements */
-    --text-drop-shadow: drop-shadow(0px 3px 10px var(--color-purple)) drop-shadow(0px -3px 10px var(--color-purple)) drop-shadow(3px 0px 10px var(--color-purple)) drop-shadow(-3px 0px 10px var(--color-purple));
+    /* shadow for better readability with the stars */
+    --text-drop-shadow-color: var(--color-purple);
+    --text-drop-shadow-offset: 2px;
+    --text-drop-shadow-blur: 3px;
+    --text-drop-shadow: drop-shadow(0px var(--text-drop-shadow-offset) var(--text-drop-shadow-blur) var(--color-purple)) drop-shadow(0px calc(-1 * var(--text-drop-shadow-offset)) var(--text-drop-shadow-blur) var(--color-purple)) drop-shadow(var(--text-drop-shadow-offset) 0px var(--text-drop-shadow-blur) var(--color-purple)) drop-shadow(calc(-1 * var(--text-drop-shadow-offset)) 0px var(--text-drop-shadow-blur) var(--color-purple));
 }
 
 .theme-light-purple {
     /* colors */
     --background-color: var(--color-light-purple);
     --button-color: var(--color-purple);
+}
+
+footer, header, .hero > .default-content-wrapper:first-of-type, .section.theme-light-purple {
+    --text-drop-shadow: '';
 }
 
 .section.theme-light-purple::before {
@@ -159,6 +163,16 @@ main {
 }
 
 h1, h2, h3,
+h4, h5, h6,
+p, span, sup,
+sub, u, i,
+b, em, strong,
+del, ins, ruby {
+    filter: var(--text-drop-shadow);
+}
+
+
+h1, h2, h3,
 h4, h5, h6 {
     font-family: var(--heading-font-family);
     font-weight: 300;
@@ -188,6 +202,16 @@ h3 {
     line-height: 1.15em;
     font-weight: 200;
     margin-bottom: 1.8em;
+}
+
+h4 {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-hightlight)
+}
+
+h4 .text-white {
+    color: white;
 }
 
 p, dl, ol, ul, pre, blockquote {
