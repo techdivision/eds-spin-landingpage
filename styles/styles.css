@@ -33,7 +33,7 @@
     --input-background-color: #D1CCDD;
     --button-color: var(--color-light-purple);
     --footer-color: var(--text-color);
-    --footer-background-color: var(--color-purple);
+    --footer-background-color: #0E0525;
 
     /* fonts */
     --body-font-family: mulish, mulish-normal-400-fallback, helvetica, sans-serif;
