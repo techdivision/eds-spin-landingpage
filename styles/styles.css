@@ -130,6 +130,10 @@ header {
     align-items: center;
 }
 
+header .logo{
+    display: none;
+}
+
 @media (max-width: 899px) {
     header .logo {
         position: relative;
