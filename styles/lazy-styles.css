@@ -1,11 +1,131 @@
 /* below the fold CSS goes here */
 @font-face {
-  font-family: mulish;
-  src: url("/styles/fonts/Mulish-VariableFont_wght.ttf");
-  font-weight: 100 900;
-  font-display: swap;
+    font-family: mulish;
+    src: url("/styles/fonts/Mulish-VariableFont_wght.ttf");
+    font-weight: 100 900;
+    font-display: swap;
 }
 
-html{
-  scroll-behavior: smooth;
+html {
+    scroll-behavior: smooth;
 }
+
+/* IMPORTANT: this is just for fun and not actually used. Please ignore this :) */
+.i-spin h1 {
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.i-spin main .section.hero::before{
+    background: url("/images/fun.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.i-spin .stars-wrapper {
+    animation-name: pulsate;
+    animation-duration: 500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+}
+
+.i-spin svg path{
+    animation: rainbow 2.5s linear;
+    animation-iteration-count: infinite;
+}
+
+body.i-spin {
+    --body-font-family: "Comic Sans MS", sans-serif;
+    --heading-font-family: var(--body-font-family);
+    --fixed-font-family: var(--body-font-family);
+
+    animation: rainbow 2.5s linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pulsate {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rainbow {
+    100%, 0% {
+        color: rgb(255 0 0);
+        fill: rgb(255 0 0);
+    }
+
+    8% {
+        color: rgb(255 127 0);
+        fill: rgb(255 127 0);
+    }
+
+    16% {
+        color: rgb(255 255 0);
+        fill: rgb(255 255 0);
+    }
+
+    25% {
+        color: rgb(127 255 0);
+        fill: rgb(127 255 0);
+    }
+
+    33% {
+        color: rgb(0 255 0);
+        fill: rgb(0 255 0);
+    }
+
+    41% {
+        color: rgb(0 255 127);
+        fill: rgb(0 255 127);
+    }
+
+    50% {
+        color: rgb(0 255 255);
+        fill: rgb(0 255 255);
+    }
+
+    58% {
+        color: rgb(0 127 255);
+        fill: rgb(0 127 255);
+    }
+
+    66% {
+        color: rgb(0 0 255);
+        fill: rgb(0 0 255);
+    }
+
+    75% {
+        color: rgb(127 0 255);
+        fill: rgb(127 0 255);
+    }
+
+    83% {
+        color: rgb(255 0 255);
+        fill: rgb(255 0 255);
+    }
+
+    91% {
+        color: rgb(255 0 127);
+        fill: rgb(255 0 127);
+    }
+}
+
+/* </FUN> */
