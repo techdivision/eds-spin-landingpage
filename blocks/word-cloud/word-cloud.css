@@ -21,10 +21,10 @@
     max-width: calc(100% - var(--section-padding) * 2);
     display: inline-block;
     pointer-events: auto;
-    font-size: calc(var(--heading-font-size-l) * 2);
+    font-size: var(--heading-font-size-xl);
     font-weight: 600;
     line-height: 1;
-    animation: word var(--animation-duration) linear infinite;
+    animation: word var(--animation-duration) ease-in-out infinite;
     animation-play-state: paused;
     animation-iteration-count: 1;
     animation-fill-mode: both;
@@ -39,6 +39,7 @@
     .word-cloud > div {
         left: var(--position-left);
         max-width: 60%;
+        font-size: 70px;
     }
 }
 
@@ -47,20 +48,8 @@
         transform: translate3d(-50%, 0, 0) scale(0);
     }
 
-    10% {
-        transform: translate3d(-50%, 0, 0) scale(0.2);
-    }
-
-    30% {
+    40%, 60% {
         transform: translate3d(-50%, 0, 0) scale(1);
-    }
-
-    60% {
-        transform: translate3d(-50%, 0, 0) scale(1);
-    }
-
-    90% {
-        transform: translate3d(-50%, 0, 0) scale(0.2);
     }
 
     100% {
