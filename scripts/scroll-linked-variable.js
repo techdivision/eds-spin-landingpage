@@ -29,7 +29,9 @@ function updateScrollVariables() {
   const windowScrollY = window.scrollY;
 
   scrollLinkedElements.forEach((scrollLinkedElement) => {
-    updateScrollVariable(scrollLinkedElement, windowScrollY);
+    if (!scrollLinkedElement.isJustElementHeight) {
+      updateScrollVariable(scrollLinkedElement, windowScrollY);
+    }
   });
 }
 
@@ -198,6 +200,24 @@ export function registerCustomScrollLinkedVariable(
   });
 }
 
+/**
+ * Sets the elements height and width in the css variables `--element-height` and ´--element-width´
+ *
+ * @param {HTMLElement} element
+ */
+export function registerElementDimensionsVariables(element) {
+  window.requestAnimationFrame(() => {
+    const elementRect = element.getBoundingClientRect();
+    element.style.setProperty('--element-height', `${elementRect.height}px`);
+    element.style.setProperty('--element-width', `${elementRect.width}px`);
+    const scrollLinkedElement = {
+      element,
+      isJustElementHeight: true,
+    };
+    scrollLinkedElements.push(scrollLinkedElement);
+  });
+}
+
 // Test via a getter in the options object to see if the passive property is accessed
 let supportsPassive = false;
 try {
@@ -224,7 +244,9 @@ const updateScrollElementsResizeObserver = new ResizeObserver(
     const scrollLinkedElementsCopy = scrollLinkedElements;
     scrollLinkedElements = [];
     scrollLinkedElementsCopy.forEach((scrollLinkedElement) => {
-      if (scrollLinkedElement.isCustom) {
+      if (scrollLinkedElement.isJustElementHeight) {
+        registerElementDimensionsVariables(scrollLinkedElement.element);
+      } else if (scrollLinkedElement.isCustom) {
         registerCustomScrollLinkedVariable(
           scrollLinkedElement.element,
           scrollLinkedElement.scrollFrameTopCallback,
