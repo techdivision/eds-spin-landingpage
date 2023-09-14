@@ -130,18 +130,6 @@ header {
     align-items: center;
 }
 
-header .block {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-header .icon-logo-white svg {
-    height: 70px;
-    margin: 0;
-}
-
 @media (max-width: 899px) {
     header .logo {
         position: relative;
