@@ -48,3 +48,56 @@ html{
     transform: translateY(calc(var(--container-height) / 2))
   }
 }
+
+/* shooting stars */
+.shooting-stars-wrapper {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+}
+
+.shooting-star {
+  content: '';
+  position: absolute;
+  left: -250px;
+  top: -250px;
+  height: 5px;
+  width: 250px;
+  aspect-ratio: 1/1;
+  background: linear-gradient(0.25turn, rgb(0 0 0 / 0%) 0%,rgb(255 255 255 / 40%) 100%);
+  border-radius: 50%;
+  animation: 3s shooting-star-animation linear infinite;
+}
+
+.shooting-star:nth-child(1) {
+  top: calc(-250px + 40vh);
+  animation-delay: 3s;
+}
+
+.shooting-star:nth-child(2) {
+  top: calc(-250px);
+  animation-delay: 6s;
+}
+
+.shooting-star:nth-child(3) {
+  top: calc(-250px - 40vh);
+  animation-delay: 9s;
+}
+
+@keyframes shooting-star-animation {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(45deg);
+    opacity: 0.5;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  50% {}
+
+  100% {
+    transform: translate3d(150vmax, 150vmax, 0) rotate(45deg);
+    opacity: 0.5;
+  }
+}
