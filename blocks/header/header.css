@@ -4,6 +4,14 @@ header .block[data-block-status='initialized'] {
     display: none;
 }
 
+header{
+    padding: 20px;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
 header .block {
     display: flex;
     justify-content: space-between;
