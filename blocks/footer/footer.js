@@ -9,12 +9,15 @@ import { getCurrentLanguage } from '../../scripts/scripts.js';
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   block.textContent = '';
-
   const footerPath = cfg.footer || `/${getCurrentLanguage()}/footer`;
   const resp = await fetch(`${footerPath}.plain.html`);
   const html = await resp.text();
+  block.innerHTML = html;
+  await decorateIcons(block);
+  /*
   const footer = document.createElement('div');
   footer.innerHTML = html;
   await decorateIcons(footer);
   block.append(footer);
+  */
 }

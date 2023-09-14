@@ -32,6 +32,8 @@
     --text-color-reverse: var(--color-purple);
     --input-background-color: #D1CCDD;
     --button-color: var(--color-light-purple);
+    --footer-color: var(--text-color);
+    --footer-background-color: var(--color-purple);
 
     /* fonts */
     --body-font-family: mulish, mulish-normal-400-fallback, helvetica, sans-serif;
@@ -51,8 +53,13 @@
     --heading-font-size-s: 16px;
     --heading-font-size-xs: 12px;
 
-    /* nav height */
+    /* nav size */
     --nav-height: 146px;
+
+    /* footer size */
+    --footer-height: 387px;
+    --footer-padding-horizontal: 50px;
+    --footer-padding-vertical: 100px;
 
     /* content width */
     --content-width: 1200px;

@@ -1,10 +1,50 @@
 footer {
-  padding: 2rem;
-  background-color: var(--background-color-reverse);
-  color: var(--text-color-reverse);
+  height: var(--footer-height);
+  padding: var(--footer-padding-horizontal) var(--footer-padding-vertical);
+  background-color: var(--footer-background-color);
+  color: var(--footer-color);
   font-size: var(--body-font-size-xs);
 }
 
+footer .block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+footer > div > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+footer > div > div > p {
+  margin: 2px;
+}
+
+footer > div > div:first-child .icon svg {
+  height: 75px;
+}
+
+footer > div > div:last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+footer > div > div:last-child .icon svg {
+  height: 20px;
+  width: 20px;
+  fill: currentcolor;
+  padding: 20px;
+}
+
+/*
 footer .footer {
   max-width: 1200px;
   margin: auto;
@@ -42,3 +82,4 @@ footer .footer > div > div:nth-child(2) .icon svg {
   width: 20px;
   fill: currentcolor;
 }
+*/
