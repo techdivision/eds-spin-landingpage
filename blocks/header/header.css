@@ -1,9 +1,4 @@
-header .block {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
+
 
 header nav ul {
     padding-left: 0;
