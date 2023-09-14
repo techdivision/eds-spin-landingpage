@@ -31,6 +31,7 @@
   --background-color-reverse: #fff;
   --text-color-reverse: var(--color-purple);
   --input-background-color: #D1CCDD;
+  --button-text-color: var(--text-color);
   --button-color: var(--color-light-purple);
 
   /* fonts */
@@ -49,7 +50,8 @@
   --heading-font-size-l: 22px;
 
   /* nav height */
-  --nav-height: 146px;
+  --nav-height: 125px;
+  --nav-list-margin: 22px;
 
   /* content width */
   --content-width: 1200px;
@@ -65,7 +67,7 @@
 .theme-light-purple {
   /* colors */
   --background-color: var(--color-light-purple);
-
+  --button-color: var(--color-purple);
 }
 
 .section.theme-light-purple::before {
@@ -90,7 +92,6 @@
 html {
   position: relative;
 }
-
 
 body {
   font-size: var(--body-font-size-m);
@@ -117,11 +118,37 @@ body.appear {
 
 header {
   height: var(--nav-height);
-  background-color: var(--background-color);
+  z-index: 100;
+}
+
+/* progressive header appearance */
+header .block[data-block-status='loading'],
+header .block[data-block-status='initialized'] {
+  display: none;
+}
+
+/* reserve the logo space to avoid layout shift */
+header .logo {
+  height: 75px;
+  width: 119px;
+}
+
+@media (max-width: 899px) {
+  header .logo {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 main {
   overflow-x: hidden;
+}
+
+@supports (overflow-x: clip) {
+  main {
+    overflow-x: clip;
+  }
 }
 
 h1, h2, h3,
@@ -363,6 +390,64 @@ main .section[data-section-status='initialized'] {
   display: none;
 }
 
+main .section.highlight {
+  background-color: var(--highlight-background-color);
+}
+
+main .section.reverse {
+  background-color: var(--background-color-reverse);
+  overflow: hidden;
+}
+
+main .section.planet {
+  position: relative;
+}
+
+main .section.planet-bottom-right {
+  position: relative;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 600px) {
+  main .section.planet::after, main .section.planet-bottom-right::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    transform: rotate(-173.84deg);
+  }
+
+  main .section.planet::after {
+    width: 33%;
+    background: linear-gradient(223.02deg, #FF8C05 5.54%, #CE2726 36.22%, #626FF0 80.09%);
+    bottom: 15%;
+    left: -10%;
+  }
+
+  main .section.planet-bottom-right::after {
+    width: 30%;
+    background: linear-gradient(135.25deg, #FF8C05 11.53%, #CE2726 42.04%, #626FF0 75.11%);
+    bottom: -20%;
+    right: -5%;
+  }
+}
+
+main .section.hero .icon-logo-adobe-techdivision {
+  position: absolute;
+  z-index: 3;
+  bottom: 30px;
+}
+
+@media only screen and (min-width: 1250px) {
+  main .section.hero .icon-logo-adobe-techdivision {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    z-index: 3;
+  }
+}
+
 .stars-wrapper {
   position: absolute;
   top: 0;
@@ -401,21 +486,6 @@ main .section[data-section-status='initialized'] {
   }
 }
 
-
-main .section.hero .icon-logo-adobe-techdivision {
-  position: absolute;
-  z-index: 3;
-  bottom: 30px;
-}
-
-@media only screen and (min-width: 1250px) {
-  main .section.hero .icon-logo-adobe-techdivision {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    z-index: 3;
-  }
-}
 
 /* planet to background */
 .section-planet {
