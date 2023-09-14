@@ -2,13 +2,12 @@ header .block {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: var(--nav-height);
+    width: 100%;
 }
 
 header .icon-logo-white svg {
-    height: 85px;
+    height: 70px;
     width: auto;
-    margin-left: 35px;
 }
 
 header nav ul {
@@ -92,7 +91,7 @@ header nav ul {
 }
 
 header nav li {
-    margin: var(--nav-list-margin);
+    margin: 0 var(--nav-list-margin);
     list-style: none;
     padding: 0;
     color: var(--text-color);
@@ -188,17 +187,6 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
 }
 
 @media (max-width: 899px){
-    .logo {
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    header .icon-logo-white svg {
-        height: 63px;
-        margin: 0;
-    }
-
     header nav ul{
         transition: transform .3s ease-in-out;
         display: flex;
@@ -215,6 +203,10 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
 
     header nav[aria-expanded="true"] ul {
         transform: translateX(0);
+    }
+
+    header nav li {
+        margin: var(--nav-list-margin);
     }
 
     header nav li a:any-link {
