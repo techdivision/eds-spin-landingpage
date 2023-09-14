@@ -11,77 +11,71 @@ header nav ul {
     z-index: 1;
 }
 
-.language-navigation {
+header nav ul .language-navigation {
     width: fit-content;
     max-height: 10px;
 }
 
-.language-navigation-wrapper {
+header nav ul li .language-navigation-wrapper {
     display: flex;
     flex-direction: column;
     transform: translateY(-15px);
 }
 
-.language-navigation-button,
-.language-navigation-symbol,
-.language-navigation-item {
+header nav ul li .language-navigation-button {
+    text-transform: uppercase;
+    display: flex;
+    padding: 15px 25px;
+    min-width: 40px;
     filter: var(--text-drop-shadow);
 }
 
-.language-navigation-button,
-.language-navigation-item {
-    padding: 15px 25px;
-    min-width: 40px;
-}
-
-.language-navigation-button {
-    text-transform: uppercase;
-    display: flex;
-
-}
-
-.language-navigation-symbol {
+header nav ul li .language-navigation-symbol {
+    filter: var(--text-drop-shadow);
     position: relative;
     top: 8px;
     left: 10px;
 }
 
-.language-navigation-item {
+header nav ul .language-navigation-item {
     display: none;
+    padding: 15px 25px;
+    min-width: 40px;
+    filter: var(--text-drop-shadow);
 }
 
-.language-navigation-wrapper:hover .language-navigation-item{
+header nav ul .language-navigation-wrapper:hover .language-navigation-item{
     display: block;
 }
 
-.current-language {
+header nav ul .current-language {
     font-weight: bolder;
     pointer-events: none;
 }
 
-.current-language::before {
+header nav ul .current-language::before {
     content: '> ';
 }
 
 @media (max-width: 899px) {
-    .language-navigation-button,
-    .language-navigation-symbol,
-    .language-navigation-item {
-        filter: none;
-    }
-
-    .language-navigation-wrapper {
+    header nav ul li .language-navigation-wrapper {
         display: flex;
     }
 
-    .language-navigation-symbol,
-    .language-navigation-button {
+    header nav ul li .language-navigation-symbol {
+        filter: none;
         display: none;
     }
 
-    .language-navigation-item {
+    header nav ul li .language-navigation-item {
+        filter: none;
         display: block;
         padding-left: 0;
+    }
+
+    header nav ul li .language-navigation-button {
+        filter: none;
+        display: none;
     }
 }
 
