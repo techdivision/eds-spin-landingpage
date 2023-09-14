@@ -54,6 +54,7 @@ html{
   position: fixed;
   width: 100px;
   height: 100px;
+  z-index: -1;
 }
 
 .shooting-star {
@@ -66,22 +67,22 @@ html{
   aspect-ratio: 1/1;
   background: linear-gradient(0.25turn, rgb(0 0 0 / 0%) 0%,rgb(255 255 255 / 40%) 100%);
   border-radius: 50%;
-  animation: 3s shooting-star-animation linear infinite;
+  animation: 30s shooting-star-animation linear infinite;
 }
 
 .shooting-star:nth-child(1) {
   top: calc(-250px + 40vh);
-  animation-delay: 3s;
+  animation-delay: 10s;
 }
 
 .shooting-star:nth-child(2) {
   top: calc(-250px);
-  animation-delay: 6s;
+  animation-delay: 20s;
 }
 
 .shooting-star:nth-child(3) {
   top: calc(-250px - 40vh);
-  animation-delay: 9s;
+  animation-delay: 30s;
 }
 
 @keyframes shooting-star-animation {
@@ -90,13 +91,11 @@ html{
     opacity: 0.5;
   }
 
-  10% {
+  5% {
     opacity: 1;
   }
 
-  50% {}
-
-  100% {
+  10%, 100% {
     transform: translate3d(150vmax, 150vmax, 0) rotate(45deg);
     opacity: 0.5;
   }
