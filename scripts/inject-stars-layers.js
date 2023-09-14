@@ -1,5 +1,16 @@
 import { registerScrollLinkedVariable, VIEWPORT_BOTTOM, VIEWPORT_TOP } from './scroll-linked-variable.js';
 
+function getShootingStars() {
+  const shootingStarsWrapper = document.createElement('div');
+  shootingStarsWrapper.classList.add('shooting-stars-wrapper');
+  for (let i = 0; i < 3; i++) {
+    const shootingStar = document.createElement('div');
+    shootingStar.classList.add('shooting-star');
+    shootingStarsWrapper.appendChild(shootingStar);
+  }
+  return shootingStarsWrapper;
+}
+
 /**
  * Inject the star layer elements into the dom
  */
@@ -47,5 +58,6 @@ export default function injectStarsLayers() {
   });
 
   // only run one insert due to performance reasons
+  document.body.insertBefore(getShootingStars(), document.body.firstChild);
   document.body.insertBefore(wrapper, document.body.firstChild);
 }
