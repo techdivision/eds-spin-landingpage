@@ -4,5 +4,5 @@ Fix #<gh-issue-id>
 
 Test URLs:
 
-- before: https://main--spin-landingpage--spin-dx-lab.hlx.page/
-- after: https://<branch>--spin-landingpage--spin-dx-lab.hlx.page/
+- before: https://main--franklin-spin-landingpage--techdivision.hlx.page/
+- after: https://<branch>--franklin-spin-landingpage--techdivision.hlx.page/
