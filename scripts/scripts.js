@@ -12,7 +12,10 @@ import {
   loadBlocks,
   loadCSS,
 } from './lib-franklin.js';
-import { registerCustomScrollLinkedVariable } from './scroll-linked-variable.js';
+import {
+  registerCustomScrollLinkedVariable,
+  registerScrollLinkedVariable,
+} from './scroll-linked-variable.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -63,16 +66,6 @@ function buildHeroBlock(main) {
     const section = document.createElement('div');
     section.append(buildBlock('hero', { elems: [picture, h1] }));
     main.prepend(section);
-  }
-}
-
-function buildHeroLogo() {
-  const logoNodeIcon = document.createElement('span');
-  logoNodeIcon.classList.add('icon', 'icon-logo-adobe-techdivision');
-  const heroSection = document.querySelector('main .section.hero');
-  if (heroSection) {
-    heroSection.appendChild(logoNodeIcon);
-    decorateIcons(heroSection);
   }
 }
 
@@ -168,6 +161,11 @@ function decorateSectionsWithPlanetToBackgroundAnimation(main) {
   });
 }
 
+function decorateHeroSection(main) {
+  const heroSection = main.querySelector('.section.hero');
+  registerScrollLinkedVariable(heroSection);
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -179,10 +177,10 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateHeroSection(main);
   decorateSectionsWithIds(main);
   decorateBlocks(main);
   decorateSectionsWithPlanetToBackgroundAnimation(main);
-  buildHeroLogo();
 }
 
 /**
