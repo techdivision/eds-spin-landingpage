@@ -130,11 +130,6 @@ header {
     align-items: center;
 }
 
-header nav ul {
-    display: flex;
-    z-index: 1;
-}
-
 @media (max-width: 899px) {
     header .logo {
         position: relative;
