@@ -125,10 +125,16 @@ header {
     z-index: 100;
 }
 
-/* progressive section appearance */
+/* progressive header appearance */
 header .block[data-block-status='loading'],
 header .block[data-block-status='initialized'] {
     display: none;
+}
+
+/* reserve the logo space to avoid layout shift */
+header .logo{
+    height: 75px;
+    width: 119px;
 }
 
 @media (max-width: 899px) {
