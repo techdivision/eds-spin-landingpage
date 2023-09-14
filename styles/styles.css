@@ -12,513 +12,513 @@
 
 /* fallback font for Mulish (normal - 400) */
 @font-face {
-    font-family: "mulish-normal-400-fallback";
-    size-adjust: 103.181%; /* trick to keep the CLS at a minimum */
-    src: local("Helvetica");
-    font-display: swap;
+  font-family: "mulish-normal-400-fallback";
+  size-adjust: 103.181%; /* trick to keep the CLS at a minimum */
+  src: local("Helvetica");
+  font-display: swap;
 }
 
 :root, .theme-default {
-    /* colors */
-    --color-purple: #1C0A4D;
-    --color-light-purple: #5764EF;
-    --link-color: #035fe6;
-    --link-hover-color: #136ff6;
-    --background-color: var(--color-purple);
-    --overlay-background-color: #eee;
-    --highlight-background-color: #ccc;
-    --text-color: #fff;
-    --background-color-reverse: #fff;
-    --text-color-reverse: var(--color-purple);
-    --input-background-color: #D1CCDD;
-    --button-text-color: var(--text-color);
-    --button-color: var(--color-light-purple);
+  /* colors */
+  --color-purple: #1C0A4D;
+  --color-light-purple: #5764EF;
+  --link-color: #035fe6;
+  --link-hover-color: #136ff6;
+  --background-color: var(--color-purple);
+  --overlay-background-color: #eee;
+  --highlight-background-color: #ccc;
+  --text-color: #fff;
+  --background-color-reverse: #fff;
+  --text-color-reverse: var(--color-purple);
+  --input-background-color: #D1CCDD;
+  --button-text-color: var(--text-color);
+  --button-color: var(--color-light-purple);
 
-    /* fonts */
-    --body-font-family: mulish, mulish-normal-400-fallback, helvetica, sans-serif;
-    --heading-font-family: var(--body-font-family);
-    --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+  /* fonts */
+  --body-font-family: mulish, mulish-normal-400-fallback, helvetica, sans-serif;
+  --heading-font-family: var(--body-font-family);
+  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
-    /* body sizes */
-    --body-font-size-m: 16px;
-    --body-font-size-s: 14px;
-    --body-font-size-xs: 12px;
+  /* body sizes */
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
 
-    /* heading sizes */
-    --heading-font-size-xxl: 38px;
+  /* heading sizes */
+  --heading-font-size-xxl: 38px;
+  --heading-font-size-xl: 32px;
+  --heading-font-size-l: 22px;
+  --heading-font-size-m: 18px;
+  --heading-font-size-s: 16px;
+  --heading-font-size-xs: 12px;
+
+  /* nav height */
+  --nav-height: 125px;
+  --nav-list-margin: 22px;
+
+  /* content width */
+  --content-width: 1200px;
+  --section-padding: max(calc(50vw - (var(--content-width) / 2)), 32px);
+
+  /* set initial properties for stars layers */
+  --stars-opacity: 0;
+
+  /* @TODO implement this drop shadow for all text elements */
+  --text-drop-shadow: drop-shadow(0px 3px 10px var(--color-purple)) drop-shadow(0px -3px 10px var(--color-purple)) drop-shadow(3px 0px 10px var(--color-purple)) drop-shadow(-3px 0px 10px var(--color-purple));
+}
+
+.theme-light-purple {
+  /* colors */
+  --background-color: var(--color-light-purple);
+  --button-color: var(--color-purple);
+}
+
+.section.theme-light-purple::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background-color: var(--background-color);
+}
+
+@media (min-width: 900px) {
+  :root {
+    --heading-font-size-xxl: 55px;
     --heading-font-size-xl: 32px;
     --heading-font-size-l: 22px;
     --heading-font-size-m: 18px;
     --heading-font-size-s: 16px;
     --heading-font-size-xs: 12px;
-
-    /* nav height */
-    --nav-height: 125px;
-    --nav-list-margin: 22px;
-
-    /* content width */
-    --content-width: 1200px;
-    --section-padding: max(calc(50vw - (var(--content-width) / 2)), 32px);
-
-    /* set initial properties for stars layers */
-    --stars-opacity: 0;
-
-    /* @TODO implement this drop shadow for all text elements */
-    --text-drop-shadow: drop-shadow(0px 3px 10px var(--color-purple)) drop-shadow( 0px -3px 10px var(--color-purple)) drop-shadow( 3px 0px 10px var(--color-purple)) drop-shadow( -3px 0px 10px var(--color-purple));
+  }
 }
 
-.theme-light-purple {
-    /* colors */
-    --background-color: var(--color-light-purple);
-    --button-color: var(--color-purple);
-}
-
-.section.theme-light-purple::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: -1;
-    background-color: var(--background-color);
-}
-
-@media (min-width: 900px) {
-    :root {
-        --heading-font-size-xxl: 55px;
-        --heading-font-size-xl: 32px;
-        --heading-font-size-l: 22px;
-        --heading-font-size-m: 18px;
-        --heading-font-size-s: 16px;
-        --heading-font-size-xs: 12px;
-    }
-}
-
-html{
-    position: relative;
+html {
+  position: relative;
 }
 
 body {
-    font-size: var(--body-font-size-m);
-    margin: 0;
-    font-family: var(--body-font-family);
-    line-height: 22px;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    display: none;
-    scroll-behavior: smooth;
-    height: 100%;
-    overflow-x: hidden;
+  font-size: var(--body-font-size-m);
+  margin: 0;
+  font-family: var(--body-font-family);
+  line-height: 22px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  display: none;
+  scroll-behavior: smooth;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 body .reverse {
-    color: var(--text-color-reverse);
+  color: var(--text-color-reverse);
 }
 
 body.appear {
-    display: unset;
+  display: unset;
 }
 
 header {
-    height: var(--nav-height);
-    z-index: 100;
+  height: var(--nav-height);
+  z-index: 100;
 }
 
 /* progressive header appearance */
 header .block[data-block-status='loading'],
 header .block[data-block-status='initialized'] {
-    display: none;
+  display: none;
 }
 
 /* reserve the logo space to avoid layout shift */
-header .logo{
-    height: 75px;
-    width: 119px;
+header .logo {
+  height: 75px;
+  width: 119px;
 }
 
 @media (max-width: 899px) {
-    header .logo {
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+  header .logo {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 main {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 h1, h2, h3,
 h4, h5, h6 {
-    font-family: var(--heading-font-family);
-    font-weight: 600;
-    line-height: 1.25;
-    margin-top: 0;
-    margin-bottom: .5em;
-    scroll-margin: calc(var(--nav-height) + 1em);
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 0;
+  margin-bottom: .5em;
+  scroll-margin: calc(var(--nav-height) + 1em);
 }
 
 h1 {
-    font-size: var(--heading-font-size-xxl);
-    line-height: 60px;
+  font-size: var(--heading-font-size-xxl);
+  line-height: 60px;
 }
 
 h2 {
-    font-size: var(--heading-font-size-xl);
-    line-height: 40px;
+  font-size: var(--heading-font-size-xl);
+  line-height: 40px;
 }
 
 h3 {
-    font-size: var(--heading-font-size-l)
+  font-size: var(--heading-font-size-l)
 }
 
 h4 {
-    font-size: var(--heading-font-size-m)
+  font-size: var(--heading-font-size-m)
 }
 
 h5 {
-    font-size: var(--heading-font-size-s)
+  font-size: var(--heading-font-size-s)
 }
 
 h6 {
-    font-size: var(--heading-font-size-xs)
+  font-size: var(--heading-font-size-xs)
 }
 
 p, dl, ol, ul, pre, blockquote {
-    margin-top: 1em;
-    margin-bottom: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 a:any-link {
-    color: var(--link-color);
-    text-decoration: none;
+  color: var(--link-color);
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
-    color: var(--link-hover-color);
+  text-decoration: underline;
+  color: var(--link-hover-color);
 }
 
 code, pre, samp {
-    font-family: var(--fixed-font-family);
-    font-size: var(--body-font-size-s);
+  font-family: var(--fixed-font-family);
+  font-size: var(--body-font-size-s);
 }
 
 code, samp {
-    padding: .125em;
+  padding: .125em;
 }
 
 pre {
-    overflow: scroll;
+  overflow: scroll;
 }
 
 /* buttons */
 
 a.button:any-link, button, main .form .button, header nav li:nth-last-child(2) a {
-    font-family: var(--body-font-family);
-    display: inline-block;
-    box-sizing: border-box;
-    text-decoration: none;
-    border: 2px solid transparent;
-    border-radius: 500px;
-    padding: 10px 25px;
-    text-align: center;
-    font-style: normal;
-    font-weight: 600;
-    cursor: pointer;
-    color: var(--button-text-color);
-    background-color: var(--button-color);
-    margin: 16px 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-family: var(--body-font-family);
+  display: inline-block;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 500px;
+  padding: 10px 25px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--button-text-color);
+  background-color: var(--button-color);
+  margin: 16px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus {
-    background-color: var(--link-hover-color);
-    cursor: pointer;
+  background-color: var(--link-hover-color);
+  cursor: pointer;
 }
 
 button:disabled, button:disabled:hover {
-    background-color: var(--overlay-background-color);
-    cursor: unset;
+  background-color: var(--overlay-background-color);
+  cursor: unset;
 }
 
 a.button.secondary, button.secondary {
-    background-color: unset;
-    border: 2px solid currentcolor;
-    color: var(--text-color)
+  background-color: unset;
+  border: 2px solid currentcolor;
+  color: var(--text-color)
 }
 
 
 main input {
-    font-size: 1.25rem;
-    width: 100%;
-    max-width: 50rem;
-    display: block;
-    margin-bottom: 1rem;
-    padding: 0.75rem 0.6rem;
-    border-radius: 0.25rem;
-    box-sizing: border-box;
-    border: 1px solid var(--text-color);
-    color: var(--text-color);
-    background-color: var(--background-color);
+  font-size: 1.25rem;
+  width: 100%;
+  max-width: 50rem;
+  display: block;
+  margin-bottom: 1rem;
+  padding: 0.75rem 0.6rem;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
 
 main input:hover {
-    border: 1px solid var(--text-color);
+  border: 1px solid var(--text-color);
 }
 
 main .section {
-    padding: 100px var(--section-padding);
-    position: relative;
+  padding: 100px var(--section-padding);
+  position: relative;
 }
 
 main .section.hero {
-    padding: 20px var(--section-padding);
+  padding: 20px var(--section-padding);
 }
 
 main .section.hero p {
-    margin-bottom: 45px;
+  margin-bottom: 45px;
 }
 
 main .section.hero .default-content-wrapper {
-    max-width: 800px;
-    margin: 0;
+  max-width: 800px;
+  margin: 0;
 }
 
 main pre {
-    background-color: var(--overlay-background-color);
-    padding: 1em;
-    border-radius: .25em;
-    overflow-x: auto;
-    white-space: pre;
+  background-color: var(--overlay-background-color);
+  padding: 1em;
+  border-radius: .25em;
+  overflow-x: auto;
+  white-space: pre;
 }
 
 main blockquote {
-    font-style: italic;
-    margin: 3rem;
-    text-indent: -1rem;
-    hanging-punctuation: first;
+  font-style: italic;
+  margin: 3rem;
+  text-indent: -1rem;
+  hanging-punctuation: first;
 }
 
 main blockquote p::before {
-    content: "“";
-    line-height: 0;
+  content: "“";
+  line-height: 0;
 }
 
 main blockquote p::after {
-    content: "”";
-    line-height: 0;
+  content: "”";
+  line-height: 0;
 }
 
 hr {
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
-    border: 0;
-    border-bottom: 1px solid var(--overlay-background-color);
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  border: 0;
+  border-bottom: 1px solid var(--overlay-background-color);
 }
 
 main img {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
 }
 
 @media (min-width: 600px) {
-    main .section.hero {
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
+  main .section.hero {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
 }
 
 @media (min-width: 900px) {
-    .section > div {
-        margin: auto;
-    }
+  .section > div {
+    margin: auto;
+  }
 
-    main .section.hero {
-        padding-top: 80px;
-        padding-bottom: 80px;
-    }
+  main .section.hero {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
 }
 
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
-    display: none;
+  display: none;
 }
 
 main .section.highlight {
-    background-color: var(--highlight-background-color);
+  background-color: var(--highlight-background-color);
 }
 
 main .section.reverse {
-    background-color: var(--background-color-reverse);
-    overflow: hidden;
+  background-color: var(--background-color-reverse);
+  overflow: hidden;
 }
 
 main .section.planet {
-    position: relative;
+  position: relative;
 }
 
 main .section.planet-bottom-right {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 600px) {
-    main .section.planet::after, main .section.planet-bottom-right::after {
-        content: '';
-        display: inline-block;
-        position: absolute;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-        transform: rotate(-173.84deg);
-    }
+  main .section.planet::after, main .section.planet-bottom-right::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    transform: rotate(-173.84deg);
+  }
 
-    main .section.planet::after {
-        width: 33%;
-        background: linear-gradient(223.02deg, #FF8C05 5.54%, #CE2726 36.22%, #626FF0 80.09%);
-        bottom: 15%;
-        left: -10%;
-    }
+  main .section.planet::after {
+    width: 33%;
+    background: linear-gradient(223.02deg, #FF8C05 5.54%, #CE2726 36.22%, #626FF0 80.09%);
+    bottom: 15%;
+    left: -10%;
+  }
 
-    main .section.planet-bottom-right::after {
-        width: 30%;
-        background: linear-gradient(135.25deg, #FF8C05 11.53%, #CE2726 42.04%, #626FF0 75.11%);
-        bottom: -20%;
-        right: -5%;
-    }
+  main .section.planet-bottom-right::after {
+    width: 30%;
+    background: linear-gradient(135.25deg, #FF8C05 11.53%, #CE2726 42.04%, #626FF0 75.11%);
+    bottom: -20%;
+    right: -5%;
+  }
 }
 
 main .section.hero .icon-logo-adobe-techdivision {
-    position: absolute;
-    z-index: 3;
-    bottom: 30px;
+  position: absolute;
+  z-index: 3;
+  bottom: 30px;
 }
 
 @media only screen and (min-width: 1250px) {
-    main .section.hero .icon-logo-adobe-techdivision {
-        position: absolute;
-        bottom: 30px;
-        right: 30px;
-        z-index: 3;
-    }
+  main .section.hero .icon-logo-adobe-techdivision {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    z-index: 3;
+  }
 }
 
-.stars-wrapper{
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    overflow:hidden;
-    z-index:-1; /* Remove this line if it's not going to be a background! */
+.stars-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: -1; /* Remove this line if it's not going to be a background! */
 }
 
 .stars {
-    animation: star-animation linear infinite;
-    animation-delay: calc(var(--scroll) * -1s);
-    animation-fill-mode: both;
-    animation-iteration-count: 1;
-    animation-play-state: paused;
-    height: 100%;
-    position: absolute;
-    width: 100%;
-    animation-duration: var(--stars-animation-duration);
-    z-index: -100;
-    transition: opacity var(--stars-appearance-delay) ease-in-out;
-    opacity: 0;
-    background-image: var(--stars-background-url);
-    background-repeat: repeat;
-    background-size: 500px 500px; /* manually set the size of the svg */
+  animation: star-animation linear infinite;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-play-state: paused;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  animation-duration: var(--stars-animation-duration);
+  z-index: -100;
+  transition: opacity var(--stars-appearance-delay) ease-in-out;
+  opacity: 0;
+  background-image: var(--stars-background-url);
+  background-repeat: repeat;
+  background-size: 500px 500px; /* manually set the size of the svg */
 }
 
 @keyframes star-animation {
-    from {
-        transform: translateY(0)
-    }
+  from {
+    transform: translateY(0)
+  }
 
-    to {
-        transform: translateY(calc(var(--container-height) / 2))
-    }
+  to {
+    transform: translateY(calc(var(--container-height) / 2))
+  }
 }
 
 
 /* planet to background */
 .section-planet {
-    background-color: var(--background-color);
-    z-index: -1;
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
-    position: absolute;
-    left: 50%;
+  background-color: var(--background-color);
+  z-index: -1;
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  position: absolute;
+  left: 50%;
 }
 
 .section-planet-entering {
-    bottom: -100px;
-    transform-origin: top center;
-    animation: planet-to-background 1s linear infinite;
-    animation-play-state: paused;
-    animation-delay: calc(var(--scroll-planet) * -1s);
-    animation-iteration-count: 1;
-    animation-fill-mode: both;
+  bottom: -100px;
+  transform-origin: top center;
+  animation: planet-to-background 1s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll-planet) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
 }
 
 .section-planet-leaving {
-    top: -100px;
-    transform-origin: bottom center;
-    animation: background-to-planet 1s linear infinite;
-    animation-play-state: paused;
-    animation-delay: calc(var(--scroll-planet) * -1s);
-    animation-iteration-count: 1;
-    animation-fill-mode: both;
+  top: -100px;
+  transform-origin: bottom center;
+  animation: background-to-planet 1s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll-planet) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
 }
 
 @keyframes planet-to-background {
-    0% {
-        transform: translate3d(calc(var(--container-width) / -3), calc(var(--container-height) / -2), 0) scale(1);
-        border-radius: 100px;
-    }
+  0% {
+    transform: translate3d(calc(var(--container-width) / -3), calc(var(--container-height) / -2), 0) scale(1);
+    border-radius: 100px;
+  }
 
-    70% {
-        transform: translate3d(0, 0, 0) scale(1);
-        border-radius: 100px;
-    }
+  70% {
+    transform: translate3d(0, 0, 0) scale(1);
+    border-radius: 100px;
+  }
 
-    100% {
-        transform: scale(50);
-        border-radius: 10px;
-    }
+  100% {
+    transform: scale(50);
+    border-radius: 10px;
+  }
 }
 
 @keyframes background-to-planet {
-    0% {
-        transform: scale(50);
-        border-radius: 10px;
-    }
+  0% {
+    transform: scale(50);
+    border-radius: 10px;
+  }
 
-    30% {
-        transform: translate3d(0, 0, 0) scale(1);
-        border-radius: 100px;
-    }
+  30% {
+    transform: translate3d(0, 0, 0) scale(1);
+    border-radius: 100px;
+  }
 
-    100% {
-        transform: translate3d(60vw, calc(var(--container-height) / 2), 0) scale(1);
-        border-radius: 100px;
-    }
+  100% {
+    transform: translate3d(60vw, calc(var(--container-height) / 2), 0) scale(1);
+    border-radius: 100px;
+  }
 }
 
 /* Have to stay at the bottom for a higher specificity */
 
 .background-hidden::before {
-    opacity: 0;
+  opacity: 0;
 }
 
 .hidden {
-    opacity: 0;
-    pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
 }
