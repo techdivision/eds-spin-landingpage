@@ -448,45 +448,6 @@ main .section.hero .icon-logo-adobe-techdivision {
   }
 }
 
-.stars-wrapper {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  z-index: -1; /* Remove this line if it's not going to be a background! */
-}
-
-.stars {
-  animation: star-animation linear infinite;
-  animation-delay: calc(var(--scroll) * -1s);
-  animation-fill-mode: both;
-  animation-iteration-count: 1;
-  animation-play-state: paused;
-  height: 100%;
-  position: absolute;
-  width: 100%;
-  animation-duration: var(--stars-animation-duration);
-  z-index: -100;
-  transition: opacity var(--stars-appearance-delay) ease-in-out;
-  opacity: 0;
-  background-image: var(--stars-background-url);
-  background-repeat: repeat;
-  background-size: 500px 500px; /* manually set the size of the svg */
-}
-
-@keyframes star-animation {
-  from {
-    transform: translateY(0)
-  }
-
-  to {
-    transform: translateY(calc(var(--container-height) / 2))
-  }
-}
-
-
 /* planet to background */
 .section-planet {
   background-color: var(--background-color);
