@@ -170,7 +170,7 @@ function decorateH4(main) {
   const h4s = main.querySelectorAll('h4');
   h4s.forEach((h4) => {
     const words = h4.innerHTML.split(' ');
-    words[0] = `<span class="text-white">${words[0]}</span>`; // this would return the second word
+    words[0] = `<span class="text-white">${words[0]}</span>`;
     h4.innerHTML = words.join(' ');
   });
 }

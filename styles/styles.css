@@ -206,6 +206,9 @@ h3 {
 
 h4 {
     text-transform: uppercase;
+    font-size: var(--body-font-size-xs);
+    line-height: 20px;
+    letter-spacing: 1px;
     font-weight: 700;
     color: var(--text-hightlight)
 }
@@ -584,7 +587,6 @@ main .section.hero .icon-logo-adobe-techdivision {
 }
 
 /* Have to stay at the bottom for a higher specificity */
-
 .background-hidden::before {
     opacity: 0;
 }
@@ -592,4 +594,28 @@ main .section.hero .icon-logo-adobe-techdivision {
 .hidden {
     opacity: 0;
     pointer-events: none;
+}
+
+/* Explore specifics section */
+.section-explore-specifics > div {
+    margin-top: 150px;
+}
+
+.section-explore-specifics > div:first-child {
+    margin-top: 0;
+    max-width: 700px;
+}
+
+.section-explore-specifics h3 {
+    margin: 0;
+}
+
+@media (max-width: 899px) {
+    .section-explore-specifics > div {
+        margin-top: 50px;
+    }
+
+    .section-explore-specifics h4 {
+        margin-top: 50px;
+    }
 }
