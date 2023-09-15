@@ -20,9 +20,18 @@
     margin-bottom: 50vh;
 }
 
+.static-scroll-column-left picture {
+    transform: translateY(-50%);
+}
+
 .static-scroll-column-right {
-    top: 50vh;
-    margin-top: -50vh;
+    top: 0;
+    height: 100vh;
+    margin-top: -100vh;
+}
+
+.static-scroll-column-right h3 {
+    transform: translateY(25vh);
 }
 
 .static-scroll-columns picture {
@@ -30,7 +39,6 @@
     top: 50%;
     left: 0;
     width: 100%;
-    transform: translateY(-50%);
     opacity: 0;
     transition: opacity .1s .4s;
 }
@@ -89,6 +97,14 @@
         width: 50%;
         height: 100vh;
         margin: 0;
+    }
+
+    .static-scroll-column-right h3 {
+        transform: translateY(0);
+    }
+
+    .static-scroll-columns picture {
+        transform: translateY(-50%);
     }
 
     .static-scroll-columns img {
