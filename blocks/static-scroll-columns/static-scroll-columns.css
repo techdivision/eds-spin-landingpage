@@ -1,0 +1,37 @@
+.static-scroll-columns {
+    display: flex;
+    height: 300vh;
+}
+
+.static-scroll-column {
+    position: sticky;
+    top: 0;
+    width: 50%;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.static-scroll-columns picture {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    /*opacity: 0;*/
+}
+
+.static-scroll-columns h3 {
+    font-weight: 700;
+    margin-bottom: 0;
+    opacity: 0.3;
+}
+
+.static-scroll-column-texts.static-scroll-column-left {
+    padding-right: 40px;
+}
+
+.static-scroll-column-texts.static-scroll-column-right {
+    padding-left: 40px;
+}
