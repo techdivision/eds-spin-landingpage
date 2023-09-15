@@ -1,24 +1,35 @@
 .static-scroll-columns {
     display: flex;
     position: relative;
+    flex-direction: column;
     height: var(--height-static-scroll-columns);
 }
 
 .static-scroll-column {
     position: sticky;
-    top: 0;
-    width: 50%;
-    height: 100vh;
+    width: 100%;
+    height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
 }
 
+.static-scroll-column-left {
+    top: 0;
+    margin-bottom: 50vh;
+}
+
+.static-scroll-column-right {
+    top: 50vh;
+    margin-top: -50vh;
+}
+
 .static-scroll-columns picture {
     position: absolute;
     top: 50%;
     left: 0;
+    width: 100%;
     transform: translateY(-50%);
     opacity: 0;
     transition: opacity .1s .4s;
@@ -30,6 +41,15 @@
     transition: opacity .5s;
 }
 
+.static-scroll-columns img {
+    display: block;
+    position: relative;
+    left: 50%;
+    max-width: calc(50vh - 15px);
+    aspect-ratio: 1/1;
+    transform: translateX(-50%);
+}
+
 .static-scroll-columns h3 {
     font-weight: 700;
     margin-bottom: 0;
@@ -39,14 +59,6 @@
 
 .static-scroll-columns h3.active {
     opacity: 1;
-}
-
-.static-scroll-column-texts.static-scroll-column-left {
-    padding-right: 40px;
-}
-
-.static-scroll-column-texts.static-scroll-column-right {
-    padding-left: 40px;
 }
 
 .static-scroll-columns-progress {
@@ -64,4 +76,30 @@
 .static-scroll-columns-progress-section:first-child,
 .static-scroll-columns-progress-section:last-child {
     height: calc(var(--height-static-scroll-columns-progress-section) * 2);
+}
+
+@media screen and (min-width: 700px) {
+    .static-scroll-columns {
+        flex-direction: row;
+    }
+
+    .static-scroll-column {
+        position: sticky;
+        top: 0;
+        width: 50%;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .static-scroll-columns img {
+        max-width: 100%;
+    }
+
+    .static-scroll-column-texts.static-scroll-column-left {
+        padding-right: 40px;
+    }
+
+    .static-scroll-column-texts.static-scroll-column-right {
+        padding-left: 40px;
+    }
 }
