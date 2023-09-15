@@ -1,37 +1,43 @@
 .static-scroll-columns {
+    --height-viewport: 100vh;
+
     display: flex;
     position: relative;
     flex-direction: column;
     height: var(--height-static-scroll-columns);
 }
 
+@supports (height: 100dvh) {
+    .static-scroll-columns {
+        --height-viewport: 100dvh;
+    }
+}
+
 .static-scroll-column {
     position: sticky;
+    top: 0;
     width: 100%;
-    height: 50vh;
+    height: var(--height-viewport);
     display: flex;
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
 }
 
-.static-scroll-column-left {
-    top: 0;
-    margin-bottom: 50vh;
+.static-scroll-column-left picture {
+    transform: translateY(calc(var(--height-viewport) / -2 + 15px));
 }
 
-.static-scroll-column-left picture {
-    transform: translateY(-50%);
+.static-scroll-column-left h3 {
+    transform: translateY(calc(var(--height-viewport) / -4));
 }
 
 .static-scroll-column-right {
-    top: 0;
-    height: 100vh;
-    margin-top: -100vh;
+    margin-top: calc(var(--height-viewport) * -1);
 }
 
 .static-scroll-column-right h3 {
-    transform: translateY(25vh);
+    transform: translateY(calc(var(--height-viewport) / 4));
 }
 
 .static-scroll-columns picture {
@@ -53,7 +59,7 @@
     display: block;
     position: relative;
     left: 50%;
-    max-width: calc(50vh - 15px);
+    max-width: calc(var(--height-viewport) / 2 - 15px);
     aspect-ratio: 1/1;
     transform: translateX(-50%);
 }
@@ -95,11 +101,11 @@
         position: sticky;
         top: 0;
         width: 50%;
-        height: 100vh;
         margin: 0;
     }
 
-    .static-scroll-column-right h3 {
+    .static-scroll-column-right h3,
+    .static-scroll-column-left h3 {
         transform: translateY(0);
     }
 
