@@ -16,17 +16,17 @@ function buildNestedBlocks(block) {
     }
 
     // build the content as a 2d array form the table body
-    const content = [];
+    const nestedBlockContent = [];
     nestedBlock.querySelectorAll('tbody > tr').forEach((tr) => {
-      const nestedColumns = [];
+      const nestedBlockContentColumns = [];
       tr.querySelectorAll('td').forEach((td) => {
-        nestedColumns.push(td.innerHTML);
+        nestedBlockContentColumns.push(td.innerHTML);
       });
-      content.push(nestedColumns);
+      nestedBlockContent.push(nestedBlockContentColumns);
     });
 
     // replace the table with the actual builded content
-    const newBlock = buildBlock(blockName, content);
+    const newBlock = buildBlock(blockName, nestedBlockContent);
     newBlock.dataset.blockName = blockName;
     nestedBlock.replaceWith(newBlock);
     loadBlock(newBlock).then(); // ignore promise
