@@ -7,15 +7,14 @@ main .field-wrapper {
 }
 
 main form label {
-  background-color: red;
-  height: 100%;
   margin: 0;
   padding: 0;
   position: absolute;
-  left: 10px;
-  bottom: -100%;
-  font-size: var(--body-font-size-xs);
-  transition: all 0.2s ease-in-out;
+  left: 6px;
+  top: 50%;
+  font-size: var(--body-font-size-s);
+  transition: all 0.1s ease-in-out;
+  padding: 0 4px;
 }
 
 main form input {
@@ -26,17 +25,15 @@ main form input {
   border-radius: 0;
 }
 
-main form input:focus,
-main form input:not(:placeholder-shown) {
+main form input:focus {
   outline: none;
   border: 1px solid white;
 }
 
 main form input:focus ~ label,
 main form input:not(:placeholder-shown) ~ label {
-  transform: translateY(-175%);
-  padding: 0 1px;
   background-color: var(--background-color);
+  transform: translateY(-160%);
 }
 
 
