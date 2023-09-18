@@ -1,3 +1,7 @@
+.columns {
+ margin-bottom: var(--spacing-default);
+}
+
 .columns > div {
     display: flex;
     flex-direction: column;
