@@ -159,8 +159,8 @@ async function createForm(formURL) {
         fieldWrapper.append(createButton(fd));
         break;
       default:
-        fieldWrapper.append(createLabel(fd));
         fieldWrapper.append(createInput(fd));
+        fieldWrapper.append(createLabel(fd));
     }
 
     if (fd.Rules) {
