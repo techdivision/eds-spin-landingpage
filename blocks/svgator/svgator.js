@@ -40,7 +40,7 @@ export default function decorate(block) {
   const fileName = block.innerText.trim();
   block.innerText = '';
   if (!fileName.length) {
-    // Remove class and thus also remove the skeleton css
+    // Remove class and thus also remove the skeleton styling
     block.classList.remove(...block.classList);
     // eslint-disable-next-line no-console
     console.warn('Missing svgator identifier!');
@@ -64,7 +64,7 @@ export default function decorate(block) {
       player.play();
     }
   }).catch((error) => {
-    // Remove class and thus also remove the skeleton css
+    // Remove class and thus also remove the skeleton styling
     block.classList.remove(...block.classList);
     // eslint-disable-next-line no-console
     console.log(`%c ${error}`, 'color: #ff0000;');
