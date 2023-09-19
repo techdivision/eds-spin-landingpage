@@ -5,7 +5,7 @@
  */
 async function fetchSvgatorData(fileName) {
   const svgFilePath = `/images/svgator/${fileName}.svg`;
-  const jsFilePath = `/scripts/svgator/${fileName}.js`;
+  const jsFilePath = `/scripts/svgator/${fileName}.txt`;
 
   const [svgResponse, scriptResponse] = await Promise.all([
     fetch(svgFilePath),
