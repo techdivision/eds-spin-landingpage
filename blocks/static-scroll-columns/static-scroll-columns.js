@@ -6,16 +6,12 @@ export default function decorate(block) {
   const leftColumn = document.createElement('div');
   leftColumn.classList.add('static-scroll-column');
   leftColumn.classList.add('static-scroll-column-left');
-  firstRowElements.forEach((element) => {
-    leftColumn.append(element);
-  });
+  leftColumn.append(...firstRowElements);
   block.append(leftColumn);
   const rightColumn = document.createElement('div');
   rightColumn.classList.add('static-scroll-column');
   rightColumn.classList.add('static-scroll-column-right');
-  secondRowElements.forEach((element) => {
-    rightColumn.append(element);
-  });
+  rightColumn.append(...secondRowElements);
   block.append(rightColumn);
 
   if (firstRowElements.item(0).tagName === 'PICTURE') {
