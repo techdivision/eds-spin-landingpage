@@ -1,0 +1,21 @@
+.svgator:not(:has(svg)) {
+    aspect-ratio: 5/3;
+    background: var(--skeleton-background);
+    border-radius: 4px;
+    background-size: 400% 400%;
+    -webkit-animation: Skeleton 2.25s ease infinite;
+    -moz-animation: Skeleton 2.25s ease infinite;
+    animation: Skeleton 2.25s ease infinite;
+}
+
+@keyframes Skeleton {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
