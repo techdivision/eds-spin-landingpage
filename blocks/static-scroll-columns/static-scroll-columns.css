@@ -75,6 +75,23 @@
     opacity: 1;
 }
 
+.static-scroll-column-texts::before {
+    content: '';
+    width: 5px;
+    height: calc(var(--text-height) * var(--scroll));
+    background-color: var(--text-color);
+    position: absolute;
+    top: calc((var(--height-viewport) - var(--text-height)) / 2);
+}
+
+.static-scroll-column-right.static-scroll-column-texts::before {
+    left: 25px;
+}
+
+.static-scroll-column-left.static-scroll-column-texts::before {
+    right: 25px;
+}
+
 .static-scroll-columns-progress {
     position: absolute;
     top: 0;
