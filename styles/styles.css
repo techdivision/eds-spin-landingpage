@@ -63,6 +63,7 @@
     /* content width */
     --content-width: 1200px;
     --section-padding: max(calc(50vw - (var(--content-width) / 2)), 32px);
+    --spacing-default: 74px;
 
     /* shadow for better readability with the stars */
     --text-drop-shadow-color: var(--color-purple);
