@@ -1,115 +1,118 @@
-main .field-wrapper {
-  border-bottom: 1px solid white;
+/* ===================================================================== FORMS GENERAL */
+.form-wrapper form {
   display: flex;
-  margin: 20px 0;
-  gap: 25px;
+  flex-direction: column;
+  gap: 52px;
+}
+
+.form-wrapper .field-wrapper {
   position: relative;
 }
 
-main form label {
+.form-wrapper .field-wrapper input,
+.form-wrapper .field-wrapper textarea {
   margin: 0;
-  padding: 0;
-  position: absolute;
-  left: 6px;
-  top: 50%;
-  font-size: var(--body-font-size-s);
-  transition: all 0.1s ease-in-out;
-  padding: 0 4px;
-}
-
-main form input {
-  margin: 0;
-  border: 1px solid rgba(255, 255, 255, 0);
-  border-bottom: 1px solid white;
   max-width: 100vw;
-  border-radius: 0;
 }
 
-main form input:focus {
+.form-wrapper .field-wrapper textarea {
+  border: none;
+  padding: 16px 25px;
+  border-radius: 15px;
+  background-color: var(--color-light-purple);
+}
+
+/* ===================================================================== CHECKBOX */
+.form-wrapper .form-checkbox-wrapper {
+  display: flex;
+  gap: 30px;
+}
+
+.form-wrapper .form-checkbox-wrapper input {
+  position: relative;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
+  visibility: hidden;
+}
+
+.form-wrapper .form-checkbox-wrapper input::before,
+.form-wrapper .form-checkbox-wrapper input::after {
+  box-sizing: border-box;
+  content: '';
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid white;
+}
+
+.form-wrapper .form-checkbox-wrapper input::before {
+  visibility: visible;
+}
+
+.form-wrapper .form-checkbox-wrapper input::after {
+  transform: scale(60%, 60%);
+  background-color: white;
+}
+
+.form-wrapper .form-checkbox-wrapper input:checked::after {
+  visibility: visible;
+}
+
+/* ===================================================================== TEXT AREAS */
+.form-wrapper .form-text-area-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-wrapper .form-text-area-wrapper label {
+  margin-bottom: 5px;
+}
+
+.form-wrapper .form-text-area-wrapper textarea {
+  height: 256px;
+  background-color: #382F6F;
+}
+
+.form-wrapper .form-text-area-wrapper textarea:focus,
+.form-wrapper .form-text-area-wrapper textarea:not(:placeholder-shown){
+  outline: none;
+}
+
+/* ===================================================================== TEXT FIELDS */
+.form-wrapper .form-text-field-wrapper input {
+  border: 1px solid rgb(255 255 255 / 0%);
+  border-radius: 0;
+  border-bottom: 1px solid var(--text-color);
+  background-color: rgb(28 10 77 / 75%);
+}
+
+.form-wrapper .form-text-field-wrapper input:focus {
   outline: none;
   border: 1px solid white;
 }
 
-main form input:focus ~ label,
-main form input:not(:placeholder-shown) ~ label {
+.form-wrapper .form-text-field-wrapper label {
+  position: absolute;
+  top: 13px;
+  transition: all 0.075s ease-out;
   background-color: var(--background-color);
-  transform: translateY(-160%);
+  pointer-events: none;
 }
 
-
-/*
-main .form input,
-main .form textarea,
-main .form select {
-  font-family: var(--body-font-family);
-  font-size: 1rem;
-  border: 1px solid rgb(193 193 195);
-  padding: 11px;
-  border-radius: 0;
-  width: 100%;
-  max-width: 50rem;
-  box-sizing: border-box;
-  margin-top: 4px;
-  background: var(--input-background-color);
+.form-wrapper .form-text-field-wrapper input:focus ~ label,
+.form-wrapper .form-text-field-wrapper input:not(:placeholder-shown) ~ label {
+  transform-origin: left;
+  padding: 5px;
+  transform: translate(-5px, calc(-50% - 13px)) scale(0.8, 0.8);
 }
 
-main .form textarea {
-  min-height: 100px;
-}
-
-main .form input:hover,
-main .form select:hover {
-  border-color: rgb(90 92 96);
-}
-
-main .form label {
-  width: 100%;
-  display: block;
-  box-sizing: border-box;
-}
-
-main .form label.required::after {
-  content: "*";
-  padding-left: 5px;
-}
-
-main .form .field-wrapper {
-  margin-bottom: 20px;
-}
-
-main .form .form-checkbox-wrapper {
+/* ===================================================================== FORM SUBMIT BUTTON */
+.form-wrapper .form-submit-wrapper {
   display: flex;
-  align-items: flex-start;
+  justify-content: right;
 }
-
-main .form .form-checkbox-wrapper input{
-  width:auto;
-  margin: 4px 10px 0 0;
-}
-
-main .form .form-checkbox-wrapper label{
-  width:auto;
-  margin: 0;
-}
-
-main .form .form-checkbox-wrapper label:invalid{
-  color: red;
-}
-
-main .form .form-submit-wrapper {
-  display: flex;
-  justify-content: flex-end;
-}
-
-main .form .form-small-font {
-  font-size: var(--body-font-size-xs);
-}
-
-
-@media only screen and (min-width: 600px) {
-  .content-right .form {
-    padding-left: 40%;
-    padding-right: 10%;
-  }
-}
- */

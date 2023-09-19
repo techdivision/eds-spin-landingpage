@@ -184,7 +184,7 @@ export default async function decorate(block) {
   const form = block.querySelector('a[href$=".json"]');
   block.id = 'form';
   if (form) {
-    form.replaceWith(await createForm(form.href));
+    form.parentElement.replaceWith(await createForm(form.href));
   }
   const formRows = block.querySelectorAll('.form>div');
   formRows[0].classList.add('form-content');
