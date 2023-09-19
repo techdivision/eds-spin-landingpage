@@ -1,4 +1,3 @@
-// ====================================================================================================== HELPER
 async function getVimeoApiInformation(videoLink) {
   const url = `https://vimeo.com/api/oembed.json?url=${videoLink}`;
   const apiData = await fetch(url);
@@ -22,7 +21,6 @@ function getVideoUrlSuffixes(suffixes = []) {
   return `?${suffixes.join('&')}`;
 }
 
-// ====================================================================================================== THUMBNAIL
 function getThumbnailImage(vimeoApiData) {
   // construct source
   const source = document.createElement('source');
@@ -41,7 +39,6 @@ function getThumbnailImage(vimeoApiData) {
   return picture;
 }
 
-// ====================================================================================================== IFRAME
 function getIframeTag(vimeoApiData) {
   // prepare
   const suffixes = ['dnt=1', 'autoplay=true'];
@@ -61,8 +58,7 @@ function getIframeTag(vimeoApiData) {
   return iframe;
 }
 
-// ====================================================================================================== CLICK
-function onImageClick(wrapper) {
+function registerClickEvent(wrapper) {
   const picture = wrapper.querySelector('picture');
   const iframe = wrapper.querySelector('iframe');
   picture.addEventListener('click', () => {
@@ -71,10 +67,9 @@ function onImageClick(wrapper) {
   });
 }
 
-// ====================================================================================================== EXPORT
 export default function decorate(block) {
   // prepare
-  const videoLink = block.querySelector('div', 'div').innerText.trim();
+  const videoLink = block.querySelector('div').innerText.trim();
   if (!videoLink.length) {
     block.classList.add('hidden');
     return;
@@ -86,9 +81,8 @@ export default function decorate(block) {
     wrapper.appendChild(getThumbnailImage(vimeoApiData));
     wrapper.appendChild(getIframeTag(vimeoApiData));
     // add click functionality
-    onImageClick(wrapper);
+    registerClickEvent(wrapper);
     // fill block
-    // block.innerHTML = '';
     block.replaceChildren(wrapper);
   }).catch(() => {
     block.classList.add('hidden');
