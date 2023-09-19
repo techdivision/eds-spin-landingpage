@@ -55,6 +55,7 @@ export default function decorate(block) {
     script.innerHTML = svgatorData.script;
     block.append(container);
     block.append(script);
+    block.classList.add('svg-loaded');
 
     // initialize svgator
     const identifier = container.querySelector('svg').getAttribute('id');
