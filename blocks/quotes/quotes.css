@@ -20,14 +20,6 @@
     padding: 65px;
 }
 
-.quotes > div:nth-child(3n+1) {
-    background: linear-gradient(135deg, #FF8C05 11.53%, #CE2726 42.04%, #1C0A4D 75.11%);
-}
-
-.quotes > div:nth-child(3n+3) {
-    background: linear-gradient(-45deg, #FF8C05 11.53%, #CE2726 42.04%, #1C0A4D 75.11%);
-}
-
 .quotes > div::before {
     font-family: Arial, serif;
     content: '”';
@@ -41,6 +33,14 @@
     font-size: 22px;
     font-weight: 800;
     line-height: 28px;
+}
+
+.quotes > div:nth-child(3n+1) {
+    background: linear-gradient(135deg, #FF8C05 11.53%, #CE2726 42.04%, #1C0A4D 75.11%);
+}
+
+.quotes > div:nth-child(3n+3) {
+    background: linear-gradient(-45deg, #FF8C05 11.53%, #CE2726 42.04%, #1C0A4D 75.11%);
 }
 
 .quotes > div > div:last-child {
