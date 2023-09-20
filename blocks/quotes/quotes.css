@@ -11,7 +11,7 @@
     position: relative;
     aspect-ratio: 1/1;
     border-radius: 500px;
-    background: var(--Verlauf-4, linear-gradient(135deg, #CE2726 28.77%, #F5760D 75.11%));
+    background: linear-gradient(135deg, #CE2726 28.77%, #F5760D 75.11%);
     height: 322px;
     display: flex;
     flex-direction: column;
@@ -20,8 +20,12 @@
     padding: 65px;
 }
 
-.quotes > div:nth-child(odd) {
-    background: var(--Verlauf-2, linear-gradient(135deg, #FF8C05 11.53%, #CE2726 42.04%, #1C0A4D 75.11%));
+.quotes > div:nth-child(3n+1) {
+    background: linear-gradient(135deg, #FF8C05 11.53%, #CE2726 42.04%, #1C0A4D 75.11%);
+}
+
+.quotes > div:nth-child(3n+3) {
+    background: linear-gradient(-45deg, #FF8C05 11.53%, #CE2726 42.04%, #1C0A4D 75.11%);
 }
 
 .quotes > div::before {
