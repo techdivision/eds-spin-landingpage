@@ -1,11 +1,11 @@
 /**
  * fetch async svgator svg and script
- * @param fileName
+ * @param svgatorProjectName
  * @return {Promise<{svg: string, script: string}>}
  */
-async function fetchSvgatorData(fileName) {
-  const svgFilePath = `/images/svgator/${fileName}.svg`;
-  const jsFilePath = `/scripts/svgator/${fileName}.txt`;
+async function fetchSvgatorData(svgatorProjectName) {
+  const svgFilePath = `/blocks/svgator/svgs/${svgatorProjectName}/animatable.svg`;
+  const jsFilePath = `/blocks/svgator/svgs/${svgatorProjectName}/animation.js`;
 
   const [svgResponse, scriptResponse] = await Promise.all([
     fetch(svgFilePath),
@@ -13,12 +13,12 @@ async function fetchSvgatorData(fileName) {
   ]);
 
   if (!svgResponse.ok) {
-    const message = `An error occurred while fetching ${fileName} svg data: ${svgResponse.status}.`;
+    const message = `An error occurred while fetching ${svgatorProjectName} svg data: ${svgResponse.status}.`;
     throw new Error(message);
   }
 
   if (!scriptResponse.ok) {
-    const message = `An error occurred while fetching ${fileName} script data: ${scriptResponse.status}.`;
+    const message = `An error occurred while fetching ${svgatorProjectName} script data: ${scriptResponse.status}.`;
     throw new Error(message);
   }
 
@@ -29,7 +29,7 @@ async function fetchSvgatorData(fileName) {
 }
 
 /**
- * Load dynamically svg and the associated script for a animated SVG.
+ * Load dynamically svg and the associated script for an animated SVG.
  * A svg from svgator contains a script tag, so please split it into two separate files.
  * Use the name as the identifier e.g. my-awesome-animated-svg.svg and my-awesome-animated-svg.js
  * And stored them in '/images/svgator/' and '/scripts/svgator/'
