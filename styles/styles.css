@@ -12,514 +12,571 @@
 
 /* fallback font for Mulish (normal - 400) */
 @font-face {
-  font-family: "mulish-normal-400-fallback";
-  size-adjust: 103.181%; /* trick to keep the CLS at a minimum */
-  src: local("Helvetica");
-  font-display: swap;
+    font-family: "mulish-normal-400-fallback";
+    size-adjust: 103.181%; /* trick to keep the CLS at a minimum */
+    src: local("Helvetica");
+    font-display: swap;
 }
 
 :root, .theme-default {
-  /* colors */
-  --color-purple: #1C0A4D;
-  --color-light-purple: #5764EF;
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
-  --background-color: var(--color-purple);
-  --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
-  --text-color: #fff;
-  --background-color-reverse: #fff;
-  --text-color-reverse: var(--color-purple);
-  --input-background-color: #D1CCDD;
-  --button-text-color: var(--text-color);
-  --button-color: var(--color-light-purple);
+    /* colors */
+    --color-purple: #1C0A4D;
+    --color-light-purple: #5764EF;
+    --link-color: #035fe6;
+    --link-hover-color: #136ff6;
+    --background-color: var(--color-purple);
+    --overlay-background-color: #eee;
+    --highlight-background-color: #ccc;
+    --text-color: #fff;
+    --background-color-reverse: #fff;
+    --text-color-reverse: var(--color-purple);
+    --input-background-color: #D1CCDD;
+    --button-text-color: var(--text-color);
+    --button-color: var(--color-light-purple);
+    --text-hightlight: #FF8C04;
 
-  /* fonts */
-  --body-font-family: mulish, mulish-normal-400-fallback, helvetica, sans-serif;
-  --heading-font-family: var(--body-font-family);
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+    /* fonts */
+    --body-font-family: mulish, mulish-normal-400-fallback, helvetica, sans-serif;
+    --heading-font-family: var(--body-font-family);
+    --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
-  /* body sizes */
-  --body-font-size-m: 18px;
-  --body-font-size-s: 14px;
-  --body-font-size-xs: 12px;
+    /* body sizes */
+    --body-font-size-m: 18px;
+    --body-font-size-s: 14px;
+    --body-font-size-xs: 12px;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 38px;
-  --heading-font-size-xl: 32px;
-  --heading-font-size-l: 22px;
+    /* heading sizes */
+    --heading-font-size-xxl: 38px;
+    --heading-font-size-xl: 32px;
+    --heading-font-size-l: 22px;
 
-  /* nav height */
-  --nav-height: 125px;
-  --nav-list-margin: 22px;
+    /* nav height */
+    --nav-height: 125px;
+    --nav-list-margin: 22px;
 
-  /* content width */
-  --content-width: 1200px;
-  --section-padding: max(calc(50vw - (var(--content-width) / 2)), 32px);
+    /* footer size */
+    --footer-height: 387px;
+    --footer-padding-horizontal: 50px;
+    --footer-padding-vertical: 100px;
 
-  /* set initial properties for stars layers */
-  --stars-opacity: 0;
+    /* content width */
+    --content-width: 1200px;
+    --section-padding: max(calc(50vw - (var(--content-width) / 2)), 32px);
+    --spacing-default: 74px;
 
-  /* @TODO implement this drop shadow for all text elements */
-  --text-drop-shadow: drop-shadow(0px 3px 10px var(--color-purple)) drop-shadow(0px -3px 10px var(--color-purple)) drop-shadow(3px 0px 10px var(--color-purple)) drop-shadow(-3px 0px 10px var(--color-purple));
+    /* shadow for better readability with the stars */
+    --text-drop-shadow-color: var(--color-purple);
+    --text-drop-shadow-offset: 2px;
+    --text-drop-shadow-blur: 3px;
+    --text-drop-shadow: drop-shadow(0px var(--text-drop-shadow-offset) var(--text-drop-shadow-blur) var(--color-purple)) drop-shadow(0px calc(-1 * var(--text-drop-shadow-offset)) var(--text-drop-shadow-blur) var(--color-purple)) drop-shadow(var(--text-drop-shadow-offset) 0px var(--text-drop-shadow-blur) var(--color-purple)) drop-shadow(calc(-1 * var(--text-drop-shadow-offset)) 0px var(--text-drop-shadow-blur) var(--color-purple));
 }
 
 .theme-light-purple {
-  /* colors */
-  --background-color: var(--color-light-purple);
-  --button-color: var(--color-purple);
+    /* colors */
+    --background-color: var(--color-light-purple);
+    --button-color: var(--color-purple);
+}
+
+footer, header, .hero > .default-content-wrapper:first-of-type, .section.theme-light-purple {
+    --text-drop-shadow: '';
 }
 
 .section.theme-light-purple::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-  background-color: var(--background-color);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    background-color: var(--background-color);
 }
 
 @media (min-width: 900px) {
-  :root {
-    --heading-font-size-xxl: 160px;
-    --heading-font-size-xl: 100px;
-    --heading-font-size-l: 35px;
-  }
+    :root {
+        --heading-font-size-xxl: 160px;
+        --heading-font-size-xl: 100px;
+        --heading-font-size-l: 35px;
+    }
 }
 
 html {
-  position: relative;
+    position: relative;
 }
 
 body {
-  font-size: var(--body-font-size-m);
-  font-family: var(--body-font-family);
-  font-weight: 300;
-  line-height: 22px;
-  margin: 0;
-  color: var(--text-color);
-  background-color: var(--background-color);
-  display: none;
-  scroll-behavior: smooth;
-  height: 100%;
-  overflow-x: hidden;
-  letter-spacing: .3px;
+    font-size: var(--body-font-size-m);
+    font-family: var(--body-font-family);
+    font-weight: 300;
+    line-height: 22px;
+    margin: 0;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    display: none;
+    scroll-behavior: smooth;
+    height: 100%;
+    overflow-x: hidden;
+    letter-spacing: .3px;
 }
 
 body .reverse {
-  color: var(--text-color-reverse);
+    color: var(--text-color-reverse);
 }
 
 body.appear {
-  display: unset;
+    display: unset;
 }
 
 header {
-  height: var(--nav-height);
-  z-index: 100;
+    height: var(--nav-height);
+    z-index: 100;
 }
 
 /* progressive header appearance */
 header .block[data-block-status='loading'],
 header .block[data-block-status='initialized'] {
-  display: none;
+    display: none;
 }
 
 /* reserve the logo space to avoid layout shift */
 header .logo {
-  height: 75px;
-  width: 119px;
+    height: 75px;
+    width: 119px;
 }
 
 @media (max-width: 899px) {
-  header .logo {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+    header .logo {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 main {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 @supports (overflow-x: clip) {
-  main {
-    overflow-x: clip;
-  }
+    main {
+        overflow-x: clip;
+    }
 }
 
 h1, h2, h3,
+h4, h5, h6,
+p, span, sup,
+sub, u, i,
+b, em, strong,
+del, ins, ruby {
+    filter: var(--text-drop-shadow);
+}
+
+
+h1, h2, h3,
 h4, h5, h6 {
-  font-family: var(--heading-font-family);
-  font-weight: 300;
-  line-height: 1.25;
-  margin-top: 0;
-  margin-bottom: .5em;
-  scroll-margin: calc(var(--nav-height) + 1em);
+    font-family: var(--heading-font-family);
+    font-weight: 300;
+    line-height: 1.25;
+    margin-top: 0;
+    margin-bottom: .5em;
+    scroll-margin: calc(var(--nav-height) + 1em);
 }
 
 h1 {
-  font-size: var(--heading-font-size-xxl);
-  line-height: 1em;
-  text-transform: uppercase;
-  font-weight: 700;
+    font-size: var(--heading-font-size-xxl);
+    line-height: 1em;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
 h2 {
-  font-size: var(--heading-font-size-xl);
-  line-height: 1.1em;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: .2em;
+    font-size: var(--heading-font-size-xl);
+    line-height: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: .2em;
 }
 
 h3 {
-  font-size: var(--heading-font-size-l);
-  line-height: 1.15em;
-  font-weight: 200;
-  margin-bottom: 1.8em;
+    font-size: var(--heading-font-size-l);
+    line-height: 1.15em;
+    font-weight: 200;
+    margin-bottom: 1.8em;
+}
+
+h4 {
+    text-transform: uppercase;
+    font-size: var(--body-font-size-xs);
+    line-height: 20px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: var(--text-hightlight)
+}
+
+h4 .text-white {
+    color: white;
 }
 
 p, dl, ol, ul, pre, blockquote {
-  margin-top: 1em;
-  margin-bottom: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 strong {
-  font-weight: 800;
+    font-weight: 800;
 }
 
 a:any-link {
-  color: var(--link-color);
-  text-decoration: none;
+    color: var(--link-color);
+    text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
-  color: var(--link-hover-color);
+    text-decoration: underline;
+    color: var(--link-hover-color);
 }
 
 code, pre, samp {
-  font-family: var(--fixed-font-family);
-  font-size: var(--body-font-size-s);
+    font-family: var(--fixed-font-family);
+    font-size: var(--body-font-size-s);
 }
 
 code, samp {
-  padding: .125em;
+    padding: .125em;
 }
 
 pre {
-  overflow: scroll;
+    overflow: scroll;
 }
 
 /* buttons */
 
 a.button:any-link, button, main .form .button, header nav li:nth-last-child(2) a {
-  font-family: var(--body-font-family);
-  display: inline-block;
-  box-sizing: border-box;
-  text-decoration: none;
-  border: 2px solid transparent;
-  padding: 10px 25px;
-  text-align: center;
-  font-style: normal;
-  font-weight: 600;
-  cursor: pointer;
-  color: var(--background-color);
-  background-color: var(--button-color);
-  margin: 16px 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    font-family: var(--body-font-family);
+    display: inline-block;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: 2px solid transparent;
+    padding: 10px 25px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--background-color);
+    background-color: var(--button-color);
+    margin: 16px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus {
-  background-color: var(--link-hover-color);
-  cursor: pointer;
+    background-color: var(--link-hover-color);
+    cursor: pointer;
 }
 
 button:disabled, button:disabled:hover {
-  background-color: var(--overlay-background-color);
-  cursor: unset;
+    background-color: var(--overlay-background-color);
+    cursor: unset;
 }
 
 a.button.secondary, button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
-  color: var(--text-color)
+    background-color: unset;
+    border: 2px solid currentcolor;
+    color: var(--text-color)
 }
 
 
 main input {
-  font-size: 1.25rem;
-  width: 100%;
-  max-width: 50rem;
-  display: block;
-  margin-bottom: 1rem;
-  padding: 0.75rem 0.6rem;
-  border-radius: 0.25rem;
-  box-sizing: border-box;
-  border: 1px solid var(--text-color);
-  color: var(--text-color);
-  background-color: var(--background-color);
+    font-size: 1.25rem;
+    width: 100%;
+    max-width: 50rem;
+    display: block;
+    margin-bottom: 1rem;
+    padding: 0.75rem 0.6rem;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    background-color: var(--background-color);
 }
 
 main input:hover {
-  border: 1px solid var(--text-color);
+    border: 1px solid var(--text-color);
 }
 
 main .section {
-  padding: 100px var(--section-padding);
-  position: relative;
+    padding: 100px var(--section-padding);
+    position: relative;
 }
 
 main .section.hero {
-  padding-top: 0;
-  position: relative;
+    padding-top: 0;
+    position: relative;
 }
 
 main .section.hero::before {
-  --planet-size: calc(80vh + 150vw); /* find a ratio between vh and vw that looks nice */
+    --planet-size: calc(80vh + 150vw); /* find a ratio between vh and vw that looks nice */
 
-  content: '';
-  z-index: -1;
-  position: absolute;
-  top: calc(-1 * (var(--planet-size) - 100vh + var(--nav-height) + 10vh)); /* align the planet to the bottom of the screen plus a offset */
-  left: 50%;
-  width: var(--planet-size);
-  height: var(--planet-size);
-  background: linear-gradient(
-          to top left,
-          #ff8c05 calc(6.14% + var(--scroll) * 5.39%),
-          #ce2726 calc(19.43% + var(--scroll) * 22.61%),
-          #1c0a4d calc(53.92% + var(--scroll) * 21.19%)
-  );
-  border-radius: 50%;
-  animation: hero-planet 1s linear infinite;
-  animation-play-state: paused;
-  animation-delay: calc(var(--scroll) * -1s);
-  animation-iteration-count: 1;
-  animation-fill-mode: both;
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: calc(-1 * (var(--planet-size) - 100vh + var(--nav-height) + 10vh)); /* align the planet to the bottom of the screen plus a offset */
+    left: 50%;
+    width: var(--planet-size);
+    height: var(--planet-size);
+    background: linear-gradient(
+            to top left,
+            #ff8c05 calc(6.14% + var(--scroll) * 5.39%),
+            #ce2726 calc(19.43% + var(--scroll) * 22.61%),
+            #1c0a4d calc(53.92% + var(--scroll) * 21.19%)
+    );
+    border-radius: 50%;
+    animation: hero-planet 1s linear infinite;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
 
-  --endx: calc(var(--container-width) * 0.75 / 2 - 50%);
-  --endy: calc(var(--container-height) + 120vh);
+    --endx: calc(var(--container-width) * 0.75 / 2 - 50%);
+    --endy: calc(var(--container-height) + 120vh);
 }
 
 @keyframes hero-planet {
-  0% {
-    transform: translate(-50%, 0) scale(1);
-  }
+    0% {
+        transform: translate(-50%, 0) scale(1);
+    }
 
-  100% {
-    transform: translate(var(--endx), var(--endy)) scale(.1);
-  }
+    100% {
+        transform: translate(var(--endx), var(--endy)) scale(.1);
+    }
 }
 
 main .section.hero .default-content-wrapper:first-of-type {
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 main .section.hero .default-content-wrapper:first-of-type h1 {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 /* appearance of h2 as h3, to keep hierarchy of h elements */
 main .section.hero .default-content-wrapper:first-of-type h2 {
-  font-size: var(--heading-font-size-l);
-  line-height: 1.15em;
-  font-weight: 200;
-  text-transform: initial;
-  margin-bottom: 1.8em;
+    font-size: var(--heading-font-size-l);
+    line-height: 1.15em;
+    font-weight: 200;
+    text-transform: initial;
+    margin-bottom: 1.8em;
 
 }
 
 main pre {
-  background-color: var(--overlay-background-color);
-  padding: 1em;
-  border-radius: .25em;
-  overflow-x: auto;
-  white-space: pre;
+    background-color: var(--overlay-background-color);
+    padding: 1em;
+    border-radius: .25em;
+    overflow-x: auto;
+    white-space: pre;
 }
 
 main blockquote {
-  font-style: italic;
-  margin: 3rem;
-  text-indent: -1rem;
-  hanging-punctuation: first;
+    font-style: italic;
+    margin: 3rem;
+    text-indent: -1rem;
+    hanging-punctuation: first;
 }
 
 main blockquote p::before {
-  content: "“";
-  line-height: 0;
+    content: "“";
+    line-height: 0;
 }
 
 main blockquote p::after {
-  content: "”";
-  line-height: 0;
+    content: "”";
+    line-height: 0;
 }
 
 hr {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-  border: 0;
-  border-bottom: 1px solid var(--overlay-background-color);
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    border: 0;
+    border-bottom: 1px solid var(--overlay-background-color);
 }
 
 main img {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
 }
 
 
 @media (min-width: 900px) {
-  .section > div {
-    margin: auto;
-  }
+    .section > div {
+        margin: auto;
+    }
 }
 
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
-  display: none;
+    display: none;
 }
 
 main .section.highlight {
-  background-color: var(--highlight-background-color);
+    background-color: var(--highlight-background-color);
 }
 
 main .section.reverse {
-  background-color: var(--background-color-reverse);
-  overflow: hidden;
+    background-color: var(--background-color-reverse);
+    overflow: hidden;
 }
 
 main .section.planet {
-  position: relative;
+    position: relative;
 }
 
 main .section.planet-bottom-right {
-  position: relative;
-  overflow: hidden;
+    position: relative;
+    overflow: hidden;
 }
 
 @media only screen and (min-width: 600px) {
-  main .section.planet::after, main .section.planet-bottom-right::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    transform: rotate(-173.84deg);
-  }
+    main .section.planet::after, main .section.planet-bottom-right::after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        transform: rotate(-173.84deg);
+    }
 
-  main .section.planet::after {
-    width: 33%;
-    background: linear-gradient(223.02deg, #FF8C05 5.54%, #CE2726 36.22%, #626FF0 80.09%);
-    bottom: 15%;
-    left: -10%;
-  }
+    main .section.planet::after {
+        width: 33%;
+        background: linear-gradient(223.02deg, #FF8C05 5.54%, #CE2726 36.22%, #626FF0 80.09%);
+        bottom: 15%;
+        left: -10%;
+    }
 
-  main .section.planet-bottom-right::after {
-    width: 30%;
-    background: linear-gradient(135.25deg, #FF8C05 11.53%, #CE2726 42.04%, #626FF0 75.11%);
-    bottom: -20%;
-    right: -5%;
-  }
+    main .section.planet-bottom-right::after {
+        width: 30%;
+        background: linear-gradient(135.25deg, #FF8C05 11.53%, #CE2726 42.04%, #626FF0 75.11%);
+        bottom: -20%;
+        right: -5%;
+    }
 }
 
 main .section.hero .icon-logo-adobe-techdivision {
-  position: absolute;
-  z-index: 3;
-  bottom: 30px;
+    position: absolute;
+    z-index: 3;
+    bottom: 30px;
 }
 
 @media only screen and (min-width: 1250px) {
-  main .section.hero .icon-logo-adobe-techdivision {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    z-index: 3;
-  }
+    main .section.hero .icon-logo-adobe-techdivision {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        z-index: 3;
+    }
 }
 
 /* planet to background */
 .section-planet {
-  background-color: var(--background-color);
-  z-index: -1;
-  width: 100px;
-  height: 100px;
-  border-radius: 100px;
-  position: absolute;
-  left: 50%;
+    background-color: var(--background-color);
+    z-index: -1;
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    position: absolute;
+    left: 50%;
 }
 
 .section-planet-entering {
-  bottom: -100px;
-  transform-origin: top center;
-  animation: planet-to-background 1s linear infinite;
-  animation-play-state: paused;
-  animation-delay: calc(var(--scroll-planet) * -1s);
-  animation-iteration-count: 1;
-  animation-fill-mode: both;
+    bottom: -100px;
+    transform-origin: top center;
+    animation: planet-to-background 1s linear infinite;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll-planet) * -1s);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
 }
 
 .section-planet-leaving {
-  top: -100px;
-  transform-origin: bottom center;
-  animation: background-to-planet 1s linear infinite;
-  animation-play-state: paused;
-  animation-delay: calc(var(--scroll-planet) * -1s);
-  animation-iteration-count: 1;
-  animation-fill-mode: both;
+    top: -100px;
+    transform-origin: bottom center;
+    animation: background-to-planet 1s linear infinite;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll-planet) * -1s);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
 }
 
 @keyframes planet-to-background {
-  0% {
-    transform: translate3d(calc(var(--container-width) / -3), calc(var(--container-height) / -2), 0) scale(1);
-    border-radius: 100px;
-  }
+    0% {
+        transform: translate3d(calc(var(--container-width) / -3), calc(var(--container-height) / -2), 0) scale(1);
+        border-radius: 100px;
+    }
 
-  70% {
-    transform: translate3d(0, 0, 0) scale(1);
-    border-radius: 100px;
-  }
+    70% {
+        transform: translate3d(0, 0, 0) scale(1);
+        border-radius: 100px;
+    }
 
-  100% {
-    transform: scale(50);
-    border-radius: 10px;
-  }
+    100% {
+        transform: scale(50);
+        border-radius: 10px;
+    }
 }
 
 @keyframes background-to-planet {
-  0% {
-    transform: scale(50);
-    border-radius: 10px;
-  }
+    0% {
+        transform: scale(50);
+        border-radius: 10px;
+    }
 
-  30% {
-    transform: translate3d(0, 0, 0) scale(1);
-    border-radius: 100px;
-  }
+    30% {
+        transform: translate3d(0, 0, 0) scale(1);
+        border-radius: 100px;
+    }
 
-  100% {
-    transform: translate3d(60vw, calc(var(--container-height) / 2), 0) scale(1);
-    border-radius: 100px;
-  }
+    100% {
+        transform: translate3d(60vw, calc(var(--container-height) / 2), 0) scale(1);
+        border-radius: 100px;
+    }
 }
 
 /* Have to stay at the bottom for a higher specificity */
-
 .background-hidden::before {
-  opacity: 0;
+    opacity: 0;
 }
 
 .hidden {
-  opacity: 0;
-  pointer-events: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Explore specifics section */
+.section-explore-specifics > div {
+    margin-top: 150px;
+}
+
+.section-explore-specifics > div:first-child {
+    margin-top: 0;
+    max-width: 700px;
+}
+
+.section-explore-specifics h3 {
+    margin: 0;
+}
+
+@media (max-width: 899px) {
+    .section-explore-specifics > div {
+        margin-top: 50px;
+    }
+
+    .section-explore-specifics h4 {
+        margin-top: 50px;
+    }
 }

@@ -166,6 +166,15 @@ function decorateHeroSection(main) {
   registerScrollLinkedVariable(heroSection);
 }
 
+function decorateH4(main) {
+  const h4s = main.querySelectorAll('h4');
+  h4s.forEach((h4) => {
+    const words = h4.innerHTML.split(' ');
+    words[0] = `<span class="text-white">${words[0]}</span>`;
+    h4.innerHTML = words.join(' ');
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -181,6 +190,7 @@ export function decorateMain(main) {
   decorateSectionsWithIds(main);
   decorateBlocks(main);
   decorateSectionsWithPlanetToBackgroundAnimation(main);
+  decorateH4(main);
 }
 
 /**
