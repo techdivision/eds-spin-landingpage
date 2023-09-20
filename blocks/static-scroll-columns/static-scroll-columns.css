@@ -83,6 +83,7 @@
     position: absolute;
     top: calc((var(--height-viewport) - var(--text-height)) / 2);
     left: -10px;
+    border-radius: 5px;
 }
 
 .static-scroll-column-right.static-scroll-column-texts::before {
