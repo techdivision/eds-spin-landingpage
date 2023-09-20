@@ -1,3 +1,5 @@
+import { registerScrollLinkedVariable } from '../../scripts/scroll-linked-variable.js';
+
 export default function decorate(block) {
   const firstRowElements = block.querySelectorAll('.block > div > div:first-child > *');
   const secondRowElements = block.querySelectorAll('.block > div > div:nth-child(2) > *');
@@ -14,12 +16,15 @@ export default function decorate(block) {
   rightColumn.append(...secondRowElements);
   block.append(rightColumn);
 
+  let textColumn;
   if (firstRowElements.item(0).tagName === 'PICTURE') {
     leftColumn.classList.add('static-scroll-column-pictures');
     rightColumn.classList.add('static-scroll-column-texts');
+    textColumn = rightColumn;
   } else {
     leftColumn.classList.add('static-scroll-column-texts');
     rightColumn.classList.add('static-scroll-column-pictures');
+    textColumn = leftColumn;
   }
 
   const maxNumberOfElements = Math.max(firstRowElements.length, secondRowElements.length);
@@ -59,4 +64,21 @@ export default function decorate(block) {
   scrollProgressSections.forEach((progress) => {
     staticScrollIntersectionObserver.observe(progress);
   });
+
+  const resizeObserver = new ResizeObserver((entries) => {
+    let textHeight = 0;
+    entries.forEach((entry) => {
+      textHeight += entry.target.offsetHeight;
+    });
+    textColumn.style.setProperty('--text-height', `${textHeight}px`);
+  });
+
+  // Timeout is the easiest way to work around that the text elements have no height initially
+  setTimeout(() => {
+    Array.from(textColumn.children).forEach((text) => {
+      resizeObserver.observe(text);
+    });
+  }, 1000);
+
+  registerScrollLinkedVariable(block);
 }
