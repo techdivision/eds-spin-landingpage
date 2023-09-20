@@ -3,7 +3,7 @@ import { registerScrollLinkedVariable, VIEWPORT_BOTTOM, VIEWPORT_TOP } from './s
 function getShootingStars() {
   const shootingStarsWrapper = document.createElement('div');
   shootingStarsWrapper.classList.add('shooting-stars-wrapper');
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 3; i += 1) {
     const shootingStar = document.createElement('div');
     shootingStar.classList.add('shooting-star');
     shootingStarsWrapper.appendChild(shootingStar);
