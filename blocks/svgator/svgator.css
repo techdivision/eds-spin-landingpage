@@ -1,3 +1,9 @@
+.svgator svg {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
 .svgator:not(.svg-loaded) {
     aspect-ratio: 5/3;
     background: var(--skeleton-background);
