@@ -30,9 +30,10 @@ async function fetchSvgatorData(svgatorProjectName) {
 
 /**
  * Load dynamically svg and the associated script for an animated SVG.
- * A svg from svgator contains a script tag, so please split it into two separate files.
- * Use the name as the identifier e.g. my-awesome-animated-svg.svg and my-awesome-animated-svg.js
- * And stored them in '/images/svgator/' and '/scripts/svgator/'
+ * A svg from svgator contains a script tag, so please split it into two separate files
+ * named animatable.svg and animation.js.
+ * And stored them in '/blocks/svgator/svgs/${my-awesome-animated}'
+ * Use the the identifier e.g. my-awesome-animated for the sub folder name
  * Documentation for svgator: https://www.svgator.com/help/getting-started/animate-programmatically
  * @param block
  */
