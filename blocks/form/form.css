@@ -1,4 +1,8 @@
 /* ===================================================================== FORMS GENERAL */
+.form-wrapper > div > div {
+  margin-top: 100px;
+}
+
 .form-wrapper form {
   display: flex;
   flex-direction: column;
@@ -28,12 +32,18 @@
   gap: 30px;
 }
 
+.form-wrapper .form-checkbox-wrapper label {
+  font-size: var(--body-font-size-s);
+}
+
 .form-wrapper .form-checkbox-wrapper input {
+  --checkbox-size: 25px;
+
   position: relative;
-  width: 40px;
-  min-width: 40px;
-  height: 40px;
-  min-height: 40px;
+  width: var(--checkbox-size);
+  min-width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  min-height: var(--checkbox-size);
   visibility: hidden;
 }
 
