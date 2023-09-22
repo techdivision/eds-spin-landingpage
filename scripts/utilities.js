@@ -1,6 +1,5 @@
 /**
  * Clamp a number between a min and max value.
- *
  * @param {number} value
  * @param {number} min
  * @param {number} max
@@ -12,7 +11,6 @@ export function clamp(value, min, max) {
 
 /**
  * If a function is called multiple times within the given timeout only the last call will be executed.
- *
  * @param func
  * @param timeout
  * @returns {(function(...[*]): void)|*}
