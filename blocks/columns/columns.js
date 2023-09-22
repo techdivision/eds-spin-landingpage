@@ -2,7 +2,7 @@ import {
   buildBlock, loadBlock, toClassName,
 } from '../../scripts/lib-franklin.js';
 
-const allowedNestedBlocks = ['vimeo'];
+const allowedNestedBlocks = ['vimeo', 'form'];
 
 function buildNestedBlocks(block) {
   const nestedBlocks = block.querySelectorAll('table');
