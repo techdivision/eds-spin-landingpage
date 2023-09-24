@@ -2,17 +2,24 @@ import {
   buildBlock, loadBlock, toClassName,
 } from '../../scripts/lib-franklin.js';
 
-const allowedNestedBlocks = ['vimeo', 'form'];
+const allowedNestedBlocks = ['vimeo', 'form', 'svgator'];
 
 function buildNestedBlocks(block) {
   const nestedBlocks = block.querySelectorAll('table');
   nestedBlocks.forEach((nestedBlock) => {
-    // construct the blockName
-    const blockName = toClassName(nestedBlock.querySelector('thead th').textContent);
+    // construct the blockName, sometimes a table has no thead, therefore we search for either, the first th oder td
+    const blockName = toClassName(nestedBlock.querySelector('thead tr th, tbody tr td').textContent);
 
     // skip if this block is not designed to be nested
     if (!allowedNestedBlocks.includes(blockName)) {
       return;
+    }
+
+    // sometimes it is possible that a table has no thead, therefore the first "normal" row is the block name and can be
+    // removed from the content
+    const hasTableHead = !!nestedBlock.querySelector('thead th');
+    if (!hasTableHead) {
+      nestedBlock.querySelector('tbody > tr:first-of-type').remove();
     }
 
     // build the content as a 2d array form the table body
