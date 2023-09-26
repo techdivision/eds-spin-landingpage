@@ -2,7 +2,7 @@ import {
   buildBlock, loadBlock, toClassName,
 } from '../../scripts/lib-franklin.js';
 
-const allowedNestedBlocks = ['vimeo', 'svgator'];
+const allowedNestedBlocks = ['vimeo', 'form', 'svgator'];
 
 function buildNestedBlocks(block) {
   const nestedBlocks = block.querySelectorAll('table');
@@ -40,8 +40,24 @@ function buildNestedBlocks(block) {
   });
 }
 
+function setupImageColumns(block) {
+  // setup image columns
+  [...block.children].forEach((row) => {
+    [...row.children].forEach((col) => {
+      const pic = col.querySelector('picture, .svgator');
+      if (pic) {
+        const picWrapper = pic.parentElement;
+        if (picWrapper && picWrapper.children.length === 1) {
+          // picture is only content in column
+          picWrapper.classList.add('columns-img-col');
+        }
+      }
+    });
+  });
+}
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
   buildNestedBlocks(block);
+  setupImageColumns(block);
 }
