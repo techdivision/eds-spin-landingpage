@@ -11,14 +11,6 @@
     flex-direction: column;
 }
 
-.columns > div > div:not(.columns-img-col) {
-    order: 1;
-}
-
-.columns > div > .columns-img-col {
-    order: 0;
-}
-
 .columns > div > .columns-img-col img {
     display: block;
 }
@@ -42,5 +34,15 @@
 
     .columns > div > div:first-of-type {
         margin-left: unset;
+    }
+}
+
+@media (max-width: 899.98px) {
+    .columns > div > div:not(.columns-img-col) {
+        order: 0;
+    }
+
+    .columns > div > .columns-img-col {
+        order: 1;
     }
 }
