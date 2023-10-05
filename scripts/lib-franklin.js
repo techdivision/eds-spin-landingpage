@@ -614,6 +614,9 @@ export function decorateButtons(element) {
     const arrow = a.appendChild(document.createElement('img'));
     arrow.classList.add('arrow-icon');
     arrow.src = `${window.hlx.codeBasePath}/icons/arrow.svg`;
+    arrow.alt = '';
+    arrow.height = 15;
+    arrow.width = 15;
   });
 }
 
