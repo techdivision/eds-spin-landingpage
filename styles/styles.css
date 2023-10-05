@@ -254,24 +254,27 @@ pre {
 
 a.button:any-link, button, main .form .button, header nav li:nth-last-child(2) a {
     font-family: var(--body-font-family);
-    display: inline-block;
+    display: inline-flex;
+    position: relative;
     box-sizing: border-box;
     text-decoration: none;
-    border: 2px solid transparent;
+    border: 2px solid var(--text-color);
+    border-radius: 28px;
     padding: 10px 25px;
     text-align: center;
     font-style: normal;
     font-weight: 600;
     cursor: pointer;
-    color: var(--background-color);
-    background-color: var(--button-color);
+    color: var(--text-color);
+    background-color: transparent;
     margin: 16px 0;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    align-items: center;
 }
 
-a.button:hover, a.button:focus, button:hover, button:focus {
+a.button:hover, a.button:focus, button:hover, button:focus, main .form .button:hover, main .form .button:focus,
+nav ul li a:hover, nav ul li a:focus {
     background-color: var(--link-hover-color);
     cursor: pointer;
 }
@@ -284,7 +287,14 @@ button:disabled, button:disabled:hover {
 a.button.secondary, button.secondary {
     background-color: unset;
     border: 2px solid currentcolor;
-    color: var(--text-color)
+    color: var(--text-color);
+}
+
+.button img.arrow-icon{
+    padding: 0 0 0 10px;
+    filter: none;
+    height: 1em;
+    width: auto;
 }
 
 
@@ -505,6 +515,10 @@ main .section.hero .icon-logo-adobe-techdivision {
     animation-delay: calc(var(--scroll-planet) * -1s);
     animation-iteration-count: 1;
     animation-fill-mode: both;
+}
+
+.section-planet-entering.hidden {
+    height: 0;
 }
 
 .section-planet-leaving {
