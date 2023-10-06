@@ -62,7 +62,8 @@
 
     /* content width */
     --content-width: 1200px;
-    --section-padding: max(calc(50vw - (var(--content-width) / 2)), 32px);
+    --section-padding-min: 32px;
+    --section-padding: max(calc(50vw - (var(--content-width) / 2)), var(--section-padding-min));
     --spacing-default: 74px;
 
     /* shadow for better readability with the stars */
@@ -331,11 +332,15 @@ main .section.hero {
 
 main .section.hero::before {
     --planet-size: calc(80vh + 150vw); /* find a ratio between vh and vw that looks nice */
+    --planet-offset-top: calc(-1 * (var(--planet-size) - 100vh + var(--nav-height) + 10vh));
+    --planet-end-scale: 0.1;
+    --endx: calc(-50% + ((var(--container-width) - var(--section-padding) * 2) / 2) + (var(--planet-size) * var(--planet-end-scale) / 2) + var(--section-padding-min));
+    --endy: calc(var(--container-height) - (var(--planet-size) + var(--planet-offset-top)) - 100px);
 
     content: '';
     z-index: -1;
     position: absolute;
-    top: calc(-1 * (var(--planet-size) - 100vh + var(--nav-height) + 10vh)); /* align the planet to the bottom of the screen plus a offset */
+    top: var(--planet-offset-top); /* align the planet to the bottom of the screen plus a offset */
     left: 50%;
     width: var(--planet-size);
     height: var(--planet-size);
@@ -346,23 +351,22 @@ main .section.hero::before {
             #1c0a4d calc(53.92% + var(--scroll) * 21.19%)
     );
     border-radius: 50%;
+    transform-origin: bottom center;
     animation: hero-planet 1s linear infinite;
     animation-play-state: paused;
     animation-delay: calc(var(--scroll) * -1s);
     animation-iteration-count: 1;
     animation-fill-mode: both;
 
-    --endx: calc(var(--container-width) * 0.75 / 2 - 50%);
-    --endy: calc(var(--container-height) + 120vh);
 }
 
 @keyframes hero-planet {
     0% {
-        transform: translate(-50%, 0) scale(1);
+        transform: translate3d(-50%, 0, 0) scale(1);
     }
 
     100% {
-        transform: translate(var(--endx), var(--endy)) scale(.1);
+        transform: translate3d(var(--endx), var(--endy), 0) scale(var(--planet-end-scale));
     }
 }
 
@@ -533,37 +537,39 @@ main .section.hero .icon-logo-adobe-techdivision {
 
 @keyframes planet-to-background {
     0% {
-        transform: translate3d(calc(var(--container-width) / -3), calc(var(--container-height) / -2), 0) scale(1);
+        transform: translate3d(calc(var(--container-width) / -1.2), calc(var(--container-height) / -1.5), 0) scale(1);
         border-radius: 100px;
     }
 
-    70% {
-        transform: translate3d(0, 0, 0) scale(1);
+    90% {
+        transform: translate3d(-50%, 0, 0) scale(1);
         border-radius: 100px;
     }
 
     100% {
-        transform: scale(50);
+        transform: translateX(-50%) scale(50);
         border-radius: 10px;
     }
 }
 
 @keyframes background-to-planet {
     0% {
-        transform: scale(50);
+        transform: translateX(-50%) scale(50);
         border-radius: 10px;
     }
 
     30% {
-        transform: translate3d(0, 0, 0) scale(1);
+        transform: translate3d(-50%, 0, 0) scale(1);
         border-radius: 100px;
     }
 
     100% {
-        transform: translate3d(60vw, calc(var(--container-height) / 2), 0) scale(1);
+        transform: translate3d(calc(var(--container-width) / 1.8 + 100%), calc(var(--container-height) / 1.2), 0) scale(1);
         border-radius: 100px;
     }
 }
+
+
 
 /* Have to stay at the bottom for a higher specificity */
 .background-hidden::before {
