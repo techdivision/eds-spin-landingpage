@@ -14,10 +14,12 @@ export default async function decorate(block) {
   const html = await resp.text();
   block.innerHTML = html;
   await decorateIcons(block);
-  /*
-  const footer = document.createElement('div');
-  footer.innerHTML = html;
-  await decorateIcons(footer);
-  block.append(footer);
-  */
+
+  const icons = block.querySelectorAll('.icon');
+  icons.forEach((icon) => {
+    const iconLinkParent = icon.closest('a');
+    if (iconLinkParent) {
+      iconLinkParent.ariaLabel = 'social media icon';
+    }
+  });
 }
