@@ -59,12 +59,19 @@ export default function decorate(block) {
     block.classList.add('svg-loaded');
 
     // initialize svgator
-    const identifier = container.querySelector('svg').getAttribute('id');
-    const element = document.getElementById(identifier);
+    const element = container.querySelector('svg');
     const player = element ? element.svgatorPlayer : {};
-    if (player.play) {
-      player.play();
-    }
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        if (player.play) {
+          player.play();
+        }
+        observer.disconnect();
+      }
+    }, {
+      threshold: 1.0,
+    });
+    observer.observe(element);
   }).catch((error) => {
     // Remove class and thus also remove the skeleton styling
     block.classList.remove(...block.classList);
