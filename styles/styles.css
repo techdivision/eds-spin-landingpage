@@ -31,8 +31,10 @@
     --background-color-reverse: #fff;
     --text-color-reverse: var(--color-purple);
     --input-background-color: #D1CCDD;
-    --button-text-color: var(--text-color);
-    --button-color: var(--color-light-purple);
+    --button-text-color: #fff;
+    --button-color: var(--color-purple);
+    --button-border-color: #fff;
+    --button-color-hover: var(--color-light-purple);
     --text-hightlight: #FF8C04;
     --footer-background-color: #0E0525;
     --skeleton-background: linear-gradient(-45deg, #ddddddc7, #f0f0f0a3, #dddddd70, #f0f0f066);
@@ -72,6 +74,8 @@
     /* colors */
     --background-color: var(--color-light-purple);
     --button-color: var(--color-purple);
+    --button-border-color: transparent;
+    --button-color-hover: var(--link-hover-color);
 }
 
 .section.theme-light-purple::before {
@@ -240,24 +244,30 @@ a.button:any-link, button, main .form .button, header nav li:nth-last-child(2) a
     position: relative;
     box-sizing: border-box;
     text-decoration: none;
-    border: 2px solid var(--text-color);
+    border: 2px solid var(--button-border-color);
     border-radius: 28px;
     padding: 10px 25px;
     text-align: center;
     font-style: normal;
     font-weight: 600;
     cursor: pointer;
-    color: var(--text-color);
-    background-color: transparent;
+    color: var(--button-text-color);
+    background-color: var(--button-color);
     margin: 16px 0;
     overflow: hidden;
     text-overflow: ellipsis;
     align-items: center;
 }
 
-a.button:hover, a.button:focus, button:hover, button:focus, main .form .button:hover, main .form .button:focus,
+nav ul li:nth-last-child(2) a {
+    --button-border-color: transparent;
+}
+
+a.button:hover, a.button:focus,
+button:hover, button:focus,
+main .form .button:hover, main .form .button:focus,
 nav ul li a:hover, nav ul li a:focus {
-    background-color: var(--link-hover-color);
+    background-color: var(--button-color-hover);
     cursor: pointer;
 }
 
@@ -272,7 +282,7 @@ a.button.secondary, button.secondary {
     color: var(--text-color);
 }
 
-.button img.arrow-icon{
+.button img.arrow-icon {
     padding: 0 0 0 10px;
     filter: none;
     height: 1em;
@@ -549,8 +559,6 @@ main .section.hero .icon-logo-adobe-techdivision {
         border-radius: 100px;
     }
 }
-
-
 
 /* Have to stay at the bottom for a higher specificity */
 .background-hidden::before {
