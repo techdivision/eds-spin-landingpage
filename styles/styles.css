@@ -375,7 +375,7 @@ main .section.hero .default-content-wrapper:first-of-type {
     min-height: 80vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    padding-top: 60px;
 }
 
 main .section.hero .default-content-wrapper:first-of-type h1 {
