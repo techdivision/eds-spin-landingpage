@@ -1,10 +1,16 @@
 import {
+  registerCustomScrollLinkedVariable,
   registerElementDimensionsVariables,
-  registerScrollLinkedVariable,
 } from '../../scripts/scroll-linked-variable.js';
 
 export default function decorate(block) {
-  registerScrollLinkedVariable(block.parentElement);
+  registerCustomScrollLinkedVariable(
+    block.parentElement,
+    // eslint-disable-next-line max-len
+    (elementDistanceToWindowTop) => elementDistanceToWindowTop - 300,
+    // eslint-disable-next-line max-len
+    (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height + -1 * window.innerHeight + 200,
+  );
   registerElementDimensionsVariables(block);
 
   const wordPositions = [
@@ -16,7 +22,7 @@ export default function decorate(block) {
     { x: 80, y: 65 },
   ];
   const wordCount = block.children.length;
-  const overLappingAnimations = 3;
+  const overLappingAnimations = 4;
   const animationFrame = (1 / (wordCount + (overLappingAnimations - 1)));
   const animationDuration = animationFrame * overLappingAnimations;
   Array.from(block.children).forEach((word, index) => {
