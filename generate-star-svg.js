@@ -8,23 +8,23 @@ const fs = require('fs');
 function generateStarSVGs() {
   const starsLayerConfigurations = [
     {
-      density: 0.3, // how dense / how many stars there are in this layer
+      density: 0.25, // how dense / how many stars there are in this layer
       starSize: '1', // the size of a singe star
     },
     {
-      density: 0.25,
+      density: 0.2,
       starSize: '1.5',
     },
     {
-      density: 0.2,
+      density: 0.15,
       starSize: '2',
     },
     {
-      density: 0.15,
+      density: 0.1,
       starSize: '2.5',
     },
     {
-      density: 0.1,
+      density: 0.05,
       starSize: '3',
     },
   ];
@@ -48,7 +48,7 @@ function generateStarSVGs() {
     }
 
     starSvg += '</svg>';
-    fs.writeFileSync(`images/layer${index}.svg`, starSvg);
+    fs.writeFileSync(`images/stars/layer${index}.svg`, starSvg);
   });
 }
 
