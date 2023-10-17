@@ -34,6 +34,7 @@
     --button-text-color: var(--text-color);
     --button-color: var(--color-light-purple);
     --text-hightlight: #FF8C04;
+    --footer-background-color: #0E0525;
     --skeleton-background: linear-gradient(-45deg, #ddddddc7, #f0f0f0a3, #dddddd70, #f0f0f066);
 
     /* fonts */
