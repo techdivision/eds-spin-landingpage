@@ -36,6 +36,12 @@
   position: relative;
 }
 
+.section-ready-to-fly .columns > div > div:first-child h3,
+.section-ready-to-fly .columns picture {
+  position: relative;
+  z-index: -1;
+}
+
 .section-ready-to-fly .columns > div > div:first-child h3::before,
 .section-ready-to-fly .columns picture::before,
 .section-ready-to-fly .columns picture::after {

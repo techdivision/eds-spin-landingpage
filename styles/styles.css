@@ -31,9 +31,12 @@
     --background-color-reverse: #fff;
     --text-color-reverse: var(--color-purple);
     --input-background-color: #D1CCDD;
-    --button-text-color: var(--text-color);
-    --button-color: var(--color-light-purple);
+    --button-text-color: #fff;
+    --button-color: var(--color-purple);
+    --button-border-color: #fff;
+    --button-color-hover: var(--color-light-purple);
     --text-hightlight: #FF8C04;
+    --footer-background-color: #0E0525;
     --skeleton-background: linear-gradient(-45deg, #ddddddc7, #f0f0f0a3, #dddddd70, #f0f0f066);
 
     /* fonts */
@@ -62,24 +65,17 @@
 
     /* content width */
     --content-width: 1200px;
-    --section-padding: max(calc(50vw - (var(--content-width) / 2)), 32px);
+    --section-padding-min: 32px;
+    --section-padding: max(calc(50vw - (var(--content-width) / 2)), var(--section-padding-min));
     --spacing-default: 74px;
-
-    /* shadow for better readability with the stars */
-    --text-drop-shadow-color: var(--color-purple);
-    --text-drop-shadow-offset: 2px;
-    --text-drop-shadow-blur: 3px;
-    --text-drop-shadow: drop-shadow(0px var(--text-drop-shadow-offset) var(--text-drop-shadow-blur) var(--color-purple)) drop-shadow(0px calc(-1 * var(--text-drop-shadow-offset)) var(--text-drop-shadow-blur) var(--color-purple)) drop-shadow(var(--text-drop-shadow-offset) 0px var(--text-drop-shadow-blur) var(--color-purple)) drop-shadow(calc(-1 * var(--text-drop-shadow-offset)) 0px var(--text-drop-shadow-blur) var(--color-purple));
 }
 
 .theme-light-purple {
     /* colors */
     --background-color: var(--color-light-purple);
     --button-color: var(--color-purple);
-}
-
-footer, header, .hero > .default-content-wrapper:first-of-type, .section.theme-light-purple {
-    --text-drop-shadow: '';
+    --button-border-color: transparent;
+    --button-color-hover: var(--link-hover-color);
 }
 
 .section.theme-light-purple::before {
@@ -162,16 +158,6 @@ main {
         overflow-x: clip;
     }
 }
-
-h1, h2, h3,
-h4, h5, h6,
-p, span, sup,
-sub, u, i,
-b, em, strong,
-del, ins, ruby {
-    filter: var(--text-drop-shadow);
-}
-
 
 h1, h2, h3,
 h4, h5, h6 {
@@ -258,24 +244,30 @@ a.button:any-link, button, main .form .button, header nav li:nth-last-child(2) a
     position: relative;
     box-sizing: border-box;
     text-decoration: none;
-    border: 2px solid var(--text-color);
+    border: 2px solid var(--button-border-color);
     border-radius: 28px;
     padding: 10px 25px;
     text-align: center;
     font-style: normal;
     font-weight: 600;
     cursor: pointer;
-    color: var(--text-color);
-    background-color: transparent;
+    color: var(--button-text-color);
+    background-color: var(--button-color);
     margin: 16px 0;
     overflow: hidden;
     text-overflow: ellipsis;
     align-items: center;
 }
 
-a.button:hover, a.button:focus, button:hover, button:focus, main .form .button:hover, main .form .button:focus,
+nav ul li:nth-last-child(2) a {
+    --button-border-color: transparent;
+}
+
+a.button:hover, a.button:focus,
+button:hover, button:focus,
+main .form .button:hover, main .form .button:focus,
 nav ul li a:hover, nav ul li a:focus {
-    background-color: var(--link-hover-color);
+    background-color: var(--button-color-hover);
     cursor: pointer;
 }
 
@@ -290,7 +282,7 @@ a.button.secondary, button.secondary {
     color: var(--text-color);
 }
 
-.button img.arrow-icon{
+.button img.arrow-icon {
     padding: 0 0 0 10px;
     filter: none;
     height: 1em;
@@ -331,11 +323,15 @@ main .section.hero {
 
 main .section.hero::before {
     --planet-size: calc(80vh + 150vw); /* find a ratio between vh and vw that looks nice */
+    --planet-offset-top: calc(-1 * (var(--planet-size) - 100vh + var(--nav-height) + 10vh));
+    --planet-end-scale: 0.1;
+    --endx: calc(-50% + ((var(--container-width) - var(--section-padding) * 2) / 2) + (var(--planet-size) * var(--planet-end-scale) / 2) + var(--section-padding-min));
+    --endy: calc(var(--container-height) - (var(--planet-size) + var(--planet-offset-top)) - 100px);
 
     content: '';
     z-index: -1;
     position: absolute;
-    top: calc(-1 * (var(--planet-size) - 100vh + var(--nav-height) + 10vh)); /* align the planet to the bottom of the screen plus a offset */
+    top: var(--planet-offset-top); /* align the planet to the bottom of the screen plus a offset */
     left: 50%;
     width: var(--planet-size);
     height: var(--planet-size);
@@ -346,23 +342,22 @@ main .section.hero::before {
             #1c0a4d calc(53.92% + var(--scroll) * 21.19%)
     );
     border-radius: 50%;
+    transform-origin: bottom center;
     animation: hero-planet 1s linear infinite;
     animation-play-state: paused;
     animation-delay: calc(var(--scroll) * -1s);
     animation-iteration-count: 1;
     animation-fill-mode: both;
 
-    --endx: calc(var(--container-width) * 0.75 / 2 - 50%);
-    --endy: calc(var(--container-height) + 120vh);
 }
 
 @keyframes hero-planet {
     0% {
-        transform: translate(-50%, 0) scale(1);
+        transform: translate3d(-50%, 0, 0) scale(1);
     }
 
     100% {
-        transform: translate(var(--endx), var(--endy)) scale(.1);
+        transform: translate3d(var(--endx), var(--endy), 0) scale(var(--planet-end-scale));
     }
 }
 
@@ -370,7 +365,7 @@ main .section.hero .default-content-wrapper:first-of-type {
     min-height: 80vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    padding-top: 60px;
 }
 
 main .section.hero .default-content-wrapper:first-of-type h1 {
@@ -533,34 +528,34 @@ main .section.hero .icon-logo-adobe-techdivision {
 
 @keyframes planet-to-background {
     0% {
-        transform: translate3d(calc(var(--container-width) / -3), calc(var(--container-height) / -2), 0) scale(1);
+        transform: translate3d(calc(var(--container-width) / -1.2), calc(var(--container-height) / -1.5), 0) scale(1);
         border-radius: 100px;
     }
 
-    70% {
-        transform: translate3d(0, 0, 0) scale(1);
+    90% {
+        transform: translate3d(-50%, 0, 0) scale(1);
         border-radius: 100px;
     }
 
     100% {
-        transform: scale(50);
+        transform: translateX(-50%) scale(50);
         border-radius: 10px;
     }
 }
 
 @keyframes background-to-planet {
     0% {
-        transform: scale(50);
+        transform: translateX(-50%) scale(50);
         border-radius: 10px;
     }
 
     30% {
-        transform: translate3d(0, 0, 0) scale(1);
+        transform: translate3d(-50%, 0, 0) scale(1);
         border-radius: 100px;
     }
 
     100% {
-        transform: translate3d(60vw, calc(var(--container-height) / 2), 0) scale(1);
+        transform: translate3d(calc(var(--container-width) / 1.8 + 100%), calc(var(--container-height) / 1.2), 0) scale(1);
         border-radius: 100px;
     }
 }
@@ -582,6 +577,7 @@ main .section.hero .icon-logo-adobe-techdivision {
 
 .section-explore-specifics > div:first-child {
     margin-top: 0;
+    margin-left: 0;
     max-width: 700px;
 }
 

@@ -2,7 +2,6 @@ footer {
   height: var(--footer-height);
   padding: var(--footer-padding-horizontal) var(--footer-padding-vertical);
   background-color: var(--footer-background-color);
-  color: var(--footer-color);
   font-size: var(--body-font-size-xs);
 }
 

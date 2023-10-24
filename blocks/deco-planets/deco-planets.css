@@ -84,3 +84,10 @@
 .deco-planets-v4 .planet-two {
     width: var(--size-small);
 }
+
+@media screen and (max-width: 899.98px) {
+    .hide-deco-planets-on-mobile .deco-planets,
+    .hide-deco-planets-on-mobile.deco-planets {
+        display: none;
+    }
+}
