@@ -238,7 +238,7 @@ pre {
 
 /* buttons */
 
-a.button:any-link, button, main .form .button, header nav li:nth-last-child(2) a {
+a.button:any-link, button, form .hs-button, main .form .button, header nav li:nth-last-child(2) a {
     font-family: var(--body-font-family);
     display: inline-flex;
     position: relative;
@@ -265,6 +265,7 @@ nav ul li:nth-last-child(2) a {
 
 a.button:hover, a.button:focus,
 button:hover, button:focus,
+form .hs-button:hover, form .hs-button:focus,
 main .form .button:hover, main .form .button:focus,
 nav ul li a:hover, nav ul li a:focus {
     background-color: var(--button-color-hover);
@@ -290,7 +291,7 @@ a.button.secondary, button.secondary {
 }
 
 
-main input,
+main input:not([type='submit']),
 main textarea {
     box-sizing: border-box;
     display: block;
@@ -305,10 +306,6 @@ main textarea {
     border-radius: 0.25rem;
     color: var(--text-color);
     background-color: var(--background-color);
-}
-
-main input:hover {
-    border: 1px solid var(--text-color);
 }
 
 main .section {
