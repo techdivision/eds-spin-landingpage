@@ -135,9 +135,40 @@ fieldset {
   margin-bottom: 16px;
 }
 
+/* ===================================================================== ERROR */
+.hs-error-msgs {
+  font-size: var(--body-font-size-s);
+  width: 100%;
+  grid-column: span 2;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) .hs-error-msgs {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 8px);
+}
+
+.hs-error-msgs label {
+  --background-color: transparent;
+
+  color: orangered !important; /* Override hs style */
+}
+
+.error,
+.error + label {
+  --text-color: orangered;
+
+  color: orangered;
+}
+
 /* ===================================================================== CHECKBOX */
 .section-ready-to-fly .hs-fieldtype-booleancheckbox {
-  display: flex;
+  display: grid;
+  grid-template-columns: 25px 1fr;
   gap: 30px;
   margin-bottom: 16px !important; /* Override hs styling */
 }
@@ -222,7 +253,7 @@ fieldset {
   border: 1px solid white;
 }
 
-.section-ready-to-fly :is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) label {
+.section-ready-to-fly :is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) label:not(.hs-error-msg) {
   position: absolute;
   top: 13px;
   transition: all 0.075s ease-out;
@@ -230,8 +261,8 @@ fieldset {
   pointer-events: none;
 }
 
-.section-ready-to-fly :is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:focus ~ label,
-.section-ready-to-fly :is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:not(:placeholder-shown) ~ label {
+.section-ready-to-fly :is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:focus ~ label:not(.hs-error-msg),
+.section-ready-to-fly :is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:not(:placeholder-shown) ~ label:not(.hs-error-msg) {
   transform-origin: left;
   padding: 5px;
   transform: translate(-5px, calc(-50% - 13px)) scale(0.8, 0.8);
@@ -245,9 +276,5 @@ fieldset {
 
 /* ===================================================================== HIDDEN */
 .section-ready-to-fly .hs-fieldtype-hidden {
-  display: none;
-}
-
-.hs-error-msgs {
   display: none;
 }
