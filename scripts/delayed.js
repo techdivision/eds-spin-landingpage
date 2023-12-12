@@ -6,7 +6,9 @@ import { initializeHubspot } from '../blocks/form/form.js';
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
 injectStarsLayers();
-initializeHubspot();
+setTimeout(() => {
+  initializeHubspot();
+}, 2000);
 
 /* IMPORTANT: this is just for fun and not actually used. Please ignore this :) */
 let lastKeys = '';
