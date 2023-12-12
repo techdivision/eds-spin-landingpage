@@ -306,7 +306,7 @@ main textarea {
     padding: 0.75rem 0.6rem;
     margin-bottom: 1rem;
     font-family: var(--body-font-family);
-    font-size: 1.25rem;
+    font-size: 18px;
     line-height: 24px;
     color: var(--text-color);
     background-color: var(--background-color-transparent);
