@@ -75,7 +75,7 @@
 }
 
 /* ===================================================================== FORMS GENERAL */
-.section-ready-to-fly form {
+form {
   display: flex;
   flex-direction: column;
   gap: 52px;
@@ -110,17 +110,17 @@ fieldset {
   width: 100% !important; /* Override hs styling */
 }
 
-.section-ready-to-fly .field {
+.field {
   position: relative;
 }
 
-.section-ready-to-fly .field input,
-.section-ready-to-fly .field textarea {
+.field input,
+.field textarea {
   margin: 0;
   max-width: 100vw;
 }
 
-.section-ready-to-fly .field textarea {
+.field textarea {
   border: none;
   padding: 16px 25px;
   border-radius: 15px;
@@ -155,29 +155,29 @@ fieldset {
 .hs-error-msgs label {
   --background-color: transparent;
 
-  color: orangered !important; /* Override hs style */
+  color: var(--error-color) !important; /* Override hs style */
 }
 
 .error,
 .error + label {
-  --text-color: orangered;
+  --text-color: var(--error-color);
 
-  color: orangered;
+  color: var(--error-color);
 }
 
 /* ===================================================================== CHECKBOX */
-.section-ready-to-fly .hs-fieldtype-booleancheckbox {
+.hs-fieldtype-booleancheckbox {
   display: grid;
   grid-template-columns: 25px 1fr;
   gap: 30px;
   margin-bottom: 16px !important; /* Override hs styling */
 }
 
-.section-ready-to-fly .hs-fieldtype-booleancheckbox label {
+.hs-fieldtype-booleancheckbox label {
   font-size: var(--body-font-size-s);
 }
 
-.section-ready-to-fly .hs-fieldtype-booleancheckbox input {
+.hs-fieldtype-booleancheckbox input {
   --checkbox-size: 25px;
 
   position: relative;
@@ -188,8 +188,8 @@ fieldset {
   visibility: hidden;
 }
 
-.section-ready-to-fly .hs-fieldtype-booleancheckbox input::before,
-.section-ready-to-fly .hs-fieldtype-booleancheckbox input::after {
+.hs-fieldtype-booleancheckbox input::before,
+.hs-fieldtype-booleancheckbox input::after {
   box-sizing: border-box;
   content: '';
   display: inline-block;
@@ -201,16 +201,16 @@ fieldset {
   border: 1px solid white;
 }
 
-.section-ready-to-fly .hs-fieldtype-booleancheckbox input::before {
+.hs-fieldtype-booleancheckbox input::before {
   visibility: visible;
 }
 
-.section-ready-to-fly .hs-fieldtype-booleancheckbox input::after {
+.hs-fieldtype-booleancheckbox input::after {
   transform: scale(60%, 60%);
   background-color: white;
 }
 
-.section-ready-to-fly .hs-fieldtype-booleancheckbox input:checked::after {
+.hs-fieldtype-booleancheckbox input:checked::after {
   visibility: visible;
 }
 
@@ -221,39 +221,32 @@ fieldset {
 }
 
 /* ===================================================================== TEXT AREAS */
-.section-ready-to-fly .hs-fieldtype-textarea {
+.hs-fieldtype-textarea {
   display: flex;
   flex-direction: column;
 }
 
-.section-ready-to-fly .hs-fieldtype-textarea label {
+.hs-fieldtype-textarea label {
   margin-bottom: 5px;
 }
 
-.section-ready-to-fly .hs-fieldtype-textarea textarea {
+.hs-fieldtype-textarea textarea {
   height: 256px;
   background-color: #382F6F;
 }
 
-.section-ready-to-fly .hs-fieldtype-textarea textarea:focus,
-.section-ready-to-fly .hs-fieldtype-textarea textarea:not(:placeholder-shown){
+.hs-fieldtype-textarea textarea:focus,
+.hs-fieldtype-textarea textarea:not(:placeholder-shown){
   outline: none;
 }
 
 /* ===================================================================== TEXT FIELDS */
-.section-ready-to-fly :is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input {
-  border: 1px solid rgb(255 255 255 / 0%);
-  border-radius: 0;
-  border-bottom: 1px solid var(--text-color);
-  background-color: rgb(28 10 77 / 75%);
-}
-
-.section-ready-to-fly :is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:focus {
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:focus {
   outline: none;
   border: 1px solid white;
 }
 
-.section-ready-to-fly :is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) label:not(.hs-error-msg) {
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) label:not(.hs-error-msg) {
   position: absolute;
   top: 13px;
   transition: all 0.075s ease-out;
@@ -261,20 +254,20 @@ fieldset {
   pointer-events: none;
 }
 
-.section-ready-to-fly :is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:focus ~ label:not(.hs-error-msg),
-.section-ready-to-fly :is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:not(:placeholder-shown) ~ label:not(.hs-error-msg) {
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:focus ~ label:not(.hs-error-msg),
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:not(:placeholder-shown) ~ label:not(.hs-error-msg) {
   transform-origin: left;
   padding: 5px;
   transform: translate(-5px, calc(-50% - 13px)) scale(0.8, 0.8);
 }
 
 /* ===================================================================== FORM SUBMIT BUTTON */
-.section-ready-to-fly .hs-submit .actions {
+.hs-submit .actions {
   display: flex;
   justify-content: right;
 }
 
 /* ===================================================================== HIDDEN */
-.section-ready-to-fly .hs-fieldtype-hidden {
+.hs-fieldtype-hidden {
   display: none;
 }
