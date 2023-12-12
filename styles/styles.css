@@ -21,10 +21,14 @@
 :root, .theme-default {
     /* colors */
     --color-purple: #1C0A4D;
+    --rgb-purple: 28 10 77;
     --color-light-purple: #5764EF;
+    --rgb-light-purple: 87 100 239;
+    --error-color: #ff4242;
     --link-color: #035fe6;
     --link-hover-color: #136ff6;
     --background-color: var(--color-purple);
+    --background-color-transparent: rgba(var(--rgb-purple) / 75%);
     --overlay-background-color: #eee;
     --highlight-background-color: #ccc;
     --text-color: #fff;
@@ -72,7 +76,9 @@
 
 .theme-light-purple {
     /* colors */
+    --error-color: #ff8787;
     --background-color: var(--color-light-purple);
+    --background-color-transparent: rgba(var(--rgb-light-purple) / 75%);
     --button-color: var(--color-purple);
     --button-border-color: transparent;
     --button-color-hover: var(--link-hover-color);
@@ -238,7 +244,7 @@ pre {
 
 /* buttons */
 
-a.button:any-link, button, main .form .button, header nav li:nth-last-child(2) a {
+a.button:any-link, button, form .hs-button, main .form .button, header nav li:nth-last-child(2) a {
     font-family: var(--body-font-family);
     display: inline-flex;
     position: relative;
@@ -265,6 +271,7 @@ nav ul li:nth-last-child(2) a {
 
 a.button:hover, a.button:focus,
 button:hover, button:focus,
+form .hs-button:hover, form .hs-button:focus,
 main .form .button:hover, main .form .button:focus,
 nav ul li a:hover, nav ul li a:focus {
     background-color: var(--button-color-hover);
@@ -290,7 +297,7 @@ a.button.secondary, button.secondary {
 }
 
 
-main input,
+main input:not([type='submit']),
 main textarea {
     box-sizing: border-box;
     display: block;
@@ -299,16 +306,16 @@ main textarea {
     padding: 0.75rem 0.6rem;
     margin-bottom: 1rem;
     font-family: var(--body-font-family);
-    font-size: 1.25rem;
+    font-size: 18px;
     line-height: 24px;
-    border: 1px solid var(--text-color);
-    border-radius: 0.25rem;
     color: var(--text-color);
-    background-color: var(--background-color);
+    background-color: var(--background-color-transparent);
 }
 
-main input:hover {
-    border: 1px solid var(--text-color);
+main input:not([type='submit']) {
+    border: 1px solid transparent;
+    border-bottom: 1px solid var(--text-color);
+    border-radius: 0;
 }
 
 main .section {
