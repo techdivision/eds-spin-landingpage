@@ -17,14 +17,23 @@ function rearrangeInputLabels() {
   });
 }
 
-export default async function decorate() {
+export default function decorate(block) {
+  block.dataset.formId = block.children[0].children[0].innerHTML;
+  block.innerHTML = 'loading';
+}
+
+export async function initializeHubspot() {
   await loadScript('https://js.hsforms.net/forms/embed/v2.js');
 
-  window.hbspt.forms.create({
-    region: 'na1',
-    portalId: '3458432',
-    formId: 'a9f10e4b-6c50-442b-ae10-df1b06d21e6f',
-    target: '.form',
+  const hubspotForms = document.querySelectorAll('.form[data-form-id]');
+  hubspotForms.forEach((form, index) => {
+    form.dataset.formIndex = `${index}`;
+    window.hbspt.forms.create({
+      region: 'na1',
+      portalId: '3458432',
+      formId: form.dataset.formId,
+      target: `[data-form-id][data-form-index='${form.dataset.formIndex}']`,
+    });
   });
 
   const debouncedRearrangeInputLabels = debounce(() => rearrangeInputLabels());
