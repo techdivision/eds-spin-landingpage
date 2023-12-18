@@ -169,7 +169,7 @@ fieldset {
 .hs-fieldtype-booleancheckbox {
   display: grid;
   grid-template-columns: 25px 1fr;
-  gap: 30px;
+  gap: 8px 30px;
   margin-bottom: 16px !important; /* Override hs styling */
 }
 

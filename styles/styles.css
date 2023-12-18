@@ -304,7 +304,6 @@ main textarea {
     width: 100%;
     max-width: 50rem;
     padding: 0.75rem 0.6rem;
-    margin-bottom: 1rem;
     font-family: var(--body-font-family);
     font-size: 18px;
     line-height: 24px;
