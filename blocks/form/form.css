@@ -75,40 +75,109 @@
 }
 
 /* ===================================================================== FORMS GENERAL */
-.section-ready-to-fly form {
+form {
   display: flex;
   flex-direction: column;
   gap: 52px;
 }
 
-.section-ready-to-fly .field-wrapper {
+fieldset {
+  max-width: none !important; /* Override hs styling */
+}
+
+.input {
+  margin-right: 0 !important; /* Override hs styling */
+}
+
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber, .hs-fieldtype-textarea) .hs-input {
+  width: 100% !important; /* Override hs styling */
+}
+
+.form-columns-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 16px;
+  row-gap: 52px;
+}
+
+@media (min-width: 700px) {
+  .form-columns-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.form-columns-2 .hs-form-field {
+  width: 100% !important; /* Override hs styling */
+}
+
+.field {
   position: relative;
 }
 
-.section-ready-to-fly .field-wrapper input,
-.section-ready-to-fly .field-wrapper textarea {
+.field input,
+.field textarea {
   margin: 0;
   max-width: 100vw;
 }
 
-.section-ready-to-fly .field-wrapper textarea {
+.field textarea {
   border: none;
   padding: 16px 25px;
   border-radius: 15px;
-  background-color: var(--color-light-purple);
+  background-color: #382F6F;
 }
 
-/* ===================================================================== CHECKBOX */
-.section-ready-to-fly .form-checkbox-wrapper {
-  display: flex;
-  gap: 30px;
-}
-
-.section-ready-to-fly .form-checkbox-wrapper label {
+.hs-richtext {
   font-size: var(--body-font-size-s);
 }
 
-.section-ready-to-fly .form-checkbox-wrapper input {
+.hs-richtext:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+/* ===================================================================== ERROR */
+.hs-error-msgs {
+  font-size: var(--body-font-size-s);
+  width: 100%;
+  grid-column: span 2;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) .hs-error-msgs {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 8px);
+}
+
+.hs-error-msgs label {
+  --background-color: transparent;
+
+  color: var(--error-color) !important; /* Override hs style */
+}
+
+.error,
+.error + label {
+  --text-color: var(--error-color);
+
+  color: var(--error-color);
+}
+
+/* ===================================================================== CHECKBOX */
+.hs-fieldtype-booleancheckbox {
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  gap: 8px 30px;
+  margin-bottom: 16px !important; /* Override hs styling */
+}
+
+.hs-fieldtype-booleancheckbox label {
+  font-size: var(--body-font-size-s);
+}
+
+.hs-fieldtype-booleancheckbox input {
   --checkbox-size: 25px;
 
   position: relative;
@@ -119,8 +188,8 @@
   visibility: hidden;
 }
 
-.section-ready-to-fly .form-checkbox-wrapper input::before,
-.section-ready-to-fly .form-checkbox-wrapper input::after {
+.hs-fieldtype-booleancheckbox input::before,
+.hs-fieldtype-booleancheckbox input::after {
   box-sizing: border-box;
   content: '';
   display: inline-block;
@@ -132,53 +201,52 @@
   border: 1px solid white;
 }
 
-.section-ready-to-fly .form-checkbox-wrapper input::before {
+.hs-fieldtype-booleancheckbox input::before {
   visibility: visible;
 }
 
-.section-ready-to-fly .form-checkbox-wrapper input::after {
+.hs-fieldtype-booleancheckbox input::after {
   transform: scale(60%, 60%);
   background-color: white;
 }
 
-.section-ready-to-fly .form-checkbox-wrapper input:checked::after {
+.hs-fieldtype-booleancheckbox input:checked::after {
   visibility: visible;
 }
 
+.legal-consent-container .hs-form-booleancheckbox-display>span {
+  margin-left: 0 !important; /* Override hs styling */
+  margin-top: -5px; /* Relativise the line height */
+  margin-bottom: -5px; /* Relativise the line height */
+}
+
 /* ===================================================================== TEXT AREAS */
-.section-ready-to-fly .form-text-area-wrapper {
+.hs-fieldtype-textarea {
   display: flex;
   flex-direction: column;
 }
 
-.section-ready-to-fly .form-text-area-wrapper label {
+.hs-fieldtype-textarea label {
   margin-bottom: 5px;
 }
 
-.section-ready-to-fly .form-text-area-wrapper textarea {
+.hs-fieldtype-textarea textarea {
   height: 256px;
   background-color: #382F6F;
 }
 
-.section-ready-to-fly .form-text-area-wrapper textarea:focus,
-.section-ready-to-fly .form-text-area-wrapper textarea:not(:placeholder-shown){
+.hs-fieldtype-textarea textarea:focus,
+.hs-fieldtype-textarea textarea:not(:placeholder-shown){
   outline: none;
 }
 
 /* ===================================================================== TEXT FIELDS */
-.section-ready-to-fly .form-text-field-wrapper input {
-  border: 1px solid rgb(255 255 255 / 0%);
-  border-radius: 0;
-  border-bottom: 1px solid var(--text-color);
-  background-color: rgb(28 10 77 / 75%);
-}
-
-.section-ready-to-fly .form-text-field-wrapper input:focus {
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:focus {
   outline: none;
   border: 1px solid white;
 }
 
-.section-ready-to-fly .form-text-field-wrapper label {
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) label:not(.hs-error-msg) {
   position: absolute;
   top: 13px;
   transition: all 0.075s ease-out;
@@ -186,20 +254,20 @@
   pointer-events: none;
 }
 
-.section-ready-to-fly .form-text-field-wrapper input:focus ~ label,
-.section-ready-to-fly .form-text-field-wrapper input:not(:placeholder-shown) ~ label {
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:focus ~ label:not(.hs-error-msg),
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:not(:placeholder-shown) ~ label:not(.hs-error-msg) {
   transform-origin: left;
   padding: 5px;
   transform: translate(-5px, calc(-50% - 13px)) scale(0.8, 0.8);
 }
 
 /* ===================================================================== FORM SUBMIT BUTTON */
-.section-ready-to-fly .form-submit-wrapper {
+.hs-submit .actions {
   display: flex;
   justify-content: right;
 }
 
 /* ===================================================================== HIDDEN */
-.section-ready-to-fly .hidden {
+.hs-fieldtype-hidden {
   display: none;
 }
