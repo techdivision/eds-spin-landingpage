@@ -157,7 +157,6 @@ header .logo {
 
 main {
     overflow-x: hidden;
-    margin-bottom: var(--footer-height);
 }
 
 @supports (overflow-x: clip) {
@@ -547,6 +546,7 @@ main .section.hero .icon-logo-adobe-techdivision {
     100% {
         transform: translateX(-50%) scale(50);
         border-radius: 10px;
+        display: none;
     }
 }
 

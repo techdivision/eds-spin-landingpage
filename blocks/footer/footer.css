@@ -1,8 +1,4 @@
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   height: var(--footer-height);
   padding: var(--footer-padding-horizontal) var(--footer-padding-vertical);
   font-size: var(--body-font-size-xs);
