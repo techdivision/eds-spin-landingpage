@@ -9,12 +9,17 @@ import { getCurrentLanguage } from '../../scripts/scripts.js';
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   block.textContent = '';
-
   const footerPath = cfg.footer || `/${getCurrentLanguage()}/footer`;
   const resp = await fetch(`${footerPath}.plain.html`);
   const html = await resp.text();
-  const footer = document.createElement('div');
-  footer.innerHTML = html;
-  await decorateIcons(footer);
-  block.append(footer);
+  block.innerHTML = html;
+  await decorateIcons(block);
+
+  const icons = block.querySelectorAll('.icon');
+  icons.forEach((icon) => {
+    const iconLinkParent = icon.closest('a');
+    if (iconLinkParent) {
+      iconLinkParent.ariaLabel = 'social media icon';
+    }
+  });
 }

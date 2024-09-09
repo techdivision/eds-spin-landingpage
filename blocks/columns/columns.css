@@ -1,10 +1,18 @@
+.columns {
+ margin-bottom: var(--spacing-default);
+}
+
+.columns img {
+    width: 100%;
+}
+
 .columns > div {
     display: flex;
     flex-direction: column;
 }
 
-.columns img {
-    width: 100%;
+.columns > div > .columns-img-col img {
+    display: block;
 }
 
 @media (min-width: 900px) {
@@ -26,5 +34,15 @@
 
     .columns > div > div:first-of-type {
         margin-left: unset;
+    }
+}
+
+@media (max-width: 899.98px) {
+    .columns > div > div:not(.columns-img-col) {
+        order: 0;
+    }
+
+    .columns > div > .columns-img-col {
+        order: 1;
     }
 }

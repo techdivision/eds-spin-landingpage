@@ -1,78 +1,273 @@
-main .form {
-  box-shadow: 0 1px 6px rgb(34 34 34 / 10%);
+/* ===================================================================== GENERAL STYLING */
+.section-ready-to-fly .columns-wrapper {
+  margin-top: 50px;
 }
 
-main .form input,
-main .form textarea,
-main .form select {
-  font-family: var(--body-font-family);
-  font-size: 1rem;
-  border: 1px solid rgb(193 193 195);
-  padding: 11px;
-  border-radius: 0;
-  width: 100%;
-  max-width: 50rem;
-  box-sizing: border-box;
-  margin-top: 4px;
-  background: var(--input-background-color);
+.section-ready-to-fly h2 {
+  max-width: 900px;
 }
 
-main .form textarea {
-  min-height: 100px;
+.section-ready-to-fly > div:first-child > p {
+  max-width: 550px;
 }
 
-main .form input:hover,
-main .form select:hover {
-  border-color: rgb(90 92 96);
-}
-
-main .form label {
-  width: 100%;
-  display: block;
-  box-sizing: border-box;
-}
-
-main .form label.required::after {
-  content: "*";
-  padding-left: 5px;
-}
-
-main .form .field-wrapper {
-  margin-bottom: 20px;
-}
-
-main .form .form-checkbox-wrapper {
+/* ===================================================================== MANAGER */
+.section-ready-to-fly .columns > div > div:first-child {
+  min-height: 850px;
+  max-width: 50%;
+  margin: auto;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
 }
 
-main .form .form-checkbox-wrapper input{
-  width:auto;
-  margin: 4px 10px 0 0;
+.section-ready-to-fly .columns > div > div:first-child h3,
+.section-ready-to-fly .columns > div > div:first-child p:nth-child(3) {
+  margin: 5px 0;
 }
 
-main .form .form-checkbox-wrapper label{
-  width:auto;
+.section-ready-to-fly .columns img {
+  --image-size: 300px;
+
+  display: block;
+  max-width: var(--image-size);
+  aspect-ratio: 1/1;
+  border-radius: 500px;
+  position: relative;
+}
+
+.section-ready-to-fly .columns > div > div:first-child h3,
+.section-ready-to-fly .columns picture {
+  position: relative;
+  z-index: -1;
+}
+
+.section-ready-to-fly .columns > div > div:first-child h3::before,
+.section-ready-to-fly .columns picture::before,
+.section-ready-to-fly .columns picture::after {
+  content: '';
+  aspect-ratio: 1/1;
+  position: absolute;
+  border-radius: 500px;
+}
+
+.section-ready-to-fly .columns picture::before {
+  width: 750px;
+  background: linear-gradient(223deg, #FF8C05 5.54%, #CE2726 36.22%, #626FF0 80.09%);
+  top: calc(-375px + 150px); /* (negative planet-size / 2) + (image-size /2) */
+  left: calc(-375px + 150px); /* (negative planet-size / 2) + (image-size /2) */
+  transform: translate(-40%, 0);
+}
+
+.section-ready-to-fly .columns > div > div:first-child h3::before {
+  width: 60px;
+  background: #FF8C05;
+  top: calc(-18px + -300px + -120px);
+  left: 350px;
+}
+
+.section-ready-to-fly .columns picture::after {
+  width: 90px;
+  background: #CE2726;
+  top: calc(-45px + 150px); /* (negative planet-size / 2) + (image-size /2) */
+  left: calc(-45px + 150px); /* (negative planet-size / 2) + (image-size /2) */
+  transform: translate(80%, 400%);
+}
+
+/* ===================================================================== FORMS GENERAL */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+}
+
+fieldset {
+  max-width: none !important; /* Override hs styling */
+}
+
+.input {
+  margin-right: 0 !important; /* Override hs styling */
+}
+
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber, .hs-fieldtype-textarea) .hs-input {
+  width: 100% !important; /* Override hs styling */
+}
+
+.form-columns-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 16px;
+  row-gap: 52px;
+}
+
+@media (min-width: 700px) {
+  .form-columns-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.form-columns-2 .hs-form-field {
+  width: 100% !important; /* Override hs styling */
+}
+
+.field {
+  position: relative;
+}
+
+.field input,
+.field textarea {
+  margin: 0;
+  max-width: 100vw;
+}
+
+.field textarea {
+  border: none;
+  padding: 16px 25px;
+  border-radius: 15px;
+  background-color: #382F6F;
+}
+
+.hs-richtext {
+  font-size: var(--body-font-size-s);
+}
+
+.hs-richtext:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+/* ===================================================================== ERROR */
+.hs-error-msgs {
+  font-size: var(--body-font-size-s);
+  width: 100%;
+  grid-column: span 2;
+  list-style: none;
+  padding-left: 0;
   margin: 0;
 }
 
-main .form .form-checkbox-wrapper label:invalid{
-  color: red;
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) .hs-error-msgs {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 8px);
 }
 
-main .form .form-submit-wrapper {
+.hs-error-msgs label {
+  --background-color: transparent;
+
+  color: var(--error-color) !important; /* Override hs style */
+}
+
+.error,
+.error + label {
+  --text-color: var(--error-color);
+
+  color: var(--error-color);
+}
+
+/* ===================================================================== CHECKBOX */
+.hs-fieldtype-booleancheckbox {
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  gap: 8px 30px;
+  margin-bottom: 16px !important; /* Override hs styling */
+}
+
+.hs-fieldtype-booleancheckbox label {
+  font-size: var(--body-font-size-s);
+}
+
+.hs-fieldtype-booleancheckbox input {
+  --checkbox-size: 25px;
+
+  position: relative;
+  width: var(--checkbox-size);
+  min-width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  min-height: var(--checkbox-size);
+  visibility: hidden;
+}
+
+.hs-fieldtype-booleancheckbox input::before,
+.hs-fieldtype-booleancheckbox input::after {
+  box-sizing: border-box;
+  content: '';
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid white;
+}
+
+.hs-fieldtype-booleancheckbox input::before {
+  visibility: visible;
+}
+
+.hs-fieldtype-booleancheckbox input::after {
+  transform: scale(60%, 60%);
+  background-color: white;
+}
+
+.hs-fieldtype-booleancheckbox input:checked::after {
+  visibility: visible;
+}
+
+.legal-consent-container .hs-form-booleancheckbox-display>span {
+  margin-left: 0 !important; /* Override hs styling */
+  margin-top: -5px; /* Relativise the line height */
+  margin-bottom: -5px; /* Relativise the line height */
+}
+
+/* ===================================================================== TEXT AREAS */
+.hs-fieldtype-textarea {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
 }
 
-main .form .form-small-font {
-  font-size: var(--body-font-size-xs);
+.hs-fieldtype-textarea label {
+  margin-bottom: 5px;
 }
 
+.hs-fieldtype-textarea textarea {
+  height: 256px;
+  background-color: #382F6F;
+}
 
-@media only screen and (min-width: 600px) {
-  .content-right .form {
-    padding-left: 40%;
-    padding-right: 10%;
-  }
+.hs-fieldtype-textarea textarea:focus,
+.hs-fieldtype-textarea textarea:not(:placeholder-shown){
+  outline: none;
+}
+
+/* ===================================================================== TEXT FIELDS */
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:focus {
+  outline: none;
+  border: 1px solid white;
+}
+
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) label:not(.hs-error-msg) {
+  position: absolute;
+  top: 13px;
+  transition: all 0.075s ease-out;
+  background-color: var(--background-color);
+  pointer-events: none;
+}
+
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:focus ~ label:not(.hs-error-msg),
+:is(.hs-fieldtype-text, .hs-fieldtype-phonenumber) input:not(:placeholder-shown) ~ label:not(.hs-error-msg) {
+  transform-origin: left;
+  padding: 5px;
+  transform: translate(-5px, calc(-50% - 13px)) scale(0.8, 0.8);
+}
+
+/* ===================================================================== FORM SUBMIT BUTTON */
+.hs-submit .actions {
+  display: flex;
+  justify-content: right;
+}
+
+/* ===================================================================== HIDDEN */
+.hs-fieldtype-hidden {
+  display: none;
 }

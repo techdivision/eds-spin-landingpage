@@ -12,339 +12,591 @@
 
 /* fallback font for Mulish (normal - 400) */
 @font-face {
-  font-family: "mulish-normal-400-fallback";
-  size-adjust: 103.181%; /* trick to keep the CLS at a minimum */
-  src: local("Helvetica");
+    font-family: "mulish-normal-400-fallback";
+    size-adjust: 103.181%; /* trick to keep the CLS at a minimum */
+    src: local("Helvetica");
+    font-display: swap;
 }
 
-:root {
-  /* colors */
-  --color-purple: #1C0A4D;
-  --color-light-purple: #5764EF;
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
-  --background-color: #fff;
-  --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
-  --text-color: #000;
-  --background-color-reverse: var(--color-purple);
-  --text-color-reverse: #fff;
-  --input-background-color: #D1CCDD;
-  --button-color: var(--color-light-purple);
+:root, .theme-default {
+    /* colors */
+    --color-purple: #1C0A4D;
+    --rgb-purple: 28 10 77;
+    --color-light-purple: #5764EF;
+    --rgb-light-purple: 87 100 239;
+    --error-color: #ff4242;
+    --link-color: #035fe6;
+    --link-hover-color: #136ff6;
+    --background-color: var(--color-purple);
+    --background-color-transparent: rgba(var(--rgb-purple) / 75%);
+    --overlay-background-color: #eee;
+    --highlight-background-color: #ccc;
+    --text-color: #fff;
+    --background-color-reverse: #fff;
+    --text-color-reverse: var(--color-purple);
+    --input-background-color: #D1CCDD;
+    --button-text-color: #fff;
+    --button-color: var(--color-purple);
+    --button-border-color: #fff;
+    --button-color-hover: var(--color-light-purple);
+    --text-hightlight: #FF8C04;
+    --footer-background-color: #0E0525;
+    --skeleton-background: linear-gradient(-45deg, #ddddddc7, #f0f0f0a3, #dddddd70, #f0f0f066);
 
-  /* fonts */
-  --body-font-family: mulish, mulish-normal-400-fallback, helvetica, sans-serif;
-  --heading-font-family: var(--body-font-family);
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+    /* fonts */
+    --body-font-family: mulish, mulish-normal-400-fallback, helvetica, sans-serif;
+    --heading-font-family: var(--body-font-family);
+    --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
-  /* body sizes */
-  --body-font-size-m: 16px;
-  --body-font-size-s: 14px;
-  --body-font-size-xs: 12px;
+    /* body sizes */
+    --body-font-size-m: 20px;
+    --body-font-size-s: 16px;
+    --body-font-size-xs: 14px;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 38px;
-  --heading-font-size-xl: 32px;
-  --heading-font-size-l: 22px;
-  --heading-font-size-m: 18px;
-  --heading-font-size-s: 16px;
-  --heading-font-size-xs: 12px;
+    /* heading sizes */
+    --heading-font-size-xxl: 38px;
+    --heading-font-size-xl: 32px;
+    --heading-font-size-l: 22px;
 
-  /* nav height */
-  --nav-height: 146px;
+    /* nav height */
+    --nav-height: 125px;
+    --nav-list-margin: 22px;
 
-  /* footer height */
-  --footer-height: 250px;
+    /* footer size */
+    --footer-height: 387px;
+    --footer-padding-horizontal: 50px;
+    --footer-padding-vertical: 100px;
 
-  /* content width */
-  --content-width: 1200px;
-  --section-padding: max(calc(50vw - (var(--content-width) / 2)), 32px);
+    /* content width */
+    --content-width: 1200px;
+    --section-padding-min: 32px;
+    --section-padding: max(calc(50vw - (var(--content-width) / 2)), var(--section-padding-min));
+    --spacing-default: 74px;
+}
+
+.theme-light-purple {
+    /* colors */
+    --error-color: #ff8787;
+    --background-color: var(--color-light-purple);
+    --background-color-transparent: rgba(var(--rgb-light-purple) / 75%);
+    --button-color: var(--color-purple);
+    --button-border-color: transparent;
+    --button-color-hover: var(--link-hover-color);
+}
+
+.section.theme-light-purple::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    background-color: var(--background-color);
 }
 
 @media (min-width: 900px) {
-  :root {
-    --heading-font-size-xxl: 55px;
-    --heading-font-size-xl: 32px;
-    --heading-font-size-l: 22px;
-    --heading-font-size-m: 18px;
-    --heading-font-size-s: 16px;
-    --heading-font-size-xs: 12px;
-  }
+    :root {
+        --heading-font-size-xxl: 160px;
+        --heading-font-size-xl: 100px;
+        --heading-font-size-l: 35px;
+    }
+}
+
+html {
+    position: relative;
 }
 
 body {
-  font-size: var(--body-font-size-m);
-  margin: 0;
-  font-family: var(--body-font-family);
-  line-height: 22px;
-  color: var(--text-color);
-  background-color: var(--background-color);
-  display: none;
+    font-size: var(--body-font-size-m);
+    font-family: var(--body-font-family);
+    font-weight: 300;
+    line-height: 22px;
+    margin: 0;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    display: none;
+    scroll-behavior: smooth;
+    height: 100%;
+    overflow-x: hidden;
+    letter-spacing: .3px;
 }
 
 body .reverse {
-  color: var(--text-color-reverse);
+    color: var(--text-color-reverse);
 }
 
 body.appear {
-  display: unset;
+    display: unset;
 }
 
 header {
-  height: var(--nav-height);
-  background-color: var(--background-color-reverse);
+    height: var(--nav-height);
+    z-index: 100;
+}
+
+/* progressive header appearance */
+header .block[data-block-status='loading'],
+header .block[data-block-status='initialized'] {
+    display: none;
+}
+
+/* reserve the logo space to avoid layout shift */
+header .logo {
+    height: 75px;
+    width: 119px;
+}
+
+@media (max-width: 899px) {
+    header .logo {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+main {
+    overflow-x: hidden;
+}
+
+@supports (overflow-x: clip) {
+    main {
+        overflow-x: clip;
+    }
 }
 
 h1, h2, h3,
 h4, h5, h6 {
-  font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
-  margin-top: 0;
-  margin-bottom: .5em;
-  scroll-margin: calc(var(--nav-height) + 1em);
+    font-family: var(--heading-font-family);
+    font-weight: 300;
+    line-height: 1.25;
+    margin-top: 0;
+    margin-bottom: .5em;
+    scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { 
-  font-size: var(--heading-font-size-xxl);
-  line-height: 60px;
+h1 {
+    font-size: var(--heading-font-size-xxl);
+    line-height: 1em;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
-h2 { 
-  font-size: var(--heading-font-size-xl);
-  line-height: 40px;
+h2 {
+    font-size: var(--heading-font-size-xl);
+    line-height: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: .2em;
 }
 
-h3 { font-size: var(--heading-font-size-l) }
-h4 { font-size: var(--heading-font-size-m) }
-h5 { font-size: var(--heading-font-size-s) }
-h6 { font-size: var(--heading-font-size-xs) }
+h3 {
+    font-size: var(--heading-font-size-l);
+    line-height: 1.15em;
+    font-weight: 200;
+    margin-bottom: 1.8em;
+}
+
+h4 {
+    text-transform: uppercase;
+    font-size: var(--body-font-size-xs);
+    line-height: 20px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: var(--text-hightlight)
+}
+
+h4 .text-white {
+    color: white;
+}
 
 p, dl, ol, ul, pre, blockquote {
-  margin-top: 1em;
-  margin-bottom: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+strong {
+    font-weight: 800;
 }
 
 a:any-link {
-  color: var(--link-color);
-  text-decoration: none;
+    color: var(--link-color);
+    text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
-  color: var(--link-hover-color);
+    text-decoration: underline;
+    color: var(--link-hover-color);
 }
 
 code, pre, samp {
-  font-family: var(--fixed-font-family);
-  font-size: var(--body-font-size-s);
+    font-family: var(--fixed-font-family);
+    font-size: var(--body-font-size-s);
 }
 
 code, samp {
-  padding: .125em;
+    padding: .125em;
 }
 
 pre {
-  overflow: scroll;
+    overflow: scroll;
 }
 
 /* buttons */
 
-a.button:any-link, button, main .form .button, header nav li:nth-last-child(2) a {
-  font-family: var(--body-font-family);
-  display: inline-block;
-  box-sizing: border-box;
-  text-decoration: none;
-  border: 2px solid transparent;
-  padding: 10px 25px;
-  text-align: center;
-  font-style: normal; 
-  font-weight: 600;
-  cursor: pointer;
-  color: var(--background-color);
-  background-color: var(--button-color);
-  margin: 16px 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+a.button:any-link, button, form .hs-button, main .form .button, header nav li:nth-last-child(2) a {
+    font-family: var(--body-font-family);
+    display: inline-flex;
+    position: relative;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: 2px solid var(--button-border-color);
+    border-radius: 28px;
+    padding: 10px 25px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--button-text-color);
+    background-color: var(--button-color);
+    margin: 16px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
 }
 
-a.button:hover, a.button:focus, button:hover, button:focus  {
-  background-color: var(--link-hover-color);
-  cursor: pointer;
+nav ul li:nth-last-child(2) a {
+    --button-border-color: transparent;
+}
+
+a.button:hover, a.button:focus,
+button:hover, button:focus,
+form .hs-button:hover, form .hs-button:focus,
+main .form .button:hover, main .form .button:focus,
+nav ul li a:hover, nav ul li a:focus {
+    background-color: var(--button-color-hover);
+    cursor: pointer;
 }
 
 button:disabled, button:disabled:hover {
-  background-color: var(--overlay-background-color);
-  cursor: unset;
+    background-color: var(--overlay-background-color);
+    cursor: unset;
 }
 
 a.button.secondary, button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
-  color: var(--text-color)
-} 
-
-main {
-  margin-bottom: var(--footer-height);
+    background-color: unset;
+    border: 2px solid currentcolor;
+    color: var(--text-color);
 }
 
-main input {
-  font-size: 1.25rem;
-  width: 100%;
-  max-width: 50rem;
-  display: block;
-  margin-bottom: 1rem;
-  padding: 0.75rem 0.6rem;    
-  border-radius: 0.25rem;
-  box-sizing: border-box;
-  border: 1px solid var(--text-color);
-  color: var(--text-color);
-  background-color: var(--background-color);
+.button img.arrow-icon {
+    padding: 0 0 0 10px;
+    filter: none;
+    height: 1em;
+    width: auto;
 }
 
-main input:hover {
-  border: 1px solid var(--text-color);
+
+main input:not([type='submit']),
+main textarea {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    max-width: 50rem;
+    padding: 0.75rem 0.6rem;
+    font-family: var(--body-font-family);
+    font-size: 18px;
+    line-height: 24px;
+    color: var(--text-color);
+    background-color: var(--background-color-transparent);
+}
+
+main input:not([type='submit']) {
+    border: 1px solid transparent;
+    border-bottom: 1px solid var(--text-color);
+    border-radius: 0;
 }
 
 main .section {
-  padding: 64px var(--section-padding);
+    padding: 100px var(--section-padding);
+    position: relative;
 }
 
 main .section.hero {
-  padding: 20px var(--section-padding);
+    padding-top: 0;
+    position: relative;
 }
 
-main .section.hero p {
-  margin-bottom: 45px;
+main .section.hero::before {
+    --planet-size: calc(80vh + 150vw); /* find a ratio between vh and vw that looks nice */
+    --planet-offset-top: calc(-1 * (var(--planet-size) - 100vh + var(--nav-height) + 10vh));
+    --planet-end-scale: 0.1;
+    --endx: calc(-50% + ((var(--container-width) - var(--section-padding) * 2) / 2) + (var(--planet-size) * var(--planet-end-scale) / 2) + var(--section-padding-min));
+    --endy: calc(var(--container-height) - (var(--planet-size) + var(--planet-offset-top)) - 100px);
+
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: var(--planet-offset-top); /* align the planet to the bottom of the screen plus a offset */
+    left: 50%;
+    width: var(--planet-size);
+    height: var(--planet-size);
+    background: linear-gradient(
+            to top left,
+            #ff8c05 calc(6.14% + var(--scroll) * 5.39%),
+            #ce2726 calc(19.43% + var(--scroll) * 22.61%),
+            #1c0a4d calc(53.92% + var(--scroll) * 21.19%)
+    );
+    border-radius: 50%;
+    transform-origin: bottom center;
+    animation: hero-planet 1s linear infinite;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+
 }
 
-main .section.hero .default-content-wrapper{
-  max-width: 800px;
-  margin: 0;
+@keyframes hero-planet {
+    0% {
+        transform: translate3d(-50%, 0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate3d(var(--endx), var(--endy), 0) scale(var(--planet-end-scale));
+    }
+}
+
+main .section.hero .default-content-wrapper:first-of-type {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+}
+
+main .section.hero .default-content-wrapper:first-of-type h1 {
+    margin-bottom: 0;
+}
+
+/* appearance of h2 as h3, to keep hierarchy of h elements */
+main .section.hero .default-content-wrapper:first-of-type h2 {
+    font-size: var(--heading-font-size-l);
+    line-height: 1.15em;
+    font-weight: 200;
+    text-transform: initial;
+    margin-bottom: 1.8em;
+
 }
 
 main pre {
-  background-color: var(--overlay-background-color);
-  padding: 1em;
-  border-radius: .25em;
-  overflow-x: auto;
-  white-space: pre;
+    background-color: var(--overlay-background-color);
+    padding: 1em;
+    border-radius: .25em;
+    overflow-x: auto;
+    white-space: pre;
 }
 
 main blockquote {
-  font-style: italic;
-  margin: 3rem;
-  text-indent: -1rem;
-  hanging-punctuation: first;
+    font-style: italic;
+    margin: 3rem;
+    text-indent: -1rem;
+    hanging-punctuation: first;
 }
 
 main blockquote p::before {
-  content: "“";
-  line-height: 0;
+    content: "“";
+    line-height: 0;
 }
 
 main blockquote p::after {
-  content: "”";
-  line-height: 0;
+    content: "”";
+    line-height: 0;
 }
 
 hr {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-  border: 0;
-  border-bottom: 1px solid var(--overlay-background-color);
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    border: 0;
+    border-bottom: 1px solid var(--overlay-background-color);
 }
 
 main img {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
 }
 
-@media (min-width: 600px) {
-  main .section.hero {
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-}
 
 @media (min-width: 900px) {
-  .section > div {
-    margin: auto;
-  }
-
-  main .section.hero {
-    padding-top: 80px;
-    padding-bottom: 80px;
-    margin-bottom: 66px;
-  }
+    .section > div {
+        margin: auto;
+    }
 }
 
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
-  display: none;
+    display: none;
 }
 
 main .section.highlight {
-  background-color: var(--highlight-background-color);
+    background-color: var(--highlight-background-color);
 }
 
 main .section.reverse {
-  background-color: var(--background-color-reverse);
-  overflow: hidden;
+    background-color: var(--background-color-reverse);
+    overflow: hidden;
 }
 
 main .section.planet {
-  position: relative;
+    position: relative;
 }
 
 main .section.planet-bottom-right {
-  position: relative;
-  overflow: hidden;
-}
-
-.hidden{
-  display: none;
+    position: relative;
+    overflow: hidden;
 }
 
 @media only screen and (min-width: 600px) {
-  main .section.planet::after, main .section.planet-bottom-right::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    transform: rotate(-173.84deg);
-  }
-  
-  main .section.planet::after {
-    width: 33%;
-    background: linear-gradient(223.02deg, #FF8C05 5.54%, #CE2726 36.22%, #626FF0 80.09%);
-    bottom: 15%;
-    left: -10%;
-  }
-  
-  main .section.planet-bottom-right::after {
-    width: 30%;
-    background: linear-gradient(135.25deg, #FF8C05 11.53%, #CE2726 42.04%, #626FF0 75.11%);
-    bottom: -20%;
-    right: -5%;
-  }
+    main .section.planet::after, main .section.planet-bottom-right::after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        transform: rotate(-173.84deg);
+    }
+
+    main .section.planet::after {
+        width: 33%;
+        background: linear-gradient(223.02deg, #FF8C05 5.54%, #CE2726 36.22%, #626FF0 80.09%);
+        bottom: 15%;
+        left: -10%;
+    }
+
+    main .section.planet-bottom-right::after {
+        width: 30%;
+        background: linear-gradient(135.25deg, #FF8C05 11.53%, #CE2726 42.04%, #626FF0 75.11%);
+        bottom: -20%;
+        right: -5%;
+    }
 }
 
 main .section.hero .icon-logo-adobe-techdivision {
-  position: absolute;
-  z-index: 3;
-  bottom: 30px;
+    position: absolute;
+    z-index: 3;
+    bottom: 30px;
 }
 
 @media only screen and (min-width: 1250px) {
-  main .section.hero .icon-logo-adobe-techdivision {
+    main .section.hero .icon-logo-adobe-techdivision {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        z-index: 3;
+    }
+}
+
+/* planet to background */
+.section-planet {
+    background-color: var(--background-color);
+    z-index: -1;
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
     position: absolute;
-    bottom: 30px;
-    right: 30px;
-    z-index: 3;
-  }
+    left: 50%;
+}
+
+.section-planet-entering {
+    bottom: -100px;
+    transform-origin: top center;
+    animation: planet-to-background 1s linear infinite;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll-planet) * -1s);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.section-planet-entering.hidden {
+    height: 0;
+}
+
+.section-planet-leaving {
+    top: -100px;
+    transform-origin: bottom center;
+    animation: background-to-planet 1s linear infinite;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll-planet) * -1s);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+@keyframes planet-to-background {
+    0% {
+        transform: translate3d(calc(var(--container-width) / -1.2), calc(var(--container-height) / -1.5), 0) scale(1);
+        border-radius: 100px;
+    }
+
+    90% {
+        transform: translate3d(-50%, 0, 0) scale(1);
+        border-radius: 100px;
+    }
+
+    100% {
+        transform: translateX(-50%) scale(50);
+        border-radius: 10px;
+    }
+}
+
+@keyframes background-to-planet {
+    0% {
+        transform: translateX(-50%) scale(50);
+        border-radius: 10px;
+    }
+
+    30% {
+        transform: translate3d(-50%, 0, 0) scale(1);
+        border-radius: 100px;
+    }
+
+    100% {
+        transform: translate3d(calc(var(--container-width) / 1.8 + 100%), calc(var(--container-height) / 1.2), 0) scale(1);
+        border-radius: 100px;
+    }
+}
+
+/* Have to stay at the bottom for a higher specificity */
+.background-hidden::before {
+    opacity: 0;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Explore specifics section */
+.section-explore-specifics > div {
+    margin-top: 150px;
+}
+
+.section-explore-specifics > div:first-child {
+    margin-top: 0;
+    margin-left: 0;
+    max-width: 700px;
+}
+
+.section-explore-specifics h3 {
+    margin: 0;
+}
+
+@media (max-width: 899px) {
+    .section-explore-specifics > div {
+        margin-top: 50px;
+    }
+
+    .section-explore-specifics h4 {
+        margin-top: 50px;
+    }
 }
