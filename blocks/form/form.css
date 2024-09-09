@@ -28,12 +28,12 @@
 
 .section-ready-to-fly .columns img {
   --image-size: 300px;
-
   display: block;
   max-width: var(--image-size);
   aspect-ratio: 1/1;
   border-radius: 500px;
   position: relative;
+  object-fit: cover;
 }
 
 .section-ready-to-fly .columns > div > div:first-child h3,
