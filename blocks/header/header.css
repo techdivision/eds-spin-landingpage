@@ -211,7 +211,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
         margin: var(--nav-list-margin);
     }
 
-    header nav li a:any-link {
+    .language-navigation-wrapper a:any-link {
         color: var(--color-purple);
     }
 }
