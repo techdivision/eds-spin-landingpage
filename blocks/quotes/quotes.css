@@ -7,29 +7,27 @@
     margin-top: 54px;
 }
 
-.quotes > div > div {
-    position: relative;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    background: green;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    padding: 1.5vw;
-    color: white;
-    font-size: 30px;
-    line-height: 1.25;
-    overflow: hidden;
-}
-
 .quotes > div > div::before {
     content: "\201C";
     position: absolute;
     top: 5%;
-    left: 0;
-    right: 0;
     text-align: center;
-    font-size: 100px;
+    font-size: 30vw;
+}
+
+.quotes > div > div {
+    position: relative;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10%;
+    color: white;
+    font-size: 5vw;
+    line-height: 1.25;
+    overflow: hidden;
 }
 
 /* every 1/4 quote */
@@ -53,23 +51,29 @@
 }
 
 @media (min-width: 600px) {
-    .quotes > div > div {
-        font-size: 3vw;
-        padding: 2.5vw;
-    }
-
     .quotes {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .quotes > div > div {
+        font-size: 3vw;
+    }
+
+    .quotes > div > div::before {
+        font-size: 15vw;
     }
 }
 
 @media (min-width: 1400px) {
     .quotes > div > div {
-        font-size: 1.5vw;
-        padding: 1.5vw;
+        font-size: 20px;
     }
 
     .quotes {
         grid-template-columns: repeat(4, 1fr);
+    }
+
+    .quotes > div > div::before {
+        font-size: 100px;
     }
 }
