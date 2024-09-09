@@ -28,7 +28,7 @@ header nav ul {
 }
 
 header nav ul .language-navigation {
-    width: fit-content;
+    width: 100px;
     max-height: 10px;
 }
 
