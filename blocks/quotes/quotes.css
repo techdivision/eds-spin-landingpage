@@ -30,9 +30,9 @@
 
 .quotes > div > div {
     text-align: center;
-    font-size: 22px;
+    font-size: 15px;
     font-weight: 800;
-    line-height: 28px;
+    line-height: 20px;
 }
 
 .quotes > div:nth-child(3n+1) {
@@ -44,7 +44,7 @@
 }
 
 .quotes > div > div:last-child {
-    padding-top: 30px;
+    padding-top: 15px;
     font-size: 14px;
     font-weight: 400;
 }
