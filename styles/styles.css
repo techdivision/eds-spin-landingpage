@@ -157,6 +157,7 @@ header .logo {
 
 main {
     overflow-x: hidden;
+    margin-bottom: var(--footer-height);
 }
 
 @supports (overflow-x: clip) {
