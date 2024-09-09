@@ -80,10 +80,11 @@ function buildLanguageNavigation() {
       + '</svg>';
   languageNavigation.classList.add('language-navigation');
   languageNavigation.innerHTML = `
-    <div class="language-navigation-wrapper">
-      <div class="language-navigation-button" >${getCurrentLanguage()} ${svgChevron}</div>
-      <a href="/" class="${getCurrentLanguage() === 'de' ? 'current-language' : ''} language-navigation-item">DE</a>
-      <a href="/en/" class="${getCurrentLanguage() === 'en' ? 'current-language' : ''} language-navigation-item">EN</a>
+    <div class="language-navigation-button" >${getCurrentLanguage()} ${svgChevron}</div>
+    <div class="language-navigation-selection">
+        <a href="/" class="${getCurrentLanguage() === 'de' ? 'current-language' : ''} language-navigation-item">DE</a>
+        <p class="language-navigation-separator"> / </p>
+        <a href="/en/" class="${getCurrentLanguage() === 'en' ? 'current-language' : ''} language-navigation-item">EN</a>
     </div>
   `;
   return languageNavigation;
@@ -92,12 +93,14 @@ function buildLanguageNavigation() {
 function buildNavigationWithNavigationItems() {
   const navNode = document.createElement('nav');
   const ulNode = document.createElement('ul');
+  ulNode.classList.add('nav__list');
   const navigationItems = getOnPageNavigationItems();
   navigationItems.forEach((item) => {
     const liNode = document.createElement('li');
     const aNode = document.createElement('a');
     aNode.href = `#${toSlug(item)}`;
     aNode.textContent = item;
+    liNode.classList.add('nav__list-item');
     liNode.appendChild(aNode);
     aNode.addEventListener('click', () => (!MQ.matches ? toggleMenu(navNode, false) : null));
     ulNode.appendChild(liNode);
