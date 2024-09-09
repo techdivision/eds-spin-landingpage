@@ -12,7 +12,7 @@
     aspect-ratio: 1/1;
     border-radius: 500px;
     background: linear-gradient(135deg, #CE2726 28.77%, #F5760D 75.11%);
-    height: 322px;
+    height: 381px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -30,9 +30,9 @@
 
 .quotes > div > div {
     text-align: center;
-    font-size: 15px;
+    font-size: 22px;
     font-weight: 800;
-    line-height: 20px;
+    line-height: 28px;
 }
 
 .quotes > div:nth-child(3n+1) {
@@ -44,7 +44,7 @@
 }
 
 .quotes > div > div:last-child {
-    padding-top: 15px;
+    padding-top: 30px;
     font-size: 14px;
     font-weight: 400;
 }
@@ -52,6 +52,5 @@
 @media (max-width: 899px) {
     .quotes > div {
         padding: 50px;
-        height: 300px;
     }
 }
