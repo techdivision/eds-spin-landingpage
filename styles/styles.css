@@ -53,6 +53,9 @@
   /* nav height */
   --nav-height: 146px;
 
+  /* footer height */
+  --footer-height: 250px;
+
   /* content width */
   --content-width: 1200px;
   --section-padding: max(calc(50vw - (var(--content-width) / 2)), 32px);
@@ -182,6 +185,9 @@ a.button.secondary, button.secondary {
   color: var(--text-color)
 } 
 
+main {
+  margin-bottom: var(--footer-height);
+}
 
 main input {
   font-size: 1.25rem;
