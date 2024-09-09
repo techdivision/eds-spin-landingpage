@@ -93,14 +93,14 @@ function buildLanguageNavigation() {
 function buildNavigationWithNavigationItems() {
   const navNode = document.createElement('nav');
   const ulNode = document.createElement('ul');
-  ulNode.classList.add('nav__list');
+  ulNode.classList.add('nav-list');
   const navigationItems = getOnPageNavigationItems();
   navigationItems.forEach((item) => {
     const liNode = document.createElement('li');
     const aNode = document.createElement('a');
     aNode.href = `#${toSlug(item)}`;
     aNode.textContent = item;
-    liNode.classList.add('nav__list-item');
+    liNode.classList.add('nav-list-item');
     liNode.appendChild(aNode);
     aNode.addEventListener('click', () => (!MQ.matches ? toggleMenu(navNode, false) : null));
     ulNode.appendChild(liNode);
