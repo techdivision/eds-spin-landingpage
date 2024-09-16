@@ -546,7 +546,6 @@ main .section.hero .icon-logo-adobe-techdivision {
     100% {
         transform: translateX(-50%) scale(50);
         border-radius: 10px;
-        display: none;
     }
 }
 
