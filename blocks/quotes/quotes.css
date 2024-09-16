@@ -9,13 +9,14 @@
 .quotes > div {
     box-sizing: border-box;
     position: relative;
+    width: 381px;
+    max-width: 100%;
     aspect-ratio: 1/1;
     border-radius: 500px;
     background: linear-gradient(135deg, #CE2726 28.77%, #F5760D 75.11%);
-    height: 381px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 65px;
 }
@@ -47,10 +48,28 @@
     padding-top: 30px;
     font-size: 14px;
     font-weight: 400;
+    line-height: 20px;
 }
 
 @media (max-width: 899px) {
     .quotes > div {
         padding: 50px;
+    }
+}
+
+@media (max-width: 425px) {
+    .quotes > div {
+    }
+
+    .quotes > div > div {
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    .quotes > div > div:last-child {
+        padding-top: 15px;
+        font-size: 10px;
+        font-weight: normal;
+        line-height: 15px;
     }
 }
