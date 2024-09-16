@@ -59,6 +59,7 @@
 
 @media (max-width: 425px) {
     .quotes > div {
+        padding: 30px;
     }
 
     .quotes > div > div {
@@ -71,5 +72,19 @@
         font-size: 10px;
         font-weight: normal;
         line-height: 15px;
+    }
+}
+
+@media (max-width: 340px) {
+    .quotes > div > div {
+        font-size: 12px;
+        line-height: 12px;
+    }
+
+    .quotes > div > div:last-child {
+        padding-top: 10px;
+        font-size: 8px;
+        font-weight: normal;
+        line-height: 10px;
     }
 }
