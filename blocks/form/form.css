@@ -34,7 +34,6 @@
     aspect-ratio: 1/1;
     border-radius: 500px;
     position: relative;
-    object-fit: cover;
 }
 
 .section-ready-to-fly .columns > div > div:first-child h3,
