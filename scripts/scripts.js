@@ -94,15 +94,15 @@ function decorateSectionsWithPlanetToBackgroundAnimation(main) {
         // nextSection.querySelector('.section-planet').classList.add('hidden');
         previousSection.querySelectorAll('.section-planet').forEach((planet) => {
           planet.classList.add('hidden');
-        })
+        });
         nextSection.querySelectorAll('.section-planet').forEach((planet) => {
           planet.classList.add('hidden');
-        })
+        });
       } else if (entry.boundingClientRect.top > 0) {
         entry.target.classList.add('background-hidden');
         previousSection.querySelectorAll('.section-planet').forEach((planet) => {
           planet.classList.remove('hidden');
-        })
+        });
       } else if (entry.boundingClientRect.top < 0) {
         entry.target.classList.add('background-hidden');
         nextSection.querySelector('.section-planet').classList.remove('hidden');
