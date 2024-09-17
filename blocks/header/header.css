@@ -1,4 +1,4 @@
-header{
+header {
     padding: 20px;
     position: relative;
     box-sizing: border-box;
@@ -36,8 +36,8 @@ header .icon-logo-white svg {
     padding: 10px 25px;
 }
 
-@media (max-width: 899px){
-    .nav-list{
+@media (max-width: 899px) {
+    .nav-list {
         transition: transform .3s ease-in-out;
         display: flex;
         position: fixed;
@@ -169,7 +169,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
     right: 18px;
 }
 
-.language-navigation:hover .language-navigation-selection{
+.language-navigation:hover .language-navigation-selection {
     display: flex;
 }
 
