@@ -1,51 +1,51 @@
 footer {
-  height: var(--footer-height);
-  padding: var(--footer-padding-horizontal) var(--footer-padding-vertical);
-  background-color: var(--footer-background-color);
-  font-size: var(--body-font-size-xs);
+    height: var(--footer-height);
+    padding: var(--footer-padding-horizontal) var(--footer-padding-vertical);
+    background-color: var(--footer-background-color);
+    font-size: var(--body-font-size-xs);
 }
 
 footer .block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 footer > div > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
 }
 
 footer > div > div > p {
-  margin: 2px;
+    margin: 2px;
 }
 
 footer > div > div:first-child .icon svg {
-  height: 75px;
+    height: 75px;
 }
 
 footer > div > div:last-child {
-  width: 100%;
-  max-width: 200px;
-  display: grid;
-  grid-template-areas: "header header header";
-  justify-content: space-between;
-  align-items: center;
+    width: 100%;
+    max-width: 200px;
+    display: grid;
+    grid-template-areas: "header header header";
+    justify-content: space-between;
+    align-items: center;
 }
 
 footer > div > div:last-child p:first-child {
-  grid-area: header;
-  text-align: center;
-  padding-bottom: 10px;
+    grid-area: header;
+    text-align: center;
+    padding-bottom: 10px;
 }
 
 footer > div > div:last-child .icon svg {
-  height: 20px;
-  width: 20px;
-  fill: currentcolor;
+    height: 20px;
+    width: 20px;
+    fill: currentcolor;
 }
