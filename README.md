@@ -34,3 +34,4 @@ Mehr Infos: https://www.hlx.live/docs/admin.html#tag/code/operation/codeStatus
 curl -X POST "https://admin.hlx.page/code/techdivision/franklin-spin-landingpage/{branch}/*?branch={branch}" -H "x-github-token: {GitHub token}"
 ```
 Als Antwort wird bei einem Erfolg ein json Objekt übertragen
+
