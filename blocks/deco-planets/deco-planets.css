@@ -1,0 +1,93 @@
+.deco-planets {
+    --size-small: 40px;
+    --size-big: 120px;
+    --color-orange: #FF8C05;
+    --color-red: #CE2726;
+    --offset: 75px;
+
+    position: relative;
+    left: 50%;
+    margin: 50px 0;
+}
+
+.deco-planets .planet-one,
+.deco-planets .planet-two {
+    width: var(--size-small);
+    aspect-ratio: 1/1;
+    background-color: var(--color-orange);
+    border-radius: 500px;
+    transform: translateX(-50%);
+}
+
+.deco-planets .planet-one {
+    transform: translateX(calc(var(--offset) * -1));
+    margin-bottom: var(--offset);
+}
+
+.deco-planets .planet-two {
+    transform: translateX(var(--offset));
+    width: var(--size-big);
+    background-color: var(--color-red);
+}
+
+/* Variant: More Space */
+.deco-planets-more-space .planet-one {
+    margin-bottom: calc(var(--offset) * 1.5);
+}
+
+/* Variant: left / right */
+.deco-planets-left {
+    left: 0;
+    transform: translateX(var(--offset));
+}
+
+.deco-planets-right {
+    left: 100%;
+    transform: translateX(calc(var(--offset) * -2));
+}
+
+/* Variant: v1 */
+.deco-planets-v1 .planet-one {
+    transform: translateX(var(--offset));
+}
+
+.deco-planets-v1 .planet-two {
+    transform: translateX(calc(var(--offset) * -1));
+}
+
+/* Variant: v2 */
+.deco-planets-v2 .planet-one {
+    background-color: var(--color-red);
+    transform: translateX(var(--offset));
+}
+
+.deco-planets-v2 .planet-two {
+    background-color: var(--color-orange);
+    transform: translateX(calc(var(--offset) * -1));
+}
+
+/* Variant: v3 */
+.deco-planets-v3 .planet-one {
+    transform: translate(var(--offset), calc(var(--offset) * 2));
+}
+
+.deco-planets-v3 .planet-two {
+    transform: translate(calc(var(--offset) * -1), calc(var(--offset) * -2));
+
+}
+
+/* Variant: v4 */
+.deco-planets-v4 .planet-one {
+    width: var(--size-big);
+}
+
+.deco-planets-v4 .planet-two {
+    width: var(--size-small);
+}
+
+@media screen and (max-width: 899.98px) {
+    .hide-deco-planets-on-mobile .deco-planets,
+    .hide-deco-planets-on-mobile.deco-planets {
+        display: none;
+    }
+}

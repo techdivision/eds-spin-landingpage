@@ -1,0 +1,163 @@
+.static-scroll-columns {
+    --height-viewport: 100vh;
+
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: var(--height-static-scroll-columns);
+}
+
+@supports (height: 100dvh) {
+    .static-scroll-columns {
+        --height-viewport: 100dvh;
+    }
+}
+
+.static-scroll-column {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: var(--height-viewport);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.static-scroll-column-left picture {
+    transform: translateY(calc(var(--height-viewport) / -2 + var(--section-padding)));
+}
+
+.static-scroll-column-left h3 {
+    transform: translateY(calc(var(--height-viewport) / -4));
+}
+
+.static-scroll-column-right {
+    margin-top: calc(var(--height-viewport) * -1);
+}
+
+.static-scroll-column-right h3 {
+    transform: translateY(calc(var(--height-viewport) / 4));
+}
+
+.static-scroll-columns picture {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity .1s .4s;
+}
+
+.static-scroll-columns picture.active {
+    opacity: 1;
+    z-index: 1;
+    transition: opacity .5s;
+}
+
+.static-scroll-columns img {
+    display: block;
+    position: relative;
+    left: 50%;
+    max-width: calc(var(--height-viewport) / 2 - var(--section-padding));
+    aspect-ratio: 1/1;
+    transform: translateX(-50%);
+}
+
+.static-scroll-columns h3 {
+    font-weight: 700;
+    margin-bottom: 0;
+    opacity: 0.3;
+    transition: opacity .5s ease-in-out;
+}
+
+.static-scroll-columns h3.active {
+    opacity: 1;
+}
+
+.static-scroll-column-texts::before {
+    content: '';
+    width: 5px;
+    height: calc(var(--text-height) * var(--scroll));
+    background-color: var(--text-color);
+    position: absolute;
+    top: calc((var(--height-viewport) - var(--text-height)) / 2);
+    left: -10px;
+    border-radius: 5px;
+}
+
+.static-scroll-column-right.static-scroll-column-texts::before {
+    transform: translateY(calc(var(--height-viewport) / 4));
+}
+
+.static-scroll-column-left.static-scroll-column-texts::before {
+    transform: translateY(calc(var(--height-viewport) / -4));
+}
+
+.static-scroll-columns-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: var(--height-static-scroll-columns);
+    width: 1px;
+}
+
+.static-scroll-columns-progress-section {
+    height: var(--height-static-scroll-columns-progress-section);
+}
+
+.static-scroll-columns-progress-section:first-child,
+.static-scroll-columns-progress-section:last-child {
+    height: calc(var(--height-static-scroll-columns-progress-section) * 2);
+}
+
+@media screen and (min-width: 700px) {
+    .static-scroll-columns {
+        flex-direction: row;
+        margin-top: calc((var(--height-viewport) - 50%) / -2);
+        margin-bottom: calc((var(--height-viewport) - 50%) / -2 + 80px);
+    }
+
+    .static-scroll-column {
+        position: sticky;
+        top: 0;
+        width: 50%;
+        margin: 0;
+    }
+
+    .static-scroll-column-right h3,
+    .static-scroll-column-left h3 {
+        transform: translateY(0);
+    }
+
+    .static-scroll-columns picture {
+        transform: translateY(-50%);
+    }
+
+    .static-scroll-columns img {
+        max-width: 100%;
+    }
+
+    .static-scroll-column-texts.static-scroll-column-left {
+        padding-right: 40px;
+    }
+
+    .static-scroll-column-texts.static-scroll-column-right {
+        padding-left: 40px;
+    }
+
+    .static-scroll-column-texts::before {
+        top: calc((var(--height-viewport) - var(--text-height)) / 2);
+    }
+
+    .static-scroll-column-right.static-scroll-column-texts::before {
+        left: 25px;
+        transform: none;
+    }
+
+    .static-scroll-column-left.static-scroll-column-texts::before {
+        left: auto;
+        right: 25px;
+        transform: none;
+    }
+}

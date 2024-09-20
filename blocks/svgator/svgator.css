@@ -1,0 +1,23 @@
+.svgator svg {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.svgator:not(.svg-loaded) {
+    aspect-ratio: 5/3;
+    background: var(--skeleton-background);
+    border-radius: 4px;
+    background-size: 400% 400%;
+    animation: skeleton 2.25s ease infinite alternate;
+}
+
+@keyframes skeleton {
+    0% {
+        background-position: 0% 50%
+    }
+
+    100% {
+        background-position: 100% 50%
+    }
+}

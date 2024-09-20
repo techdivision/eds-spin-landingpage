@@ -1,10 +1,222 @@
 /* below the fold CSS goes here */
 @font-face {
-  font-family: mulish;
-  src: url("/styles/fonts/Mulish-VariableFont_wght.ttf");
-  font-weight: 100 900;
+    font-family: mulish;
+    src: url("/styles/fonts/Mulish-VariableFont_wght.ttf");
+    font-weight: 100 900;
+    font-display: swap;
 }
 
-html{
-  scroll-behavior: smooth;
+html {
+    scroll-behavior: smooth;
 }
+
+/* stars background */
+.stars-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: -1; /* Remove this line if it's not going to be a background! */
+}
+
+.stars {
+    animation: star-animation linear infinite;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    animation-duration: var(--stars-animation-duration);
+    z-index: -100;
+    transition: opacity var(--stars-appearance-delay) ease-in-out;
+    opacity: 0;
+    background-image: var(--stars-background-url);
+    background-repeat: repeat;
+    background-size: 500px 500px; /* manually set the size of the svg */
+}
+
+@keyframes star-animation {
+    from {
+        transform: translateY(0)
+    }
+
+    to {
+        transform: translateY(calc(var(--container-height) / 2))
+    }
+}
+
+/* shooting stars */
+.shooting-stars-wrapper {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    z-index: -1;
+}
+
+.shooting-star {
+    content: '';
+    position: absolute;
+    left: -250px;
+    top: -250px;
+    height: 5px;
+    width: 250px;
+    aspect-ratio: 1/1;
+    background: linear-gradient(0.25turn, rgb(0 0 0 / 0%) 0%, rgb(255 255 255 / 40%) 100%);
+    border-radius: 50%;
+    animation: 30s shooting-star-animation linear infinite;
+}
+
+.shooting-star:nth-child(1) {
+    top: calc(-250px + 40vh);
+    animation-delay: 10s;
+}
+
+.shooting-star:nth-child(2) {
+    top: calc(-250px);
+    animation-delay: 20s;
+}
+
+.shooting-star:nth-child(3) {
+    top: calc(-250px - 40vh);
+    animation-delay: 30s;
+}
+
+@keyframes shooting-star-animation {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(45deg);
+        opacity: 0.5;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    10%, 100% {
+        transform: translate3d(150vmax, 150vmax, 0) rotate(45deg);
+        opacity: 0.5;
+    }
+}
+
+/* IMPORTANT: this is just for fun and not actually used. Please ignore this :) */
+.i-spin h1 {
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.i-spin main .section.hero::before {
+    background: url("/images/fun.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.i-spin .stars-wrapper {
+    animation-name: pulsate;
+    animation-duration: 500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+}
+
+.i-spin svg path {
+    animation: rainbow 2.5s linear;
+    animation-iteration-count: infinite;
+}
+
+body.i-spin {
+    --body-font-family: "Comic Sans MS", sans-serif;
+    --heading-font-family: var(--body-font-family);
+    --fixed-font-family: var(--body-font-family);
+
+    animation: rainbow 2.5s linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pulsate {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rainbow {
+    100%, 0% {
+        color: rgb(255 0 0);
+        fill: rgb(255 0 0);
+    }
+
+    8% {
+        color: rgb(255 127 0);
+        fill: rgb(255 127 0);
+    }
+
+    16% {
+        color: rgb(255 255 0);
+        fill: rgb(255 255 0);
+    }
+
+    25% {
+        color: rgb(127 255 0);
+        fill: rgb(127 255 0);
+    }
+
+    33% {
+        color: rgb(0 255 0);
+        fill: rgb(0 255 0);
+    }
+
+    41% {
+        color: rgb(0 255 127);
+        fill: rgb(0 255 127);
+    }
+
+    50% {
+        color: rgb(0 255 255);
+        fill: rgb(0 255 255);
+    }
+
+    58% {
+        color: rgb(0 127 255);
+        fill: rgb(0 127 255);
+    }
+
+    66% {
+        color: rgb(0 0 255);
+        fill: rgb(0 0 255);
+    }
+
+    75% {
+        color: rgb(127 0 255);
+        fill: rgb(127 0 255);
+    }
+
+    83% {
+        color: rgb(255 0 255);
+        fill: rgb(255 0 255);
+    }
+
+    91% {
+        color: rgb(255 0 127);
+        fill: rgb(255 0 127);
+    }
+}
+
+/* </FUN> */

@@ -1,0 +1,58 @@
+.word-cloud-wrapper {
+    height: 300vh;
+    position: relative;
+}
+
+.word-cloud {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100svh;
+    pointer-events: none;
+}
+
+
+.word-cloud > div {
+    position: absolute;
+    top: var(--position-top);
+    left: 50%;
+    width: max-content;
+    max-width: calc(100% - var(--section-padding) * 2);
+    display: inline-block;
+    pointer-events: auto;
+    font-size: var(--heading-font-size-xl);
+    font-weight: 600;
+    line-height: 1;
+    animation: word var(--animation-duration) ease-in-out infinite;
+    animation-play-state: paused;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-delay: calc(var(--scroll) * -1s + var(--animation-offset));
+}
+
+.word-cloud > div > div {
+    word-break: break-word;
+}
+
+@media screen and (min-width: 700px) {
+    .word-cloud > div {
+        left: var(--position-left);
+        max-width: 60%;
+        font-size: 70px;
+    }
+}
+
+@keyframes word {
+    0% {
+        transform: translate3d(-50%, 0, 0) scale(0);
+    }
+
+    40%, 60% {
+        transform: translate3d(-50%, 0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate3d(-50%, 0, 0) scale(0);
+    }
+}
