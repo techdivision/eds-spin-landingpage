@@ -244,7 +244,7 @@ pre {
 
 /* buttons */
 
-a.button:any-link, button, form .hs-button, main .form .button, header nav li:nth-last-child(2) a {
+a.button:any-link, button, form .hs-button, main .form .button, header nav li:nth-last-child(1) a {
     font-family: var(--body-font-family);
     display: inline-flex;
     position: relative;
@@ -265,7 +265,7 @@ a.button:any-link, button, form .hs-button, main .form .button, header nav li:nt
     align-items: center;
 }
 
-nav ul li:nth-last-child(2) a {
+nav ul li:nth-last-child(1) a {
     --button-border-color: transparent;
 }
 

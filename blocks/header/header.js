@@ -108,7 +108,7 @@ function buildNavigationWithNavigationItems() {
   });
   navNode.setAttribute('aria-expanded', 'false');
   navNode.id = 'nav';
-  ulNode.appendChild(buildLanguageNavigation());
+  // ulNode.appendChild(buildLanguageNavigation());
   return navNode;
 }
 
