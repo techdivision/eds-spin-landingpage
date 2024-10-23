@@ -10,6 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
+@import "links.css";
+
 /* fallback font for Mulish (normal - 400) */
 @font-face {
     font-family: "mulish-normal-400-fallback";
@@ -217,16 +219,6 @@ p, dl, ol, ul, pre, blockquote {
 
 strong {
     font-weight: 800;
-}
-
-a:any-link {
-    color: var(--link-color);
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-    color: var(--link-hover-color);
 }
 
 code, pre, samp {
