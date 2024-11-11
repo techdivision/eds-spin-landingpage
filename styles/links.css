@@ -5,8 +5,9 @@ a:any-link {
 
 a:any-link img {
     padding-left: 10px;
-    height: var(--body-font-size-xs);
-    width: var(--body-font-size-xs);
+    height: 0.7em;
+    width: auto;
+    display: inline-block;
 }
 
 a:hover {
