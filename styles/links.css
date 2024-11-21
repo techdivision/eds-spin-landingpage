@@ -1,0 +1,16 @@
+a:any-link {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:any-link img {
+    padding-left: 10px;
+    height: 0.7em;
+    width: auto;
+    display: inline-block;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--link-hover-color);
+}
