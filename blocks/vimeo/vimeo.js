@@ -70,6 +70,13 @@ function registerClickEvent(wrapper) {
 export default function decorate(block) {
   // prepare
   const videoLink = block.querySelector('div').innerText.trim();
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.cc-btn')) return;
+    const consetStatus = window.cookieconsent.currentConsentStatus();
+    console.log(consetStatus);
+  });
+
   if (!videoLink.length) {
     block.classList.add('hidden');
     return;
