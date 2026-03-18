@@ -1,4 +1,4 @@
-import { handleConsentAction } from '../../scripts/utilities.js';
+import { initConsentGuard } from '../../scripts/utilities.js';
 
 async function getVimeoApiInformation(videoLink) {
   const url = `https://vimeo.com/api/oembed.json?url=${videoLink}`;
@@ -88,5 +88,5 @@ export default function decorate(block) {
     });
   }
 
-  handleConsentAction(onConsent, 'bert', block);
+  initConsentGuard(onConsent, 'marketing', block);
 }
