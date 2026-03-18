@@ -594,7 +594,6 @@ main .section.hero .icon-logo-adobe-techdivision {
     }
 }
 
-/* consent placeholder */
 .consent-placeholder {
     padding: 40px 20px;
     text-align: center;
@@ -614,8 +613,4 @@ main .section.hero .icon-logo-adobe-techdivision {
 .consent-placeholder p {
     margin-bottom: 20px;
     font-size: 1.1rem;
-}
-
-.consent-placeholder .button {
-    display: inline-block;
 }
