@@ -70,8 +70,8 @@ function registerClickEvent(wrapper) {
 }
 
 export default function decorate(block) {
+  const videoLink = block.querySelector('div').innerText.trim();
   function onConsent() {
-    const videoLink = block.querySelector('div').innerText.trim();
     if (!videoLink.length) {
       block.classList.add('hidden');
       return;
