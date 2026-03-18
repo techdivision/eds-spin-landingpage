@@ -23,17 +23,32 @@ export function debounce(func, timeout = 300) {
   };
 }
 
+function getCurrentLanguage() {
+  const pathName = window.location.pathname;
+  return pathName.includes('/en/') ? 'en' : 'de';
+}
+
 /**
  * Erstellt rein das DOM-Element für den Consent-Platzhalter.
  * @returns {HTMLElement} Der fertige Platzhalter-Knoten
  */
 function renderNoConsent(block) {
+  const currentLanguage = getCurrentLanguage();
+
+  const textEn = 'This content is blocked because you have not given cookie consent.';
+  const textDe = 'Dieser Inhalt ist blockiert, weil Sie keine Einwilligung zu Cookies gegeben haben.';
+  const text = currentLanguage === 'en' ? textEn : textDe;
+
+  const buttonEn = 'Change cookie settings';
+  const buttonDe = 'Cookie-Einstellungen ändern';
+  const button = currentLanguage === 'en' ? buttonEn : buttonDe;
+
   const placeholder = document.createElement('div');
   placeholder.className = 'consent-placeholder';
   placeholder.innerHTML = `
     <div class="consent-placeholder-inner">
-      <p>This content is blocked because you have not given cookie consent.</p>
-      <button class="button primary">Change cookie settings</button>
+      <p>${text}</p>
+      <button class="button primary">${button}</button>
     </div>`;
 
   placeholder.querySelector('button').onclick = (e) => {
