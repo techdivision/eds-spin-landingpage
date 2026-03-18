@@ -1,3 +1,5 @@
+import { handleConsentAction } from '../../scripts/utilities.js';
+
 async function getVimeoApiInformation(videoLink) {
   const url = `https://vimeo.com/api/oembed.json?url=${videoLink}`;
   const apiData = await fetch(url);
@@ -68,30 +70,23 @@ function registerClickEvent(wrapper) {
 }
 
 export default function decorate(block) {
-  // prepare
-  const videoLink = block.querySelector('div').innerText.trim();
-
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.cc-btn')) return;
-    const consetStatus = window.cookieconsent.currentConsentStatus();
-    console.log(consetStatus);
-  });
-
-  if (!videoLink.length) {
-    block.classList.add('hidden');
-    return;
+  function onConsent() {
+    const videoLink = block.querySelector('div').innerText.trim();
+    if (!videoLink.length) {
+      block.classList.add('hidden');
+      return;
+    }
+    getVimeoApiInformation(videoLink).then((vimeoApiData) => {
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('vimeo-video-wrapper');
+      wrapper.appendChild(getThumbnailImage(vimeoApiData));
+      wrapper.appendChild(getIframeTag(vimeoApiData));
+      registerClickEvent(wrapper);
+      block.replaceChildren(wrapper);
+    }).catch(() => {
+      block.classList.add('hidden');
+    });
   }
-  getVimeoApiInformation(videoLink).then((vimeoApiData) => {
-    // construct wrapper
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('vimeo-video-wrapper');
-    wrapper.appendChild(getThumbnailImage(vimeoApiData));
-    wrapper.appendChild(getIframeTag(vimeoApiData));
-    // add click functionality
-    registerClickEvent(wrapper);
-    // fill block
-    block.replaceChildren(wrapper);
-  }).catch(() => {
-    block.classList.add('hidden');
-  });
+
+  handleConsentAction(onConsent, 'bert', block);
 }

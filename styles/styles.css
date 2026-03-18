@@ -593,3 +593,29 @@ main .section.hero .icon-logo-adobe-techdivision {
         margin-top: 50px;
     }
 }
+
+/* consent placeholder */
+.consent-placeholder {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: var(--background-color);
+    border: 1px solid var(--overlay-background-color);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.consent-placeholder-inner {
+    max-width: 400px;
+}
+
+.consent-placeholder p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.consent-placeholder .button {
+    display: inline-block;
+}
