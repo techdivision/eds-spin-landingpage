@@ -1,5 +1,5 @@
 import { loadScript } from '../../scripts/lib-franklin.js';
-import { debounce } from '../../scripts/utilities.js';
+import { debounce, initConsentGuard } from '../../scripts/utilities.js';
 
 function rearrangeInputLabels() {
   const forms = document.querySelectorAll('form');
@@ -18,24 +18,35 @@ function rearrangeInputLabels() {
 }
 
 export default function decorate(block) {
+  const hubspotForms = block instanceof HTMLElement ? [block] : document.querySelectorAll('.form[data-form-id]');
+
   block.dataset.formId = block.children[0].children[0].innerHTML;
   block.innerHTML = 'loading';
-}
 
-export async function initializeHubspot() {
-  await loadScript('https://js.hsforms.net/forms/embed/v2.js');
-
-  const hubspotForms = document.querySelectorAll('.form[data-form-id]');
-  hubspotForms.forEach((form, index) => {
-    form.dataset.formIndex = `${index}`;
-    window.hbspt.forms.create({
-      region: 'na1',
-      portalId: '3458432',
-      formId: form.dataset.formId,
-      target: `[data-form-id][data-form-index='${form.dataset.formIndex}']`,
+  async function onConsent() {
+    await loadScript('https://js.hsforms.net/forms/embed/v2.js');
+    hubspotForms.forEach((form, index) => {
+      if (form.dataset.hubspotInitialized) return;
+      form.dataset.hubspotInitialized = 'true';
+      form.dataset.formIndex = `${index}`;
+      window.hbspt.forms.create({
+        region: 'na1',
+        portalId: '3458432',
+        formId: form.dataset.formId,
+        target: `[data-form-id][data-form-index='${form.dataset.formIndex}']`,
+      });
     });
-  });
 
-  const debouncedRearrangeInputLabels = debounce(() => rearrangeInputLabels());
-  debouncedRearrangeInputLabels();
+    const debouncedRearrangeInputLabels = debounce(() => rearrangeInputLabels());
+    debouncedRearrangeInputLabels();
+  }
+
+  function onRevoke() {
+    // window.location.reload();
+    hubspotForms.forEach((form) => {
+      delete form.dataset.hubspotInitialized;
+    });
+  }
+
+  initConsentGuard(onConsent, onRevoke, 'marketing', block);
 }

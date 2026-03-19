@@ -88,5 +88,5 @@ export default function decorate(block) {
     });
   }
 
-  initConsentGuard(onConsent, 'marketing', block);
+  initConsentGuard(onConsent, undefined, 'marketing', block);
 }

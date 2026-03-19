@@ -59,19 +59,7 @@ function renderNoConsent(block) {
   block.replaceChildren(placeholder);
 }
 
-function handleConsentAction(onConsent, consentName, block) {
-  const currentStatus = window.cookieconsent.currentConsentStatus();
-  if (currentStatus[consentName]) onConsent();
-  else renderNoConsent(block);
-}
-
-/**
- * Prüft den Consent-Status und führt die entsprechende Funktion aus.
- * @param {Function} onConsent - Wird ausgeführt, wenn Consent vorhanden ist.
- * @param {string} consentName - Der Name/Key des benötigten Consents (z.B. 'marketing').
- * @param {HTMLElement} block - Das DOM-Element, in dem der Platzhalter eingefügt werden soll.
- */
-export async function initConsentGuard(onConsent, consentName, block) {
+export async function initConsentGuard(onConsent, onRevoke, consentName, block) {
   const waitForLibrary = () => new Promise((res) => {
     const i = setInterval(() => {
       if (window.cookieconsent) {
@@ -86,9 +74,19 @@ export async function initConsentGuard(onConsent, consentName, block) {
   });
   await waitForLibrary();
 
-  handleConsentAction(onConsent, consentName, block);
+  const handleAction = () => {
+    const currentStatus = window.cookieconsent.currentConsentStatus();
+    if (currentStatus[consentName]) {
+      onConsent();
+    } else {
+      if (onRevoke && typeof onRevoke === 'function') onRevoke();
+      renderNoConsent(block);
+    }
+  };
+
+  handleAction();
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.cc-btn')) return;
-    handleConsentAction(onConsent, consentName, block);
+    handleAction();
   });
 }
