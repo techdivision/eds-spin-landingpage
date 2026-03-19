@@ -59,6 +59,13 @@ function renderNoConsent(block) {
   block.replaceChildren(placeholder);
 }
 
+/**
+ * @typedef {Object} ConsentGuardOptions
+ * @property {Function} onConsent - Callback function when consent is granted
+ * @property {string} consentName - Name of the consent (e.g., 'marketing')
+ * @property {HTMLElement} block - The block to apply the consent guard to
+ * @property {Function} [onRevoke] - Optional callback function when consent is revoked
+ */
 export async function initConsentGuard(onConsent, consentName, block, onRevoke = undefined) {
   const waitForLibrary = () => new Promise((res) => {
     const i = setInterval(() => {
