@@ -42,10 +42,8 @@ export default function decorate(block) {
   }
 
   function onRevoke() {
-    // window.location.reload();
-    hubspotForms.forEach((form) => {
-      delete form.dataset.hubspotInitialized;
-    });
+    if (!hubspotForms[0].dataset.hubspotInitialized) return;
+    window.location.reload();
   }
 
   initConsentGuard(onConsent, onRevoke, 'marketing', block);
