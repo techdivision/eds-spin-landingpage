@@ -42,7 +42,8 @@ export default function decorate(block) {
   }
 
   function onRevoke() {
-    if (!hubspotForms[0].dataset.hubspotInitialized) return;
+    const isAnyFormInitialized = Array.from(hubspotForms).some((form) => form.dataset.hubspotInitialized);
+    if (!isAnyFormInitialized) return;
     window.location.reload();
   }
 
