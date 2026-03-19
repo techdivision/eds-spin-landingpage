@@ -47,5 +47,5 @@ export default function decorate(block) {
     window.location.reload();
   }
 
-  initConsentGuard(onConsent, onRevoke, 'marketing', block);
+  initConsentGuard(onConsent, 'marketing', block, onRevoke);
 }

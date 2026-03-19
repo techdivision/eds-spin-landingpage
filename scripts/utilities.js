@@ -59,7 +59,7 @@ function renderNoConsent(block) {
   block.replaceChildren(placeholder);
 }
 
-export async function initConsentGuard(onConsent, onRevoke, consentName, block) {
+export async function initConsentGuard(onConsent, consentName, block, onRevoke = undefined) {
   const waitForLibrary = () => new Promise((res) => {
     const i = setInterval(() => {
       if (window.cookieconsent) {
