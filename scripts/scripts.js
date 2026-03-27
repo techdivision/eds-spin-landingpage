@@ -110,7 +110,7 @@ function decorateSectionsWithPlanetToBackgroundAnimation(main) {
     });
   }, { rootMargin: `-${planetAnimationRootMargin}px 0px` });
 
-  main.querySelectorAll('.planet-to-background').forEach((section) => {
+  main.querySelectorAll('.planet-to-background').forEach((section, index) => {
     section.classList.add('background-hidden');
     const previousSection = section.previousElementSibling;
     const nextSection = section.nextElementSibling;
@@ -127,10 +127,12 @@ function decorateSectionsWithPlanetToBackgroundAnimation(main) {
     }
     const previousPlanet = planet.cloneNode();
     previousPlanet.classList.add('section-planet-entering');
+    previousPlanet.style.setProperty('--scroll-planet', `var(--scroll-planet-${index})`);
     previousSection.appendChild(previousPlanet);
     const nextPlanet = planet.cloneNode();
     nextPlanet.classList.add('section-planet-leaving');
     nextPlanet.classList.add('hidden');
+    nextPlanet.style.setProperty('--scroll-planet', `var(--scroll-planet-${index})`);
     nextSection.appendChild(nextPlanet);
     registerCustomScrollLinkedVariable(
       previousSection,
@@ -138,7 +140,7 @@ function decorateSectionsWithPlanetToBackgroundAnimation(main) {
       (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height / 2 - window.innerHeight / 2,
       // eslint-disable-next-line max-len
       (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height - window.innerHeight + planetAnimationRootMargin,
-      '--scroll-planet',
+      `--scroll-planet-${index}`,
     );
     registerCustomScrollLinkedVariable(
       nextSection,
@@ -146,7 +148,7 @@ function decorateSectionsWithPlanetToBackgroundAnimation(main) {
       (elementDistanceToWindowTop) => elementDistanceToWindowTop - planetAnimationRootMargin,
       // eslint-disable-next-line max-len
       (elementDistanceToWindowTop, elementRect) => elementDistanceToWindowTop + elementRect.height / 2 - window.innerHeight / 2,
-      '--scroll-planet',
+      `--scroll-planet-${index}`,
     );
     planetSectionIntersectionObserver.observe(section);
   });

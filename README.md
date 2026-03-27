@@ -31,6 +31,33 @@ npm run lint
 Mehr Infos: https://www.hlx.live/docs/admin.html#tag/code/operation/codeStatus
 
 ```sh
-curl -X POST "https://admin.hlx.page/code/techdivision/franklin-spin-landingpage/{branch}/*?branch={branch}" -H "x-github-token: {GitHub token}"
+curl -X POST "https://admin.hlx.page/code/techdivision/eds-spin-landingpage/{branch}/*?branch={branch}" -H "x-github-token: {GitHub token}"
 ```
 Als Antwort wird bei einem Erfolg ein json Objekt übertragen
+
+## Consent Guards
+Um einen Block mit einem Consent Guard zu versehen, kann die Funktion `initConsentGuard` aus `scripts/utilities.js` genutzt werden. Diese sorgt dafür, dass Inhalte erst geladen werden, wenn der entsprechende Consent (z.B. `marketing`) erteilt wurde.
+
+### Verwendung
+```javascript
+import { initConsentGuard } from '../../scripts/utilities.js';
+
+export default function decorate(block) {
+  function onConsent() {
+    // Logik die ausgeführt wird, wenn Consent erteilt wurde
+  }
+
+  function onRevoke() {
+    // Optional: Logik die ausgeführt wird, wenn Consent entzogen wurde (z.B. Reload)
+  }
+
+  initConsentGuard(onConsent, 'marketing', block, onRevoke);
+}
+```
+
+### Parameter
+- `onConsent`: Funktion, die aufgerufen wird, sobald der Consent erteilt ist.
+- `consentName`: Der Key des Consents aus DataReporter (z.B. `'marketing'`).
+- `block`: Das DOM-Element des Blocks.
+- `onRevoke` (optional): Funktion, die aufgerufen wird, wenn der Consent entzogen wird.
+

@@ -10,6 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
+@import url("links.css");
+
 /* fallback font for Mulish (normal - 400) */
 @font-face {
     font-family: "mulish-normal-400-fallback";
@@ -219,16 +221,6 @@ strong {
     font-weight: 800;
 }
 
-a:any-link {
-    color: var(--link-color);
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-    color: var(--link-hover-color);
-}
-
 code, pre, samp {
     font-family: var(--fixed-font-family);
     font-size: var(--body-font-size-s);
@@ -244,7 +236,7 @@ pre {
 
 /* buttons */
 
-a.button:any-link, button, form .hs-button, main .form .button, header nav li:nth-last-child(2) a {
+a.button:any-link, button, form .hs-button, main .form .button, header nav li:nth-last-child(1) a {
     font-family: var(--body-font-family);
     display: inline-flex;
     position: relative;
@@ -265,7 +257,7 @@ a.button:any-link, button, form .hs-button, main .form .button, header nav li:nt
     align-items: center;
 }
 
-nav ul li:nth-last-child(2) a {
+nav ul li:nth-last-child(1) a {
     --button-border-color: transparent;
 }
 
@@ -600,4 +592,25 @@ main .section.hero .icon-logo-adobe-techdivision {
     .section-explore-specifics h4 {
         margin-top: 50px;
     }
+}
+
+.consent-placeholder {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: var(--background-color);
+    border: 1px solid var(--overlay-background-color);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.consent-placeholder-inner {
+    max-width: 400px;
+}
+
+.consent-placeholder p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
 }

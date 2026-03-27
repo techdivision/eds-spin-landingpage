@@ -1,5 +1,5 @@
 import { loadScript } from '../../scripts/lib-franklin.js';
-import { debounce } from '../../scripts/utilities.js';
+import { debounce, initConsentGuard } from '../../scripts/utilities.js';
 
 function rearrangeInputLabels() {
   const forms = document.querySelectorAll('form');
@@ -20,22 +20,27 @@ function rearrangeInputLabels() {
 export default function decorate(block) {
   block.dataset.formId = block.children[0].children[0].innerHTML;
   block.innerHTML = 'loading';
-}
 
-export async function initializeHubspot() {
-  await loadScript('https://js.hsforms.net/forms/embed/v2.js');
-
-  const hubspotForms = document.querySelectorAll('.form[data-form-id]');
-  hubspotForms.forEach((form, index) => {
-    form.dataset.formIndex = `${index}`;
+  async function onConsent() {
+    await loadScript('https://js.hsforms.net/forms/embed/v2.js');
+    if (block.dataset.hubspotInitialized) return;
+    block.dataset.hubspotInitialized = 'true';
+    block.dataset.formIndex = '0';
     window.hbspt.forms.create({
       region: 'na1',
       portalId: '3458432',
-      formId: form.dataset.formId,
-      target: `[data-form-id][data-form-index='${form.dataset.formIndex}']`,
+      formId: block.dataset.formId,
+      target: '[data-form-id][data-form-index=\'0\']',
     });
-  });
 
-  const debouncedRearrangeInputLabels = debounce(() => rearrangeInputLabels());
-  debouncedRearrangeInputLabels();
+    const debouncedRearrangeInputLabels = debounce(() => rearrangeInputLabels());
+    debouncedRearrangeInputLabels();
+  }
+
+  function onRevoke() {
+    if (!block.dataset.hubspotInitialized) return;
+    window.location.reload();
+  }
+
+  initConsentGuard(onConsent, 'marketing', block, onRevoke);
 }
