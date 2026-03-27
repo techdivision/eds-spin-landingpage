@@ -18,23 +18,19 @@ function rearrangeInputLabels() {
 }
 
 export default function decorate(block) {
-  const hubspotForms = block instanceof HTMLElement ? [block] : document.querySelectorAll('.form[data-form-id]');
-
   block.dataset.formId = block.children[0].children[0].innerHTML;
   block.innerHTML = 'loading';
 
   async function onConsent() {
     await loadScript('https://js.hsforms.net/forms/embed/v2.js');
-    hubspotForms.forEach((form, index) => {
-      if (form.dataset.hubspotInitialized) return;
-      form.dataset.hubspotInitialized = 'true';
-      form.dataset.formIndex = `${index}`;
-      window.hbspt.forms.create({
-        region: 'na1',
-        portalId: '3458432',
-        formId: form.dataset.formId,
-        target: `[data-form-id][data-form-index='${form.dataset.formIndex}']`,
-      });
+    if (block.dataset.hubspotInitialized) return;
+    block.dataset.hubspotInitialized = 'true';
+    block.dataset.formIndex = '0';
+    window.hbspt.forms.create({
+      region: 'na1',
+      portalId: '3458432',
+      formId: block.dataset.formId,
+      target: '[data-form-id][data-form-index=\'0\']',
     });
 
     const debouncedRearrangeInputLabels = debounce(() => rearrangeInputLabels());
@@ -42,8 +38,7 @@ export default function decorate(block) {
   }
 
   function onRevoke() {
-    const isAnyFormInitialized = Array.from(hubspotForms).some((form) => form.dataset.hubspotInitialized);
-    if (!isAnyFormInitialized) return;
+    if (!block.dataset.hubspotInitialized) return;
     window.location.reload();
   }
 

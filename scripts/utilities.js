@@ -74,10 +74,6 @@ export async function initConsentGuard(onConsent, consentName, block, onRevoke =
         res();
       }
     }, 100);
-    if (window.cookieconsent) {
-      clearInterval(i);
-      res();
-    }
   });
   await waitForLibrary();
 
@@ -86,7 +82,7 @@ export async function initConsentGuard(onConsent, consentName, block, onRevoke =
     if (currentStatus[consentName]) {
       onConsent();
     } else {
-      if (onRevoke && typeof onRevoke === 'function') onRevoke();
+      onRevoke?.();
       renderNoConsent(block);
     }
   };
